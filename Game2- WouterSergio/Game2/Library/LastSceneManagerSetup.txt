@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/WouterTestScene.unity
+- path: Assets/Scenes/_MainScene_Sergio.unity
   isLoaded: 1
   isActive: 1
