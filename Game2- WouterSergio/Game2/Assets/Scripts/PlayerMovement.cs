@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject ground;
-    public float jumpPower = 2f;
+    public float jumpPower = 6f;
     public float walkSpeed = 2f;
 
     private Rigidbody2D rigid;
@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit hit;
     private float distToTheGround;
     private Dictionary<KeyCode, Vector3> directions;
+    private bool IsOnJumpPlatform = false;
 
     void Awake()
     {
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
             
             {KeyCode.A, Vector3.left}, 
             {KeyCode.D, Vector3.right},
+            {KeyCode.W,Vector3.up }
             
         }; 
     distToTheGround = collider.bounds.extents.y;
@@ -65,6 +67,43 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        rigid.AddForce(transform.up * 9 ,ForceMode2D.Impulse);
+        if (IsOnJumpPlatform)
+        {
+            jumpPower = 9;
+        }
+        else
+        {
+            jumpPower = 5;
+        }
+        rigid.AddForce(transform.up * jumpPower ,ForceMode2D.Impulse);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Boost")
+        {
+            foreach (var direction in directions.Keys)
+            {
+                if (Input.GetKey(direction))
+                {
+
+                    rigid.AddForce(directions[direction] * 8, ForceMode2D.Impulse);
+
+
+                }
+            }
+            
+        }
+        if (collision.gameObject.tag == "JumpPlatform")
+        {
+            IsOnJumpPlatform = true;
+        }
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "JumpPlatform")
+        {
+            IsOnJumpPlatform = false;
+        }
     }
 }
