@@ -3,8 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - PlatformTag
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -14,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - Lava Layer
-  - Platform Layer
+  - 
+  - 
   - 
   - 
   - 
@@ -41,7 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: New Layer
-    uniqueID: 3585577517
     locked: 0
