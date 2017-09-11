@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/_MainScenes.unity
+- path: Assets/Scenes/WouterTestScene.unity
   isLoaded: 1
   isActive: 1
