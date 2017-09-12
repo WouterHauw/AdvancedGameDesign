@@ -294,7 +294,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4696721665998196, guid: 77d37bb4efe5b3742900cc0e355ac7bd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.31
+      value: 3.41
       objectReference: {fileID: 0}
     - target: {fileID: 4696721665998196, guid: 77d37bb4efe5b3742900cc0e355ac7bd, type: 2}
       propertyPath: m_LocalPosition.y
@@ -441,6 +441,10 @@ Prefab:
     - target: {fileID: 4839431219313194, guid: fc641c56310d3c14181f3da7b87c8c0d, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431644146336054, guid: fc641c56310d3c14181f3da7b87c8c0d, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc641c56310d3c14181f3da7b87c8c0d, type: 2}
