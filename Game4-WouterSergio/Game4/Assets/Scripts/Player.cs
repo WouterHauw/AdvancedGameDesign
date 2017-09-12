@@ -96,6 +96,8 @@ public class Player : MonoBehaviour {
             {
                 EnemyMovement._movesLeft = 2;
                 myturn = false;
+                var position = GameObject.FindGameObjectWithTag("Enemy").transform.position;
+                GameObject.FindObjectOfType<Camera>().transform.position = new Vector3(position.x,position.y,-10);
                 GetComponent<Renderer>().material.color = Color.gray;
                 EnemyMovement.myturn = true;
             }

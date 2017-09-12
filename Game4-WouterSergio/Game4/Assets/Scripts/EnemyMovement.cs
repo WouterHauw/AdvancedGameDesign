@@ -89,7 +89,10 @@ public class EnemyMovement : MonoBehaviour
 	        {
 	            Player._movesLeft = 3;
 	            myturn = false;
-	            Player.myturn = true;
+                var position = GameObject.FindGameObjectWithTag("Player").transform.position;
+                GameObject.FindObjectOfType<Camera>().transform.position = new Vector3(position.x, position.y, -10);
+                Player.myturn = true;
+	            
 	        }
 	    }
 

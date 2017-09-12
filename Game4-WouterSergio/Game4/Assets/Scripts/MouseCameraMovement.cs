@@ -21,4 +21,6 @@ public class MouseCameraMovement : MonoBehaviour
 
         transform.Translate(move,Space.World);
 	}
+
+  
 }
