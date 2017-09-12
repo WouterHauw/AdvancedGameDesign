@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour {
         //{
         //    myRigidBody.velocity = new Vector2(movementSpeed * Time.deltaTime, myRigidBody.velocity.y);
         //}
+
+        
     }
 
     private void HandleHorizontal(float horizontal)
