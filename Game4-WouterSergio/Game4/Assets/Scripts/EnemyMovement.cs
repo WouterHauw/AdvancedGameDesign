@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     public static int _movesLeft;
     public static bool myturn;
-    public int CurrentTile;
+    public static int CurrentTile;
     private GameObject nextTile;
     
 

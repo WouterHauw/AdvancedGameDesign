@@ -1,24 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
     public static int _movesLeft;
     public static bool myturn;
     public int CurrentTile;
     private GameObject nextTile;
     private Color originalColor;
 
+    public GameObject player;
+    public GameObject bank;
+    public Text enemyScoreText;
+    public int enemyScore;
+
+    public GameObject enemy;
+
+    public bool onBank;
+    public float distance;
+
 
 
     // Use this for initialization
     void Start()
     {
+        
         nextTile = new GameObject();
         CurrentTile = 1;
         _movesLeft = 3;
         myturn = true;
         originalColor = GetComponent<Renderer>().material.color;
+
+        enemyScore = 0;
+        enemyScoreText.text = ("Score: ") + enemyScore;
     }
 
     // Update is called once per frame
@@ -44,6 +61,11 @@ public class Player : MonoBehaviour {
                     nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
                     var nextposition = nextTile.transform.position;
                     transform.position = nextposition;
+
+                    if (EnemyMovement.CurrentTile == CurrentTile)
+                    {
+                        SceneManager.LoadScene("WouterScenes");
+                    }
                 }
                 if (Input.GetKeyDown(KeyCode.S))
                 {
@@ -59,6 +81,11 @@ public class Player : MonoBehaviour {
                     nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
                     var nextposition = nextTile.transform.position;
                     transform.position = nextposition;
+
+                    if (EnemyMovement.CurrentTile == CurrentTile)
+                    {
+                        SceneManager.LoadScene("WouterScenes");
+                    }
                 }
                 if (Input.GetKeyDown(KeyCode.A))
                 {
@@ -74,6 +101,11 @@ public class Player : MonoBehaviour {
                     nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
                     var nextposition = nextTile.transform.position;
                     transform.position = nextposition;
+
+                    if (EnemyMovement.CurrentTile == CurrentTile)
+                    {
+                        SceneManager.LoadScene("WouterScenes");
+                    }
                 }
                 if (Input.GetKeyDown(KeyCode.D))
                 {
@@ -89,6 +121,11 @@ public class Player : MonoBehaviour {
                     nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
                     var nextposition = nextTile.transform.position;
                     transform.position = nextposition;
+
+                    if (EnemyMovement.CurrentTile == CurrentTile)
+                    {
+                        SceneManager.LoadScene("WouterScenes");
+                    }
                 }
 
             }
@@ -102,7 +139,11 @@ public class Player : MonoBehaviour {
 
         }
 
+    
+
     }
 
-    
+
+
+
 }
