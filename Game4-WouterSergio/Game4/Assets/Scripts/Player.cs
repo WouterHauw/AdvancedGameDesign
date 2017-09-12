@@ -3,92 +3,106 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    public static int _movesLeft;
+    public static bool myturn;
     public int CurrentTile;
-    private int[] _possibleMoves;
     private GameObject nextTile;
-    private int _movesLeft;
+    private Color originalColor;
 
 
 
     // Use this for initialization
     void Start()
     {
-        _possibleMoves = new int[4];
         nextTile = new GameObject();
         CurrentTile = 1;
         _movesLeft = 3;
+        myturn = true;
+        originalColor = GetComponent<Renderer>().material.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_movesLeft > 0)
+        if (myturn)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            GetComponent<Renderer>().material.color = originalColor;
+            if (_movesLeft > 0)
             {
-
-                CurrentTile += 8;
-                if (CurrentTile < 64)
+                if (Input.GetKeyDown(KeyCode.W))
                 {
-                    _movesLeft -= 1;
+
+                    CurrentTile += 8;
+                    if (CurrentTile < 64)
+                    {
+                        _movesLeft -= 1;
+                    }
+                    else
+                    {
+                        CurrentTile -= 8;
+                    }
+                    nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
+                    var nextposition = nextTile.transform.position;
+                    transform.position = nextposition;
                 }
-                else
+                if (Input.GetKeyDown(KeyCode.S))
                 {
                     CurrentTile -= 8;
+                    if (CurrentTile > 0)
+                    {
+                        _movesLeft -= 1;
+                    }
+                    else
+                    {
+                        CurrentTile += 8;
+                    }
+                    nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
+                    var nextposition = nextTile.transform.position;
+                    transform.position = nextposition;
                 }
-                nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
-                var nextposition = nextTile.transform.position;
-                transform.position = nextposition;
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                CurrentTile -= 8;
-                if (CurrentTile > 0)
-                {
-                    _movesLeft -= 1;
-                }
-                else
-                {
-                    CurrentTile += 8;
-                }
-                nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
-                var nextposition = nextTile.transform.position;
-                transform.position = nextposition;
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                CurrentTile -= 1;
-                if (CurrentTile > 0)
-                {
-                    _movesLeft -= 1;
-                }
-                else
-                {
-                    CurrentTile += 1;
-                }
-                nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
-                var nextposition = nextTile.transform.position;
-                transform.position = nextposition;
-            }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                CurrentTile += 1;
-                if (CurrentTile > 0)
-                {
-                    _movesLeft -= 1;
-                }
-                else
+                if (Input.GetKeyDown(KeyCode.A))
                 {
                     CurrentTile -= 1;
+                    if (CurrentTile > 0)
+                    {
+                        _movesLeft -= 1;
+                    }
+                    else
+                    {
+                        CurrentTile += 1;
+                    }
+                    nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
+                    var nextposition = nextTile.transform.position;
+                    transform.position = nextposition;
                 }
-                nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
-                var nextposition = nextTile.transform.position;
-                transform.position = nextposition;
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    CurrentTile += 1;
+                    if (CurrentTile > 0)
+                    {
+                        _movesLeft -= 1;
+                    }
+                    else
+                    {
+                        CurrentTile -= 1;
+                    }
+                    nextTile = GameObject.Find("Tile (" + CurrentTile + ")");
+                    var nextposition = nextTile.transform.position;
+                    transform.position = nextposition;
+                }
+
             }
-            
+            else
+            {
+                EnemyMovement._movesLeft = 2;
+                myturn = false;
+                GetComponent<Renderer>().material.color = Color.gray;
+                EnemyMovement.myturn = true;
+            }
+
         }
 
-
-
     }
+
+    
 }
