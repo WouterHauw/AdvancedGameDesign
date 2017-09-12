@@ -5,24 +5,13 @@ using UnityEngine;
 public class Drag : MonoBehaviour
 {
 
-    private Color mouseOverColor = Color.blue;
-    private Color originalColor = Color.yellow;
     private bool dragging = false;
     private float distance;
-
-    void OnMouseEnter()
-    {
-        gameObject.GetComponent<Renderer>().material.color = mouseOverColor;
-
-    }
-
-    void OnMouseExit()
-    {
-        gameObject.GetComponent<Renderer>().material.color = originalColor;
-    }
+    float zPos;
 
     void OnMouseDown()
     {
+        zPos = transform.position.z;
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
         dragging = true;
     }
@@ -36,8 +25,10 @@ public class Drag : MonoBehaviour
     {
         if (dragging)
         {
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(distance);
+            rayPoint.z = zPos;
             transform.position = rayPoint;
         }
     }
