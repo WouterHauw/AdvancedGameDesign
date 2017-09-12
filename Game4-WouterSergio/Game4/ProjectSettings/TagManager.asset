@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bank
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Bank
   - Enemy
-  - 
+  - Background
   - 
   - 
   - 
