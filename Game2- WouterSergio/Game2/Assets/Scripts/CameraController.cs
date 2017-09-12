@@ -15,10 +15,11 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         distanceToMove = thePlayer.transform.position.x - lastPlayerPosition.x;
         transform.position = new Vector3(transform.position.x + distanceToMove, transform.position.y, transform.position.z);
         lastPlayerPosition = thePlayer.transform.position;
+
     }
 }

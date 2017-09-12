@@ -10,7 +10,7 @@ public class PlayerMovement_test : MonoBehaviour
 
     private Rigidbody2D myRigidbody;
 
-    public bool grounded;
+    public bool isGrounded;
     public LayerMask whatIsground;
 
     public Collider2D myCollider;
@@ -25,11 +25,11 @@ public class PlayerMovement_test : MonoBehaviour
 
     void Update()
     {
-        grounded = Physics2D.IsTouchingLayers(myCollider, whatIsground);
+        isGrounded = Physics2D.IsTouchingLayers(myCollider, whatIsground);
 
         myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
         }
