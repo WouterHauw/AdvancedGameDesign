@@ -21,13 +21,13 @@ public class PlayerMovement : MonoBehaviour {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-       // HandleHorizontal(horizontal);
-        //HandleVertical(vertical);
+        HandleHorizontal(horizontal);
+        HandleVertical(vertical);
 
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            myRigidBody.velocity = new Vector2(movementSpeed * Time.deltaTime, myRigidBody.velocity.y);
-        }
+        //if(Input.GetKeyDown(KeyCode.A))
+        //{
+        //    myRigidBody.velocity = new Vector2(movementSpeed * Time.deltaTime, myRigidBody.velocity.y);
+        //}
     }
 
     private void HandleHorizontal(float horizontal)
