@@ -24,15 +24,14 @@ namespace DigitalRubyShared
 
         private void joystickExecuted(FingersJoystickScript script, Vector2 amount)
         {
-            Debug.Log("kek");
             Vector3 pos = player.transform.position;
             pos.x += (amount.x * speed * Time.deltaTime);
             pos.z += (amount.y * speed * Time.deltaTime);
             Vector3 faceDirection = pos - player.transform.position;
-  
+            var step = speed * Time.deltaTime;
+            Vector3 newDirection = Vector3.RotateTowards(player.transform.forward, faceDirection, step, 0.0f);
             player.transform.position = pos;
-            
-            Debug.Log("playerPos"+ player.GetComponent<Rigidbody>().position);
+            player.transform.rotation = Quaternion.LookRotation(newDirection);
             
 
 
