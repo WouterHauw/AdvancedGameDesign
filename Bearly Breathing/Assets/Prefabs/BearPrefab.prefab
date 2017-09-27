@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 54481074380593538}
   - component: {fileID: 64054006241642590}
   - component: {fileID: 114911017042627186}
+  - component: {fileID: 114845750897906968}
   m_Layer: 0
   m_Name: BearPrefab
   m_TagString: Untagged
@@ -326,6 +327,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: a4dddb3b60f325a4e92d2fd0fc6ca9e1, type: 3}
+--- !u!114 &114845750897906968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795094550653442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc14bc1e227c70746919cad8b40ffa5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5
 --- !u!114 &114911017042627186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,7 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joyStickScript: {fileID: 0}
   player: {fileID: 1795094550653442}
-  speed: 10
+  speed: 9.88
   MoveJoysticktoGestureStartLocation: 0
 --- !u!205 &205699134457996744
 LODGroup:
