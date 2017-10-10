@@ -7,7 +7,7 @@ public class NPCBaseFSM : StateMachineBehaviour {
     public GameObject Sheep;
     public UnityEngine.AI.NavMeshAgent agent;
     public float speed = 0.25f;
-    public float rotationSpeed = 2.0f;
+    public float rotationSpeed = 10.0f;
 
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
