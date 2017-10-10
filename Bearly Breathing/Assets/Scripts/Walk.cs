@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Walk : StateMachineBehaviour
+public class Walk : NPCBaseFSM
 {
-
-    GameObject Sheep;
     GameObject[] waypoints;
     int currentWP;
-
-
 
     void Awake()
     {
@@ -19,7 +15,7 @@ public class Walk : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Sheep = animator.gameObject;
+        base.OnStateEnter(animator,stateInfo,layerIndex);
         currentWP = 0;
     }
 
@@ -37,16 +33,11 @@ public class Walk : StateMachineBehaviour
             }
         }
 
-        var direction = waypoints[currentWP].transform.position - Sheep.transform.position;
-        Sheep.transform.rotation = Quaternion.Slerp(Sheep.transform.rotation,
-                                   Quaternion.LookRotation(direction),
-                                   1.0f * Time.deltaTime);
-        Sheep.transform.Translate(0, 0, Time.deltaTime * 2.0f);
-    }
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
+        agent.SetDestination(waypoints[currentWP].transform.position);
+        //var direction = waypoints[currentWP].transform.position - Sheep.transform.position;
+        //Sheep.transform.rotation = Quaternion.Slerp(Sheep.transform.rotation,
+        //                           Quaternion.LookRotation(direction),
+        //                           1.0f * Time.deltaTime);
+        //Sheep.transform.Translate(0, 0, Time.deltaTime * 2.0f);
     }
 }

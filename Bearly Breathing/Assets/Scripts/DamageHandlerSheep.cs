@@ -9,6 +9,7 @@ public class DamageHandlerSheep : MonoBehaviour
     public float health = 10;
     public AudioClip[] clips;
     public AudioMixerGroup output;
+    public GameObject blood;
 
     public float minPitch = .95f;
     public float maxPitch = 1.05f;
@@ -19,6 +20,7 @@ public class DamageHandlerSheep : MonoBehaviour
     void Start()
     {
         InvokeRepeating("PlaySound", Time.deltaTime, 5.0f);
+
     }
 
     // Update is called once per frame
@@ -27,7 +29,9 @@ public class DamageHandlerSheep : MonoBehaviour
 
         if(Input.GetKeyDown("space"))
         {
-            PlaySound();
+            print("pressed");
+            Instantiate(blood, gameObject.transform.position, gameObject.transform.rotation);
+            Destroy(gameObject);
         }
 
         if (health == 0)
