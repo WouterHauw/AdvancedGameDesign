@@ -7,16 +7,32 @@ public class AttackScript : MonoBehaviour
 {
 
     public float range = 10;
+    public float time;
+    public Vector3 targetScale = new Vector3(5,5,5);
+    public float growthSpeed = 0.5f;
+
+
+    public GameObject explosion;
+
+    private GameObject instantiatedObj;
     private RaycastHit hit;
 
-    public GameObject blood;
+    private bool growth = false;
+    protected Vector3 targetedGrowth;
 
-     
 
-	// Use this for initialization
-	void Start () {
+
+
+    // Use this for initialization
+    void Start () {
 		
 	}
+
+    private void Update()
+    {
+       
+    }
+
 
     public void KillSheeps()
     {
@@ -26,10 +42,14 @@ public class AttackScript : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Sheep")
             {
+                   
                 hit.transform.gameObject.SetActive(false);
-                Instantiate(blood, hit.transform.position, Quaternion.LookRotation(Vector3.up));
+                instantiatedObj = instantiatedObj = (GameObject)Instantiate(explosion, hit.transform.position, Quaternion.LookRotation(Vector3.up));
+                Destroy(instantiatedObj, time);
+                growth = false;
+                
             }
         }
 
-    }
+    }   
 }
