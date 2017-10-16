@@ -6,10 +6,28 @@ public class NPC_AI : MonoBehaviour {
 
     Animator anim;
     public GameObject player;
+    public GameObject bullet;
+    public GameObject gun;
 
     public GameObject GetPlayer()
     {
         return player;
+    }
+
+    void Fire()
+    {
+        GameObject b = Instantiate(bullet, gun.transform.position, gun.transform.rotation);
+        b.GetComponent<Rigidbody>().AddForce(gun.transform.forward * 500);
+    }
+
+    public void StopFiring()
+    {
+        CancelInvoke("Fire");
+    }
+
+    public void StartFiring()
+    {
+        InvokeRepeating("Fire", 0.5f, 0.5f);
     }
 
     // Use this for initialization
