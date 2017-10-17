@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54512800267002410}
   - component: {fileID: 65015128230276634}
   - component: {fileID: 114710179043728942}
+  - component: {fileID: 114666038012707336}
   m_Layer: 0
   m_Name: SheepWhite
   m_TagString: Untagged
@@ -128,6 +129,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114666038012707336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601650491050686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2acd947c185d454fbe504b46a329cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.001
 --- !u!114 &114710179043728942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,5 +157,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 218366cdadf932c4ea142ed3e02c06fa, type: 3}
   - {fileID: 8300000, guid: 96c457f39ff7bf9419e5ca86a75472ad, type: 3}
   output: {fileID: 243796821635843872, guid: a50b58f8bf7acf44ea260831d07beb56, type: 2}
+  blood: {fileID: 0}
   minPitch: 0.95
   maxPitch: 1.5

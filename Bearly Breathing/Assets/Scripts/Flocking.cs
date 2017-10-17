@@ -9,7 +9,7 @@ public class Flocking : MonoBehaviour
     public static int mapSize = 5;
     static int numSheep = 10;
     public static GameObject[] allSheep = new GameObject[numSheep];
-
+    public GameObject goalPrefab;
     public static Vector3 goalPos = Vector3.zero;
 
     // Use this for initialization
@@ -25,9 +25,10 @@ public class Flocking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Random.Range(0,1000) < 50)
+        if(Random.Range(0,10000) < 50)
         {
             goalPos = new Vector3(Random.Range(-mapSize, mapSize), 0, Random.Range(-mapSize, mapSize));
+            goalPrefab.transform.position =  goalPos;
         }
     }
 }

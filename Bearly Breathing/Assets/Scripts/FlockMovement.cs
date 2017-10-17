@@ -9,7 +9,6 @@ public class FlockMovement : MonoBehaviour
     Vector3 averageHeading;
     Vector3 averagePosition;
     float neighbourDistance = 4.0f;
-
     bool turning = false;
 
     // Use this for initialization
@@ -68,7 +67,7 @@ public class FlockMovement : MonoBehaviour
                     vcentre += go.transform.position;
                     groupSize++;
 
-                    if(dist < 1.0f)
+                    if(dist < 10.0f)
                     {
                         vavoid = vavoid + (transform.position - go.transform.position);
                     }
