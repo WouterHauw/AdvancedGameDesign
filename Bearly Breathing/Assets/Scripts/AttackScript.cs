@@ -5,34 +5,25 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
-
-    public float range = 10;
-    public float time;
-    public Vector3 targetScale = new Vector3(5,5,5);
-    public float growthSpeed = 0.5f;
-
-
     public GameObject explosion;
+    public float time;
 
     private GameObject instantiatedObj;
     private RaycastHit hit;
-
-    private bool growth = false;
-    protected Vector3 targetedGrowth;
-
-
-
+    public float theTimeBetweenFlashes;
+    private bool isFlashing;
+    
+    public float range;
+   
+    private int testOption;
+ 
 
     // Use this for initialization
     void Start () {
-		
-	}
-
-    private void Update()
-    {
-       
+        testOption = 2;
+        theTimeBetweenFlashes = 0.2f;
+        range = 10;
     }
-
 
     public void KillSheeps()
     {
@@ -42,14 +33,31 @@ public class AttackScript : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "Sheep")
             {
+                if (testOption == 1)
+                {
+                    hit.transform.gameObject.SetActive(false);
+                    instantiatedObj = (GameObject)Instantiate(explosion, hit.transform.position, Quaternion.LookRotation(Vector3.up));
+                    Destroy(instantiatedObj, time);
                    
-                hit.transform.gameObject.SetActive(false);
-                instantiatedObj = instantiatedObj = (GameObject)Instantiate(explosion, hit.transform.position, Quaternion.LookRotation(Vector3.up));
-                Destroy(instantiatedObj, time);
-                growth = false;
-                
-            }
+                }
+                else if (testOption == 2)
+                {
+                    StartCoroutine(startFlashing(hit.transform.gameObject));
+                }
+            }                   
         }
+    }
 
-    }   
-}
+    private IEnumerator startFlashing(GameObject sheep)
+    {
+        
+        sheep.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
+        sheep.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        sheep.SetActive(false);
+        yield return new WaitForSeconds(theTimeBetweenFlashes);
+        sheep.SetActive(true);
+        yield return new WaitForSeconds(theTimeBetweenFlashes);
+        DestroyObject(sheep.gameObject);    
+    }
+}   
+

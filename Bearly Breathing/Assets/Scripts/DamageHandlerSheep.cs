@@ -34,7 +34,7 @@ public class DamageHandlerSheep : MonoBehaviour
         {
         
      
-            Destroy(gameObject);
+           // Destroy(gameObject);
         }
 
     }
