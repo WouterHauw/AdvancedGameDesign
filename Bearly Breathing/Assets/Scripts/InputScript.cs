@@ -1,115 +1,160 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DigitalRubyShared;
 using UnityEngine;
 
-namespace DigitalRubyShared
+namespace Assets.Scripts
 {
-    public class InputScript : MonoBehaviour {
+    public class InputScript : MonoBehaviour
+    {
+        public FingersJoystickScript JoyStickScript;
 
+        public GameObject Player;
 
+        public bool MoveJoystickToGestureStartLocation;
 
-        //public FingersJoystickScript joyStickScript;
-        private TapGestureRecognizer tapGesture;
-        private SwipeGestureRecognizer swipeGesture;
+        public bool IsAttacking;
 
-        // Update is called once per frame
-        public GameObject player;
-        private Ray ray;
-        private Camera camera;
-        private float enter ;
-        private Vector3 playerPos;
-        private Vector3 point;
-        private Vector3 targetPos;
-        private Vector2 playerCameraPos;
-        private GestureTouch t;
-        public float speed = 10.0f;
-       // private Vector2 newPosition;
-        Vector3 inWorldPosition;
+        public bool EnableSecondProtype;
+
+        [SerializeField] private readonly float _smoothing = 5f;
+
+        private LongPressGestureRecognizer _longPressGestureRecognizer;
+
+        private SwipeGestureRecognizer _swipeGestureRecognizer;
+
+        private TapGestureRecognizer _pressGestureRecognizer;
+
+        private Vector2 _moveDirection;
+
+        private Vector2 _moveOrigin;
+
+        private Vector2 _smoothDirection;
+
+        private float speed = 10.0f;
+
+        
+
 
         private GestureTouch FirstTouch(ICollection<GestureTouch> touches)
         {
-            foreach(GestureTouch t in touches)
+            foreach (var t in touches)
             {
                 return t;
             }
             return new GestureTouch();
         }
 
-      //  public bool MoveJoysticktoGestureStartLocation;
-
-        public void Start()
+        private void Awake()
         {
-            CreateTapGesture();
-            camera = Camera.main;
+            _moveDirection = Vector2.zero;
+            _moveOrigin = Vector2.zero;
+            IsAttacking = false;
+            if (!EnableSecondProtype)
+            {
+                return;
+            }
+            JoyStickScript.JoystickExecuted = JoystickExecuted;
+            JoyStickScript.MoveJoystickToGestureStartLocation = MoveJoystickToGestureStartLocation;
         }
 
-        public void Update()
+        //  public bool MoveJoysticktoGestureStartLocation;
+
+        private void Start()
         {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, point, speed * Time.deltaTime);
-            Debug.Log("point" + point);
-         //   Debug.Log(player.transform.position);
-            // targetPos = new Vector3(t.X, transform.position.y, t.Y);
-            // player.transform.position = Vector3.MoveTowards(player.transform.position, targetPos, speed * Time.deltaTime);
-            //  player.transform.position = Vector3.MoveTowards(player.transform.position, inWorldPosition, speed * Time.deltaTime);
+            if (EnableSecondProtype)
+            {
+                CreateTapGesture();
+                return;
+            }
+            CreateLongTapGesture();
+            CreateSwipeGesture();
+        }
 
 
+        private void CreateLongTapGesture()
+        {
+            _longPressGestureRecognizer = new LongPressGestureRecognizer();
+            _longPressGestureRecognizer.Updated += LongPressLongGestureCallback;
+            FingersScript.Instance.AddGesture(_longPressGestureRecognizer);
+        }
+
+        private void LongPressLongGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
+        {
+            var t = FirstTouch(touches);
+            //when touch begin set the origin of touch
+            if (gesture.State == GestureRecognizerState.Began)
+            {
+                _moveOrigin = new Vector2(t.X, t.Y);
+            }
+            //when touch is executing is compare origin of touch with new position of touch
+            if (gesture.State == GestureRecognizerState.Executing)
+            {
+                var currentposition = new Vector2(t.X, t.Y);
+                var directionVectorRaw = currentposition - _moveOrigin;
+                _moveDirection = directionVectorRaw.normalized;
+            }
+            //when touch end set the move direction to zero
+            if (gesture.State == GestureRecognizerState.Ended)
+            {
+                _moveDirection = Vector2.zero;
+            }
+        }
+
+        private void CreateSwipeGesture()
+        {
+            _swipeGestureRecognizer = new SwipeGestureRecognizer
+            {
+                Direction = SwipeGestureRecognizerDirection.Any,
+                DirectionThreshold = 1.0f
+            };
+            _swipeGestureRecognizer.Updated += SwipeGestureCallback;
+            FingersScript.Instance.AddGesture(_swipeGestureRecognizer);
+        }
+
+        private void SwipeGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
+        {
+            if (gesture.State == GestureRecognizerState.Ended)
+            {
+                IsAttacking = true;
+            }
         }
 
         private void CreateTapGesture()
         {
-            tapGesture = new TapGestureRecognizer();
-            tapGesture.Updated += TapGestureCallback;
-            FingersScript.Instance.AddGesture(tapGesture);
+           _pressGestureRecognizer = new TapGestureRecognizer();
+            _pressGestureRecognizer.Updated += TapGestureCallback;
+            FingersScript.Instance.AddGesture(_pressGestureRecognizer);
         }
 
-        protected void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
+        private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
         {
-            if (gesture.State == GestureRecognizerState.Ended) {
-                 
-                ray = camera.ScreenPointToRay(new Vector2(t.X, t.Y));
-                if (Physics.Raycast(ray, enter))
-                {
-                    point = ray.GetPoint(enter);
-                  
-                }
-                point.y = transform.position.y;
-
-
-              /**  t = FirstTouch(touches);
-                Debug.Log("the update tap  = " + t.X + ", Y: " + t.Y);
-                inWorldPosition = camera.ScreenToWorldPoint(new Vector3(t.X, t.Y, camera.nearClipPlane));
-                inWorldPosition.y = 0;
-                playerPos = player.transform.position;
-                playerCameraPos = Camera.main.WorldToScreenPoint(playerPos);
-                Vector2 direction = new Vector2(t.X, t.Y) - playerCameraPos;
-                Vector2.Distance(playerCameraPos, new Vector2(t.X, t.Y));
-              //  Debug.Log("playerPos" + playerPos);
-                Debug.Log("direction = " + direction);
-                Debug.Log("playerCamera = " + playerCameraPos);
-             //   Debug.Log("Where he actually goes = " + inWorldPosition);**/
+            if (gesture.State == GestureRecognizerState.Ended)
+            {
+                IsAttacking = true;
             }
-         
-        }        
+        }
 
-      //  private void Awake()
-        //{
-           // joyStickScript.JoystickExecuted = joystickExecuted;
-           // joyStickScript.MoveJoystickToGestureStartLocation = MoveJoysticktoGestureStartLocation;
-      //  }
-
-        /**private void joystickExecuted(FingersJoystickScript script, Vector2 amount)
+        public Vector2 GetDirection()
         {
-            Vector3 pos = player.transform.position;
+            //clamp value so player won't move really fast when touch is dragged all way acroos the screen.
+            _smoothDirection = Vector2.MoveTowards(_smoothDirection, _moveDirection, _smoothing);
+            //return the direction the player should move
+            return _smoothDirection;
+        }
+
+        private void JoystickExecuted(FingersJoystickScript script, Vector2 amount)
+        {
+            Vector3 pos = Player.transform.position;
             pos.x += (amount.x * speed * Time.deltaTime);
             pos.z += (amount.y * speed * Time.deltaTime);
-            Vector3 faceDirection = pos - player.transform.position;
+            Vector3 faceDirection = pos - Player.transform.position;
             var step = speed * Time.deltaTime;
-            Vector3 newDirection = Vector3.RotateTowards(player.transform.forward, faceDirection, step, 0.0f);
-            player.transform.position = pos;
-            player.transform.rotation = Quaternion.LookRotation(newDirection);
-            
+            Vector3 newDirection = Vector3.RotateTowards(Player.transform.forward, faceDirection, step, 0.0f);
+            Player.transform.position = pos;
+            Player.transform.rotation = Quaternion.LookRotation(newDirection);
 
 
-        }**/
+
+        }
     }
 }

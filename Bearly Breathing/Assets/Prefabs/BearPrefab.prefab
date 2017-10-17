@@ -72,7 +72,8 @@ GameObject:
   - component: {fileID: 54481074380593538}
   - component: {fileID: 64054006241642590}
   - component: {fileID: 114845750897906968}
-  - component: {fileID: 114639313131664470}
+  - component: {fileID: 114174815647657668}
+  - component: {fileID: 114718439534522428}
   m_Layer: 0
   m_Name: BearPrefab
   m_TagString: Untagged
@@ -327,7 +328,7 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: a4dddb3b60f325a4e92d2fd0fc6ca9e1, type: 3}
---- !u!114 &114639313131664470
+--- !u!114 &114174815647657668
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -335,10 +336,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1795094550653442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc60d73864fce894e92d866d81f8fd3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d6b58a26f5a2df438bc9234dcb67ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  LookDirection: {x: 0, y: 0, z: 0}
+  MoveDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &114718439534522428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795094550653442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b15700dbd3ee541a14e42587c3f78e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BearClaw: {fileID: 0}
+  _playerMoverment: {fileID: 0}
+  _playerAttack: {fileID: 0}
+  _inputScript: {fileID: 0}
 --- !u!114 &114845750897906968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -350,7 +368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc14bc1e227c70746919cad8b40ffa5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
+  BearClaw: {fileID: 0}
+  _bearActiveTime: 2
 --- !u!205 &205699134457996744
 LODGroup:
   m_ObjectHideFlags: 1

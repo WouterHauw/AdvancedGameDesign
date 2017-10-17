@@ -1,35 +1,28 @@
-﻿using DigitalRubyShared;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-/**public class MovementScript :  InputScript
-
+public class MovementScript : MonoBehaviour
 {
-    //  public inputScript;
+    [SerializeField] private readonly float _speed = 6f;
+    [SerializeField] private Rigidbody _rigidbody;
+    [HideInInspector] public Vector3 LookDirection = Vector3.zero;
+    [HideInInspector] public Vector3 MoveDirection = Vector3.zero;
 
-    public Vector2 newPosition;
 
-
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
-        newPosition = InputScript.t;
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        RaycastHit hit;
+        //remove y
+        MoveDirection.Set(MoveDirection.x, 0, MoveDirection.y);
+        //move the player position
+        _rigidbody.MovePosition(transform.position + MoveDirection.normalized * _speed * Time.deltaTime);
 
-        if(Physics.Raycast(Camera.main.ScreenPointToRay(newPosition)))
+        //remove y
+        LookDirection.Set(LookDirection.x, 0, LookDirection.z);
+        //rotate the player to lookdirection
+        _rigidbody.MoveRotation(Quaternion.LookRotation(LookDirection));
     }
-
-    void movement(Vector2 t)
-    {
-        newPosition = t;
-
-
-
-    }
-}**/
+}

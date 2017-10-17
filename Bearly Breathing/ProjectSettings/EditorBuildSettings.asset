@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ControlScenes/TapSwipeScene.unity
     guid: 11bfeda2f816aba429a74fbbd391f164
+  - enabled: 0
+    path: Assets/Scenes/ControlScenes/TapAndControlStickScene.unity
+    guid: 238d478b499f44e46858b2102f6c5bde

@@ -1,29 +1,31 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
+    public GameObject BearClaw;
+    private RaycastHit _hit;
+    [SerializeField] private float _bearActiveTime = 3f;
+    [SerializeField] private readonly float _range = 10;
 
-    public float range = 10;
-    private RaycastHit hit;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-
-    public void KillSheeps()
+    public void Attack()
     {
-        
-        Vector3 VectorForwards = transform.TransformDirection(Vector3.forward);
-        if (Physics.Raycast(transform.position, VectorForwards, out hit, range))
+        var vectorForwards = transform.TransformDirection(Vector3.forward);
+        if (Physics.Raycast(transform.position, vectorForwards, out _hit, _range))
         {
-            if (hit.transform.gameObject.tag == "Sheep")
+            if (_hit.transform.gameObject.tag == "Sheep")
             {
-                hit.transform.gameObject.SetActive(false);
+                _hit.transform.gameObject.SetActive(false);
+                StartCoroutine(BearClawCourotine());
             }
         }
+    }
+
+    private IEnumerator BearClawCourotine()
+    {
+        BearClaw.SetActive(true);
+        yield return new WaitForSeconds(_bearActiveTime);
+        BearClaw.SetActive(false);
 
     }
 }
