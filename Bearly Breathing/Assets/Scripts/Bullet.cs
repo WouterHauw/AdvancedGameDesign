@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
+        if(col.gameObject.tag == "Player" || col.gameObject.tag == "Ground")
         Destroy(gameObject);
     }
 

@@ -737,7 +737,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4079417531842294, guid: 1c6e0600499c43d4f9723a7bbe0d1733, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -38.24
+      value: -35.23
       objectReference: {fileID: 0}
     - target: {fileID: 4079417531842294, guid: 1c6e0600499c43d4f9723a7bbe0d1733, type: 2}
       propertyPath: m_LocalRotation.x
@@ -821,6 +821,10 @@ Prefab:
     - target: {fileID: 1633018880680688, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633018880680688, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}

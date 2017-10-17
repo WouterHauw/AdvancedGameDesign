@@ -7,6 +7,7 @@ TagManager:
   - waypoint
   - Hunter
   - Sheep
+  - Ground
   layers:
   - Default
   - TransparentFX

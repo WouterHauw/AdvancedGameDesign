@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 810c299baffd5094f87dbcaa3429b8f2
-timeCreated: 1507639559
+timeCreated: 1508243257
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - NPC: {instanceID: 0}
+  - hunter: {instanceID: 0}
+  - opponent: {instanceID: 0}
+  - hTransform: {fileID: 4588909911665802, guid: 7a35d5e58b6146a4a98b5c89b5def792,
+      type: 2}
+  - sTransform: {fileID: 4079417531842294, guid: 1c6e0600499c43d4f9723a7bbe0d1733,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
