@@ -4,14 +4,12 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 12
-  productGUID: a12edd409336a1945a45ee0ca3283159
   productGUID: 1a031d3a178c8ea45b8f0850fc2ebfb2
   AndroidProfiler: 0
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: TheBestGameInTheWorld
   companyName: DefaultCompany
   productName: Bearly Breathing
   defaultCursor: {fileID: 0}
@@ -142,8 +140,6 @@ PlayerSettings:
   useHDRDisplay: 0
   targetPixelDensity: 0
   resolutionScalingMode: 0
-  applicationIdentifier:
-    Android: com.BestGameInTheWorld.ProductName
   applicationIdentifier: {}
   buildNumber: {}
   AndroidBundleVersionCode: 1
@@ -590,19 +586,9 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled:
-    Build: 0
-    Collab: 0
-    ErrorHub: 0
-    Hub: 0
-    UNet: 0
-  facebookSdkVersion: 7.9.4
   cloudServicesEnabled: {}
   facebookSdkVersion: 
   apiCompatibilityLevel: 2
-  cloudProjectId: 96fc08de-afa2-4805-9a59-bfe84f98e344
-  projectName: Bearly Breathing
-  organizationId: wouter-van-der-hauw
   cloudProjectId: 
   projectName: 
   organizationId: 

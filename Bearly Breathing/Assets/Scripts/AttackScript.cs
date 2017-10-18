@@ -1,16 +1,21 @@
 ﻿using System.Collections;
+<<<<<<< HEAD
+=======
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+>>>>>>> Development
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
+<<<<<<< HEAD
     public GameObject BearClaw;
     private RaycastHit _hit;
     [SerializeField] private float _bearActiveTime = 3f;
     [SerializeField] private readonly float _range = 10;
 
     public void Attack()
+=======
     [SerializeField] private GameObject explosion;
     [SerializeField] private float time;
 
@@ -33,12 +38,14 @@ public class AttackScript : MonoBehaviour
     }
 
     public void KillSheeps()
+>>>>>>> Development
     {
         var vectorForwards = transform.TransformDirection(Vector3.forward);
         if (Physics.Raycast(transform.position, vectorForwards, out _hit, _range))
         {
             if (_hit.transform.gameObject.tag == "Sheep")
             {
+<<<<<<< HEAD
                 _hit.transform.gameObject.SetActive(false);
                 StartCoroutine(BearClawCourotine());
             }
@@ -50,6 +57,7 @@ public class AttackScript : MonoBehaviour
         BearClaw.SetActive(true);
         yield return new WaitForSeconds(_bearActiveTime);
         BearClaw.SetActive(false);
+=======
                 if (testOption == 1)
                 {
                     hit.transform.gameObject.SetActive(false);
@@ -64,6 +72,7 @@ public class AttackScript : MonoBehaviour
             }                   
         }
     }
+>>>>>>> Development
 
     private IEnumerator startFlashing(GameObject sheep)
     {
@@ -78,7 +87,7 @@ public class AttackScript : MonoBehaviour
         DestroyObject(sheep.gameObject);
         isBeingDestroyed = true;
     }
-}<<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }   

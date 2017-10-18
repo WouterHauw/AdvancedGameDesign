@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+<<<<<<< HEAD
     public class InputScript : MonoBehaviour
     {
         public FingersJoystickScript JoyStickScript;
@@ -13,10 +14,12 @@ namespace Assets.Scripts
         public bool MoveJoystickToGestureStartLocation;
 
         public bool IsAttacking;
+=======
     public class InputScript : MonoBehaviour {
         public FingersJoystickScript joyStickScript;
         // Update is called once per frame
         public GameObject player;
+>>>>>>> Development
 
         public bool EnableSecondProtype;
 
@@ -153,15 +156,18 @@ namespace Assets.Scripts
             pos.z += (amount.y * speed * Time.deltaTime);
             Vector3 faceDirection = pos - Player.transform.position;
             var step = speed * Time.deltaTime;
+<<<<<<< HEAD
             Vector3 newDirection = Vector3.RotateTowards(Player.transform.forward, faceDirection, step, 0.0f);
             Player.transform.position = pos;
             Player.transform.rotation = Quaternion.LookRotation(newDirection);
 
 
 
+=======
             Vector3 newDirection = Vector3.RotateTowards(player.transform.forward, faceDirection, step, 0.0f);
             player.transform.position = pos;
             player.transform.rotation = Quaternion.LookRotation(newDirection);
+>>>>>>> Development
         }
     }
 }
