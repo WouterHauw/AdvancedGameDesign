@@ -5,51 +5,65 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
+    public GameObject BearClaw;
+    private RaycastHit _hit;
+    [SerializeField] private float _bearActiveTime = 3f;
+    [SerializeField] private readonly float _range = 10;
+
     [SerializeField] private GameObject explosion;
     [SerializeField] private float time;
 
     private GameObject instantiatedObj;
-    private RaycastHit hit;
     [SerializeField] private float theTimeBetweenFlashes;
     private bool isFlashing;
-    
+
     [SerializeField] private float range;
-   
-    [SerializeField]private int testOption = 1;
+
+    [SerializeField] private int testOption = 1;
     private bool isBeingDestroyed;
- 
+
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         theTimeBetweenFlashes = 0.2f;
-        range = 10;
+        range = 5;
         isBeingDestroyed = false;
     }
 
-    public void KillSheeps()
+    public void Attack()
     {
-        
-        Vector3 VectorForwards = transform.TransformDirection(Vector3.forward);
-        if (Physics.Raycast(transform.position, VectorForwards, out hit, range))
+        var vectorForwards = transform.TransformDirection(Vector3.forward);
+        if (Physics.Raycast(transform.position, vectorForwards, out _hit, _range))
         {
-            if (hit.transform.gameObject.tag == "Sheep")
+            if (_hit.transform.gameObject.tag == "Sheep")
             {
                 if (testOption == 1)
                 {
-                    hit.transform.gameObject.SetActive(false);
-                    instantiatedObj = (GameObject)Instantiate(explosion, hit.transform.position, Quaternion.LookRotation(Vector3.up));
+                    _hit.transform.gameObject.SetActive(false);
+                    instantiatedObj = (GameObject) Instantiate(explosion, _hit.transform.position,
+                        Quaternion.LookRotation(Vector3.up));
                     Destroy(instantiatedObj, time);
-                   
+
                 }
                 else if (testOption == 2)
                 {
-                    StartCoroutine(startFlashing(hit.transform.gameObject));
+                    StartCoroutine(StartFlashing(_hit.transform.gameObject));
                 }
-            }                   
+                StartCoroutine(BearClawCourotine());
+            }
         }
     }
 
-    private IEnumerator startFlashing(GameObject sheep)
+    private IEnumerator BearClawCourotine()
+    {
+        BearClaw.SetActive(true);
+        yield return new WaitForSeconds(_bearActiveTime);
+        BearClaw.SetActive(false);
+    }
+
+
+    private IEnumerator StartFlashing(GameObject sheep)
     {
         if (isBeingDestroyed) yield break;
 
@@ -62,5 +76,4 @@ public class AttackScript : MonoBehaviour
         DestroyObject(sheep.gameObject);
         isBeingDestroyed = true;
     }
-}   
-
+}
