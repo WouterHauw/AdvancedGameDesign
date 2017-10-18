@@ -12,6 +12,8 @@ public class DayNightCycle : MonoBehaviour
     [HideInInspector]
     public float timeMultiplier = 1f;
 
+    public int daysPassed = 0;
+
     float sunInitialIntensity;
 
     void Start()
@@ -28,6 +30,7 @@ public class DayNightCycle : MonoBehaviour
         if (currentTimeOfDay >= 1)
         {
             currentTimeOfDay = 0;
+            daysPassed++;
         }
     }
 
