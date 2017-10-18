@@ -14,7 +14,6 @@ public class AttackScript : MonoBehaviour
     [SerializeField] private float time;
 
     private GameObject instantiatedObj;
-    private RaycastHit hit;
     [SerializeField] private float theTimeBetweenFlashes;
     private bool isFlashing;
 
@@ -28,7 +27,7 @@ public class AttackScript : MonoBehaviour
     void Start()
     {
         theTimeBetweenFlashes = 0.2f;
-        range = 10;
+        range = 5;
         isBeingDestroyed = false;
     }
 
@@ -41,15 +40,15 @@ public class AttackScript : MonoBehaviour
             {
                 if (testOption == 1)
                 {
-                    hit.transform.gameObject.SetActive(false);
-                    instantiatedObj = (GameObject) Instantiate(explosion, hit.transform.position,
+                    _hit.transform.gameObject.SetActive(false);
+                    instantiatedObj = (GameObject) Instantiate(explosion, _hit.transform.position,
                         Quaternion.LookRotation(Vector3.up));
                     Destroy(instantiatedObj, time);
 
                 }
                 else if (testOption == 2)
                 {
-                    StartCoroutine(StartFlashing(hit.transform.gameObject));
+                    StartCoroutine(StartFlashing(_hit.transform.gameObject));
                 }
                 StartCoroutine(BearClawCourotine());
             }

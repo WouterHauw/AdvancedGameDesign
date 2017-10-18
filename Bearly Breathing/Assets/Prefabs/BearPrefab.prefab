@@ -131,8 +131,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1795094550653442}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -234.91148, y: 0.5, z: -177.40172}
+  m_LocalRotation: {x: 0, y: -0.70814914, z: 0, w: 0.70606285}
+  m_LocalPosition: {x: -250.87073, y: 0.5, z: -164.03207}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 4948279834809252}
@@ -370,6 +370,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BearClaw: {fileID: 0}
   _bearActiveTime: 2
+  explosion: {fileID: 0}
+  time: 0
+  theTimeBetweenFlashes: 0
+  range: 0
+  testOption: 1
 --- !u!205 &205699134457996744
 LODGroup:
   m_ObjectHideFlags: 1

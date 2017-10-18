@@ -15,7 +15,7 @@ namespace Assets.Scripts
 
         [SerializeField] private readonly float _smoothing = 5f;
 
-        [SerializeField] private bool _moveJoystickToGestureStartLocation = false;
+        [SerializeField] private bool _moveJoystickToGestureStartLocation;
 
         private LongPressGestureRecognizer _longPressGestureRecognizer;
 
@@ -143,13 +143,13 @@ namespace Assets.Scripts
 
         private void JoystickExecuted(FingersJoystickScript script, Vector2 amount)
         {
-            var pos = Player.transform.position;
+            Vector3 pos = Player.transform.position;
             pos.x += (amount.x * speed * Time.deltaTime);
             pos.z += (amount.y * speed * Time.deltaTime);
-            var faceDirection = pos - Player.transform.position;
+            Vector3 faceDirection = pos - Player.transform.position;
             var step = speed * Time.deltaTime;
 
-            var newDirection = Vector3.RotateTowards(Player.transform.forward, faceDirection, step, 0.0f);
+            Vector3 newDirection = Vector3.RotateTowards(Player.transform.forward, faceDirection, step, 0.0f);
             Player.transform.position = pos;
             Player.transform.rotation = Quaternion.LookRotation(newDirection);
         }

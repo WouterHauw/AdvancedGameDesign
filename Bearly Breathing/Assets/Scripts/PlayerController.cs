@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
         _playerMoverment = GetComponent<MovementScript>();
         _playerAttack = GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
+        _playerMoverment.SecondDemoIsPlaying = _inputScript.EnableSecondProtype;
     }
 
 

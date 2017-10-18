@@ -145,7 +145,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 218366cdadf932c4ea142ed3e02c06fa, type: 3}
   - {fileID: 8300000, guid: 96c457f39ff7bf9419e5ca86a75472ad, type: 3}
   output: {fileID: 243796821635843872, guid: a50b58f8bf7acf44ea260831d07beb56, type: 2}
-  blood: {fileID: 1530763905610568, guid: a2e85a303cd8a874fbe658cd5bf33d8c, type: 2}
   minPitch: 0.95
   maxPitch: 1.5
 --- !u!195 &195433366302166072
@@ -166,6 +165,6 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.7804269
-  m_BaseOffset: 0.89021343
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
