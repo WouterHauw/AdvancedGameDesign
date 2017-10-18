@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
-    public GameObject explosion;
-    public float time;
+    [SerializeField] private GameObject explosion;
+    [SerializeField] private float time;
 
     private GameObject instantiatedObj;
     private RaycastHit hit;
-    public float theTimeBetweenFlashes;
+    [SerializeField] private float theTimeBetweenFlashes;
     private bool isFlashing;
     
-    public float range;
+    [SerializeField] private float range;
    
     [SerializeField]private int testOption = 1;
     private bool isBeingDestroyed;
@@ -51,14 +51,16 @@ public class AttackScript : MonoBehaviour
 
     private IEnumerator startFlashing(GameObject sheep)
     {
-        
+        if (isBeingDestroyed) yield break;
+
         sheep.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
         sheep.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         sheep.SetActive(false);
         yield return new WaitForSeconds(theTimeBetweenFlashes);
         sheep.SetActive(true);
         yield return new WaitForSeconds(theTimeBetweenFlashes);
-        DestroyObject(sheep.gameObject);    
+        DestroyObject(sheep.gameObject);
+        isBeingDestroyed = true;
     }
 }   
 
