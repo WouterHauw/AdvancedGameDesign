@@ -71,8 +71,9 @@ GameObject:
   - component: {fileID: 4634682547899474}
   - component: {fileID: 54481074380593538}
   - component: {fileID: 64054006241642590}
-  - component: {fileID: 114911017042627186}
   - component: {fileID: 114845750897906968}
+  - component: {fileID: 114174815647657668}
+  - component: {fileID: 114718439534522428}
   m_Layer: 0
   m_Name: BearPrefab
   m_TagString: Untagged
@@ -130,8 +131,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1795094550653442}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -234.91148, y: 0.5, z: -177.40172}
+  m_LocalRotation: {x: 0, y: -0.70814914, z: 0, w: 0.70606285}
+  m_LocalPosition: {x: -250.87073, y: 0.5, z: -164.03207}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 4948279834809252}
@@ -327,6 +328,35 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: a4dddb3b60f325a4e92d2fd0fc6ca9e1, type: 3}
+--- !u!114 &114174815647657668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795094550653442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d6b58a26f5a2df438bc9234dcb67ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 0}
+  LookDirection: {x: 0, y: 0, z: 0}
+  MoveDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &114718439534522428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795094550653442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b15700dbd3ee541a14e42587c3f78e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BearClaw: {fileID: 0}
+  _playerMoverment: {fileID: 0}
+  _playerAttack: {fileID: 0}
+  _inputScript: {fileID: 0}
 --- !u!114 &114845750897906968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -338,27 +368,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc14bc1e227c70746919cad8b40ffa5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
-  time: 0
-  scale: 0
-  growthRate: 0
-  maxSize: 0
+  BearClaw: {fileID: 0}
+  _bearActiveTime: 2
   explosion: {fileID: 0}
---- !u!114 &114911017042627186
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1795094550653442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7eb6189e1195504d8eef94bf7b2bc78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joyStickScript: {fileID: 0}
-  player: {fileID: 1795094550653442}
-  speed: 9.88
-  MoveJoysticktoGestureStartLocation: 0
+  time: 0
+  theTimeBetweenFlashes: 0
+  range: 0
+  testOption: 1
 --- !u!205 &205699134457996744
 LODGroup:
   m_ObjectHideFlags: 1
