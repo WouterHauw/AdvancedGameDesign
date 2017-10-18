@@ -1,24 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Walk : NPCBaseFSM
+public class Patrol : NPCBaseHunter
 {
     GameObject[] waypoints;
     int currentWP;
-    private NavMeshAgent nav;
 
     void Awake()
     {
         waypoints = GameObject.FindGameObjectsWithTag("waypoint");
-        nav = GameObject.FindObjectOfType<NavMeshAgent>();
     }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        base.OnStateEnter(animator,stateInfo,layerIndex);
+        base.OnStateEnter(animator, stateInfo, layerIndex);
         currentWP = 0;
     }
 
@@ -27,16 +24,16 @@ public class Walk : NPCBaseFSM
     {
         if (waypoints.Length == 0) return;
         if (Vector3.Distance(waypoints[currentWP].transform.position,
-            NPC1.transform.position) < 3.0f)
+            NPC.transform.position) < accuracy)
         {
-            currentWP++;
+            currentWP = Random.Range(0, waypoints.Length);
             if (currentWP >= waypoints.Length)
             {
                 currentWP = 0;
             }
         }
 
-        sheep.SetDestination(waypoints[currentWP].transform.position);
+        hunter.SetDestination(waypoints[currentWP].transform.position);
         //var direction = waypoints[currentWP].transform.position - Sheep.transform.position;
         //Sheep.transform.rotation = Quaternion.Slerp(Sheep.transform.rotation,
         //                           Quaternion.LookRotation(direction),
