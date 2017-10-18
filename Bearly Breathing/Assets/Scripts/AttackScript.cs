@@ -15,13 +15,12 @@ public class AttackScript : MonoBehaviour
     
     public float range;
    
-    private int testOption;
+    [SerializeField]private int testOption = 1;
     private bool isBeingDestroyed;
  
 
     // Use this for initialization
     void Start () {
-        testOption = 2;
         theTimeBetweenFlashes = 0.2f;
         range = 10;
         isBeingDestroyed = false;
