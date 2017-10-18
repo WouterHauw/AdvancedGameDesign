@@ -4,26 +4,18 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-<<<<<<< HEAD
-    public class InputScript : MonoBehaviour
-    {
+    public class InputScript : MonoBehaviour {
         public FingersJoystickScript JoyStickScript;
-
+        // Update is called once per frame
         public GameObject Player;
 
-        public bool MoveJoystickToGestureStartLocation;
-
-        public bool IsAttacking;
-=======
-    public class InputScript : MonoBehaviour {
-        public FingersJoystickScript joyStickScript;
-        // Update is called once per frame
-        public GameObject player;
->>>>>>> Development
+        public bool IsAttacking = false;
 
         public bool EnableSecondProtype;
 
         [SerializeField] private readonly float _smoothing = 5f;
+
+        [SerializeField] private bool _moveJoystickToGestureStartLocation = false;
 
         private LongPressGestureRecognizer _longPressGestureRecognizer;
 
@@ -61,7 +53,7 @@ namespace Assets.Scripts
                 return;
             }
             JoyStickScript.JoystickExecuted = JoystickExecuted;
-            JoyStickScript.MoveJoystickToGestureStartLocation = MoveJoystickToGestureStartLocation;
+            JoyStickScript.MoveJoystickToGestureStartLocation = _moveJoystickToGestureStartLocation;
         }
 
         //  public bool MoveJoysticktoGestureStartLocation;
@@ -151,23 +143,15 @@ namespace Assets.Scripts
 
         private void JoystickExecuted(FingersJoystickScript script, Vector2 amount)
         {
-            Vector3 pos = Player.transform.position;
+            var pos = Player.transform.position;
             pos.x += (amount.x * speed * Time.deltaTime);
             pos.z += (amount.y * speed * Time.deltaTime);
-            Vector3 faceDirection = pos - Player.transform.position;
+            var faceDirection = pos - Player.transform.position;
             var step = speed * Time.deltaTime;
-<<<<<<< HEAD
-            Vector3 newDirection = Vector3.RotateTowards(Player.transform.forward, faceDirection, step, 0.0f);
+
+            var newDirection = Vector3.RotateTowards(Player.transform.forward, faceDirection, step, 0.0f);
             Player.transform.position = pos;
             Player.transform.rotation = Quaternion.LookRotation(newDirection);
-
-
-
-=======
-            Vector3 newDirection = Vector3.RotateTowards(player.transform.forward, faceDirection, step, 0.0f);
-            player.transform.position = pos;
-            player.transform.rotation = Quaternion.LookRotation(newDirection);
->>>>>>> Development
         }
     }
 }

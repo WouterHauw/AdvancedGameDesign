@@ -1,21 +1,15 @@
 ﻿using System.Collections;
-<<<<<<< HEAD
-=======
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
->>>>>>> Development
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
-<<<<<<< HEAD
     public GameObject BearClaw;
     private RaycastHit _hit;
     [SerializeField] private float _bearActiveTime = 3f;
     [SerializeField] private readonly float _range = 10;
 
-    public void Attack()
-=======
     [SerializeField] private GameObject explosion;
     [SerializeField] private float time;
 
@@ -23,30 +17,40 @@ public class AttackScript : MonoBehaviour
     private RaycastHit hit;
     [SerializeField] private float theTimeBetweenFlashes;
     private bool isFlashing;
-    
+
     [SerializeField] private float range;
-   
-    [SerializeField]private int testOption = 1;
+
+    [SerializeField] private int testOption = 1;
     private bool isBeingDestroyed;
- 
+
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         theTimeBetweenFlashes = 0.2f;
         range = 10;
         isBeingDestroyed = false;
     }
 
-    public void KillSheeps()
->>>>>>> Development
+    public void Attack()
     {
         var vectorForwards = transform.TransformDirection(Vector3.forward);
         if (Physics.Raycast(transform.position, vectorForwards, out _hit, _range))
         {
             if (_hit.transform.gameObject.tag == "Sheep")
             {
-<<<<<<< HEAD
-                _hit.transform.gameObject.SetActive(false);
+                if (testOption == 1)
+                {
+                    hit.transform.gameObject.SetActive(false);
+                    instantiatedObj = (GameObject) Instantiate(explosion, hit.transform.position,
+                        Quaternion.LookRotation(Vector3.up));
+                    Destroy(instantiatedObj, time);
+
+                }
+                else if (testOption == 2)
+                {
+                    StartCoroutine(StartFlashing(hit.transform.gameObject));
+                }
                 StartCoroutine(BearClawCourotine());
             }
         }
@@ -57,24 +61,10 @@ public class AttackScript : MonoBehaviour
         BearClaw.SetActive(true);
         yield return new WaitForSeconds(_bearActiveTime);
         BearClaw.SetActive(false);
-=======
-                if (testOption == 1)
-                {
-                    hit.transform.gameObject.SetActive(false);
-                    instantiatedObj = (GameObject)Instantiate(explosion, hit.transform.position, Quaternion.LookRotation(Vector3.up));
-                    Destroy(instantiatedObj, time);
-                   
-                }
-                else if (testOption == 2)
-                {
-                    StartCoroutine(startFlashing(hit.transform.gameObject));
-                }
-            }                   
-        }
     }
->>>>>>> Development
 
-    private IEnumerator startFlashing(GameObject sheep)
+
+    private IEnumerator StartFlashing(GameObject sheep)
     {
         if (isBeingDestroyed) yield break;
 
@@ -87,9 +77,4 @@ public class AttackScript : MonoBehaviour
         DestroyObject(sheep.gameObject);
         isBeingDestroyed = true;
     }
-<<<<<<< HEAD
 }
-=======
-}   
-
->>>>>>> Development
