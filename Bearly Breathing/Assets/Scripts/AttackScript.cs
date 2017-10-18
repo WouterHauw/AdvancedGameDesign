@@ -16,6 +16,7 @@ public class AttackScript : MonoBehaviour
     public float range;
    
     private int testOption;
+    private bool isBeingDestroyed;
  
 
     // Use this for initialization
@@ -23,6 +24,7 @@ public class AttackScript : MonoBehaviour
         testOption = 2;
         theTimeBetweenFlashes = 0.2f;
         range = 10;
+        isBeingDestroyed = false;
     }
 
     public void KillSheeps()
