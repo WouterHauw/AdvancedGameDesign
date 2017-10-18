@@ -5,20 +5,24 @@ using UnityEngine.Audio;
 
 public class DamageHandlerSheep : MonoBehaviour
 {
-
+   
     public float health = 10;
     public AudioClip[] clips;
     public AudioMixerGroup output;
-    public GameObject blood;
+
+  
 
     public float minPitch = .95f;
     public float maxPitch = 1.05f;
 
 
 
+
+
     // Use this for initialization
     void Start()
     {
+       
         InvokeRepeating("PlaySound", Time.deltaTime, 5.0f);
 
     }
@@ -26,17 +30,11 @@ public class DamageHandlerSheep : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(Input.GetKeyDown("space"))
+        if (health <= 0)
         {
-            print("pressed");
-            Instantiate(blood, gameObject.transform.position, gameObject.transform.rotation);
-            Destroy(gameObject);
-        }
-
-        if (health == 0)
-        {
-            Destroy(gameObject);
+        
+     
+           // Destroy(gameObject);
         }
 
     }

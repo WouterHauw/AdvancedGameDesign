@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NPCBaseFSM : StateMachineBehaviour {
 
+
     public GameObject NPC1;
     public NavMeshAgent sheep;
     public GameObject opponent;
@@ -14,6 +15,7 @@ public class NPCBaseFSM : StateMachineBehaviour {
     public float rotationSpeed = 2.0f;
     [SerializeField]
     public float accuracy = 3.0f;
+
 
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
