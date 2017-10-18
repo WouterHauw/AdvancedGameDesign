@@ -5,9 +5,6 @@ using UnityEngine;
 namespace DigitalRubyShared
 {
     public class InputScript : MonoBehaviour {
-
-
-
         public FingersJoystickScript joyStickScript;
         // Update is called once per frame
         public GameObject player;
@@ -32,9 +29,6 @@ namespace DigitalRubyShared
             Vector3 newDirection = Vector3.RotateTowards(player.transform.forward, faceDirection, step, 0.0f);
             player.transform.position = pos;
             player.transform.rotation = Quaternion.LookRotation(newDirection);
-            
-
-
         }
     }
 }

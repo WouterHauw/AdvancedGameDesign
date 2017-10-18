@@ -39,8 +39,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1601650491050686}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 3.0252322e-12, y: 0.0017539845, z: 0.0000000017248049, w: 0.9999985}
+  m_LocalPosition: {x: -241.5524, y: 0.5, z: -166.3986}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -146,6 +146,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 96c457f39ff7bf9419e5ca86a75472ad, type: 3}
   output: {fileID: 243796821635843872, guid: a50b58f8bf7acf44ea260831d07beb56, type: 2}
   blood: {fileID: 0}
+  SheepDeathParticle: {fileID: 0}
   minPitch: 0.95
   maxPitch: 1.5
 --- !u!195 &195057383568126344
