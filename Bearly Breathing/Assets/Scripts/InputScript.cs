@@ -11,7 +11,7 @@ namespace Assets.Scripts
 
         public bool IsAttacking = false;
 
-        public bool EnableSecondProtype;
+        public bool enableSecondProtype = true;
 
         [SerializeField] private readonly float _smoothing = 5f;
 
@@ -48,7 +48,7 @@ namespace Assets.Scripts
             _moveDirection = Vector2.zero;
             _moveOrigin = Vector2.zero;
             IsAttacking = false;
-            if (!EnableSecondProtype)
+            if (!enableSecondProtype)
             {
                 return;
             }
@@ -60,7 +60,7 @@ namespace Assets.Scripts
 
         private void Start()
         {
-            if (EnableSecondProtype)
+            if (enableSecondProtype)
             {
                 CreateTapGesture();
                 return;
