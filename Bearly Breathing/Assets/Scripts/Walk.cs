@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Walk : NPCBaseFSM
 {
     GameObject[] waypoints;
     int currentWP;
+    private NavMeshAgent nav;
 
     void Awake()
     {
         waypoints = GameObject.FindGameObjectsWithTag("waypoint");
+        nav = GameObject.FindObjectOfType<NavMeshAgent>();
     }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -24,7 +27,7 @@ public class Walk : NPCBaseFSM
     {
         if (waypoints.Length == 0) return;
         if (Vector3.Distance(waypoints[currentWP].transform.position,
-            Sheep.transform.position) < 3.0f)
+            NPC1.transform.position) < 3.0f)
         {
             currentWP++;
             if (currentWP >= waypoints.Length)
@@ -33,7 +36,7 @@ public class Walk : NPCBaseFSM
             }
         }
 
-        agent.SetDestination(waypoints[currentWP].transform.position);
+        sheep.SetDestination(waypoints[currentWP].transform.position);
         //var direction = waypoints[currentWP].transform.position - Sheep.transform.position;
         //Sheep.transform.rotation = Quaternion.Slerp(Sheep.transform.rotation,
         //                           Quaternion.LookRotation(direction),

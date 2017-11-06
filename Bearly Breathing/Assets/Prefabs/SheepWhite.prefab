@@ -25,9 +25,13 @@ GameObject:
   - component: {fileID: 54512800267002410}
   - component: {fileID: 65015128230276634}
   - component: {fileID: 114710179043728942}
+  - component: {fileID: 114666038012707336}
+  - component: {fileID: 195057383568126344}
+  - component: {fileID: 195433366302166072}
+>>>>>>> Development
   m_Layer: 0
   m_Name: SheepWhite
-  m_TagString: Sheep
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,6 +132,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114666038012707336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601650491050686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2acd947c185d454fbe504b46a329cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.001
 --- !u!114 &114710179043728942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,3 +162,24 @@ MonoBehaviour:
   output: {fileID: 243796821635843872, guid: a50b58f8bf7acf44ea260831d07beb56, type: 2}
   minPitch: 0.95
   maxPitch: 1.5
+--- !u!195 &195433366302166072
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601650491050686}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.75399303
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.7804269
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

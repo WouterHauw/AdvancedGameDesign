@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a7017b9715c373b40b4c5525c97fcd7c
+timeCreated: 1508147324
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - sheepPrefab: {fileID: 1601650491050686, guid: 4b08233d247166a429787fc49c81e241,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

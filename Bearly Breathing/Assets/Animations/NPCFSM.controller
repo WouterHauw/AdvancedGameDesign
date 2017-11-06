@@ -7,7 +7,13 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: NPCFSM
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: distance
+    m_Type: 1
+    m_DefaultFloat: 100
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -32,6 +38,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d462db00fd967b049a22487018c756ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPC1: {fileID: 0}
+  sheep: {fileID: 0}
+  opponent: {fileID: 0}
+  speed: 0.25
+  rotationSpeed: 2
+  accuracy: 3
 --- !u!114 &114782098620288422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,7 +89,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102123323068857420}
-    m_Position: {x: 204, y: 226, z: 0}
+    m_Position: {x: 24, y: 228, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
