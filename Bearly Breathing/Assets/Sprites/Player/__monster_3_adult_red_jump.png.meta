@@ -1,0 +1,315 @@
+fileFormatVersion: 2
+guid: 97ac17187512e554bb5cccf9dc5524e9
+timeCreated: 1510058501
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: __monster_3_adult_red_jump_0
+    21300002: __monster_3_adult_red_jump_1
+    21300004: __monster_3_adult_red_jump_2
+    21300006: __monster_3_adult_red_jump_3
+    21300008: __monster_3_adult_red_jump_4
+    21300010: __monster_3_adult_red_jump_5
+    21300012: __monster_3_adult_red_jump_6
+    21300014: __monster_3_adult_red_jump_7
+    21300016: __monster_3_adult_red_jump_8
+    21300018: __monster_3_adult_red_jump_9
+    21300020: __monster_3_adult_red_jump_10
+    21300022: __monster_3_adult_red_jump_11
+    21300024: __monster_3_adult_red_jump_12
+    21300026: __monster_3_adult_red_jump_13
+    21300028: __monster_3_adult_red_jump_14
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: -1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_0
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 1975
+        width: 473
+        height: 723
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_1
+      rect:
+        serializedVersion: 2
+        x: 1396
+        y: 1976
+        width: 560
+        height: 688
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_2
+      rect:
+        serializedVersion: 2
+        x: 2540
+        y: 1975
+        width: 621
+        height: 653
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_3
+      rect:
+        serializedVersion: 2
+        x: 3683
+        y: 1976
+        width: 625
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_4
+      rect:
+        serializedVersion: 2
+        x: 4694
+        y: 1964
+        width: 625
+        height: 670
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_5
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 1090
+        width: 583
+        height: 651
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_6
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 1163
+        width: 561
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_7
+      rect:
+        serializedVersion: 2
+        x: 2490
+        y: 1163
+        width: 561
+        height: 647
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_8
+      rect:
+        serializedVersion: 2
+        x: 3635
+        y: 1110
+        width: 555
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_9
+      rect:
+        serializedVersion: 2
+        x: 4672
+        y: 1037
+        width: 644
+        height: 665
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_10
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 85
+        width: 547
+        height: 634
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_11
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 100
+        width: 505
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_12
+      rect:
+        serializedVersion: 2
+        x: 2523
+        y: 99
+        width: 528
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_13
+      rect:
+        serializedVersion: 2
+        x: 3671
+        y: 100
+        width: 534
+        height: 664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __monster_3_adult_red_jump_14
+      rect:
+        serializedVersion: 2
+        x: 4815
+        y: 100
+        width: 518
+        height: 691
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
