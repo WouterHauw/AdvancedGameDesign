@@ -35,17 +35,19 @@ public class PlayerController : MonoBehaviour
         HandleAttackInput();
     }
 
-    private void HandleMoveInput()
+    public bool HandleMoveInput()
     {
 
         //handles movement of the player
         var movement = _inputScript.GetDirection();
         if (_inputScript.EnableSecondProtype)
         {
-            return;
+            return false;
         }
         _playerMoverment.MoveDirection = new Vector3(movement.x, 0, movement.y);
         _playerMoverment.LookDirection = new Vector3(movement.x, 0, movement.y);
+
+        return true;
     }
 
     private void HandleAttackInput()
