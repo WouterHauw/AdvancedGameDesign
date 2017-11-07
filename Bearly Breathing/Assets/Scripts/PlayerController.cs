@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
     public GameObject BearClaw;
     [SerializeField] private MovementScript _playerMoverment = null;
     [SerializeField] private AttackScript _playerAttack = null;
-
+    public float health;
+    public float maxHealth;
     [SerializeField] private InputScript _inputScript = null;
 
     
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
         _playerAttack = GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
         _playerMoverment.SecondDemoIsPlaying = _inputScript.EnableSecondProtype;
+        maxHealth = 100f;
+        health = maxHealth;
     }
 
 
