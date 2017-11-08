@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 3462f6c99ee10c14b9cbc3395a81a117
-timeCreated: 1506432395
+timeCreated: 1507642632
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - NPC: {fileID: 1601650491050686, guid: 4b08233d247166a429787fc49c81e241, type: 2}
+  - sheep: {instanceID: 0}
+  - opponent: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
