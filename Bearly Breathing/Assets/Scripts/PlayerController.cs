@@ -9,18 +9,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AttackScript _playerAttack = null;
     public float health;
     public float maxHealth;
+    public bool isHiding;
     [SerializeField] private InputScript _inputScript = null;
 
     
     // Use this for initialization
     void Start()
     {
+
         _playerMoverment = GetComponent<MovementScript>();
         _playerAttack = GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
         _playerMoverment.SecondDemoIsPlaying = _inputScript.EnableSecondProtype;
         maxHealth = 100f;
         health = maxHealth;
+        isHiding = false;
     }
 
 
