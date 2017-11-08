@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPC_AI : MonoBehaviour {
 
     Animator anim;
+    private float timer;
     public GameObject player;
     public GameObject bullet;
     public GameObject gun;
