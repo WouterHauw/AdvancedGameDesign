@@ -1221,6 +1221,30 @@ Prefab:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 4211834262582688, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211834262582688, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 9.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211834262582688, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 9.552163
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211834262582688, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 9.5521145
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211834262582688, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 9.5521145
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211834262582688, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d1555932acc1cd4493b18c22173275f, type: 2}
   m_IsPrefabParent: 0

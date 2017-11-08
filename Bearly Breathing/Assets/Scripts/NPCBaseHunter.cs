@@ -5,12 +5,10 @@ using UnityEngine.AI;
 
 public class NPCBaseHunter : StateMachineBehaviour
 {
-
     public GameObject NPC;
     public NavMeshAgent hunter;
     public GameObject opponent;
-    [SerializeField]
-    private float speed = 0.25f;
+    public float speed = 0.25f;
     [SerializeField]
     public float rotationSpeed = 2.0f;
     [SerializeField]
