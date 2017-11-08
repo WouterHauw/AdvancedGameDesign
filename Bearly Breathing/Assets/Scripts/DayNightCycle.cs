@@ -8,7 +8,7 @@ public class DayNightCycle : MonoBehaviour
     public Light sun;
     public float secondsInFullDay = 120f;
     [Range(0, 1)]
-    public float currentTimeOfDay = 0;
+    public float currentTimeOfDay = 25f;
     [HideInInspector]
     public float timeMultiplier = 1f;
 

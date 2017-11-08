@@ -468,8 +468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPaused: 0
-  _attackButton: {fileID: 0}
-  _moveButton: {fileID: 0}
+  _attackButton: {fileID: 1945846980472140}
+  _moveButton: {fileID: 1358708438279084}
   _pauseMenu: {fileID: 1927321403722566}
   _pauseButton: {fileID: 1723486580349282}
 --- !u!114 &114052738466629712

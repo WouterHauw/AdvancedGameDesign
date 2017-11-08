@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4219393427292856}
   - component: {fileID: 114551849534283756}
+  - component: {fileID: 114905567949648230}
   m_Layer: 0
   m_Name: FingersScriptPrefab
   m_TagString: Untagged
@@ -552,6 +553,22 @@ MonoBehaviour:
   m_FallbackScreenDPI: 200
   m_DefaultSpriteDPI: 200
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114905567949648230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1453558968920868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7eb6189e1195504d8eef94bf7b2bc78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JoyStickScript: {fileID: 0}
+  Player: {fileID: 0}
+  IsAttacking: 0
+  EnableSecondProtype: 0
+  _moveJoystickToGestureStartLocation: 0
 --- !u!114 &114931557033488756
 MonoBehaviour:
   m_ObjectHideFlags: 1

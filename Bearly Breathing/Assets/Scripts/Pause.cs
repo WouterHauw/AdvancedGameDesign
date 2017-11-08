@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Pause : MonoBehaviour {
@@ -22,7 +23,7 @@ public class Pause : MonoBehaviour {
 		
 	}
 
-    private void OnClickPauseButton()
+    public void OnClickPauseButton()
     {
         _isPaused = !_isPaused;
         if(_isPaused)
@@ -32,7 +33,7 @@ public class Pause : MonoBehaviour {
         }
     }
 
-    private void OnClickResumeButton()
+    public void OnClickResumeButton()
     {
         _isPaused = !_isPaused;
         if (!_isPaused)
@@ -40,6 +41,11 @@ public class Pause : MonoBehaviour {
             Time.timeScale = 1;
             ShowButtons();
         }
+    }
+
+    public void OnClickMenuButton()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void HideButtons()
