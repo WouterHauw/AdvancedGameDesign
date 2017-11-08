@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class Pause : MonoBehaviour {
 
-    public bool isPaused;
-    public GameObject attackButton;
-    public GameObject moveButton;
-    public GameObject pauseMenu;
-    public GameObject pauseButton;
+    [SerializeField]private bool _isPaused;
+    [SerializeField] private GameObject _attackButton;
+    [SerializeField] private GameObject _moveButton;
+    [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _pauseButton;
 
     // Use this for initialization
     void Start () {
-        isPaused = false;
-        pauseMenu.SetActive(false);
+        _isPaused = false;
+        _pauseMenu.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -22,20 +22,20 @@ public class Pause : MonoBehaviour {
 		
 	}
 
-    public void OnClickPauseButton()
+    private void OnClickPauseButton()
     {
-        isPaused = !isPaused;
-        if(isPaused)
+        _isPaused = !_isPaused;
+        if(_isPaused)
         {
             Time.timeScale = 0;
             HideButtons();
         }
     }
 
-    public void OnClickResumeButton()
+    private void OnClickResumeButton()
     {
-        isPaused = !isPaused;
-        if (!isPaused)
+        _isPaused = !_isPaused;
+        if (!_isPaused)
         {
             Time.timeScale = 1;
             ShowButtons();
@@ -44,17 +44,17 @@ public class Pause : MonoBehaviour {
 
     private void HideButtons()
     {
-        attackButton.SetActive(false);
-        moveButton.SetActive(false);
-        pauseButton.SetActive(false);
-        pauseMenu.SetActive(true);
+        _attackButton.SetActive(false);
+        _moveButton.SetActive(false);
+        _pauseButton.SetActive(false);
+        _pauseMenu.SetActive(true);
     }
 
     private void ShowButtons()
     {
-        attackButton.SetActive(true);
-        moveButton.SetActive(true);
-        pauseButton.SetActive(true);
-        pauseMenu.SetActive(false);
+        _attackButton.SetActive(true);
+        _moveButton.SetActive(true);
+        _pauseButton.SetActive(true);
+        _pauseMenu.SetActive(false);
     }
 }

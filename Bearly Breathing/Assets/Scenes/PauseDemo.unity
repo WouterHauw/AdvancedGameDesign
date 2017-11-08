@@ -1291,11 +1291,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfe12fd107aa974baa1bac4537db16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 0
-  attackButton: {fileID: 1454876642}
-  moveButton: {fileID: 750995531}
-  pauseMenu: {fileID: 130263982}
-  pauseButton: {fileID: 1385552627}
+  _isPaused: 0
+  _attackButton: {fileID: 1454876642}
+  _moveButton: {fileID: 750995531}
+  _pauseMenu: {fileID: 2038999020}
+  _pauseButton: {fileID: 1385552627}
 --- !u!224 &442778539
 RectTransform:
   m_ObjectHideFlags: 0
