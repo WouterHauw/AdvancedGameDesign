@@ -1,13 +1,38 @@
 fileFormatVersion: 2
 guid: aa28011eae507554e944edf056771399
-timeCreated: 1510064915
+timeCreated: 1510143838
 licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: __white_sheep_1_eating_0
+    21300002: __white_sheep_1_eating_1
+    21300004: __white_sheep_1_eating_2
+    21300006: __white_sheep_1_eating_3
+    21300008: __white_sheep_1_eating_4
+    21300010: __white_sheep_1_eating_5
+    21300012: __white_sheep_1_eating_6
+    21300014: __white_sheep_1_eating_7
+    21300016: __white_sheep_1_eating_8
+    21300018: __white_sheep_1_eating_9
+    21300020: __white_sheep_1_eating_10
+    21300022: __white_sheep_1_eating_11
+    21300024: __white_sheep_1_eating_12
+    21300026: __white_sheep_1_eating_13
+    21300028: __white_sheep_1_eating_14
+    21300030: __white_sheep_1_eating_15
+    21300032: __white_sheep_1_eating_16
+    21300034: __white_sheep_1_eating_17
+    21300036: __white_sheep_1_eating_18
+    21300038: __white_sheep_1_eating_19
+    21300040: __white_sheep_1_eating_20
+    21300042: __white_sheep_1_eating_21
+    21300044: __white_sheep_1_eating_22
+    21300046: __white_sheep_1_eating_23
+    21300048: __white_sheep_1_eating_24
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -33,13 +58,13 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapU: -1
+    wrapU: 1
     wrapV: -1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -47,9 +72,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -63,9 +88,375 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 1507
+        width: 312
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_1
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1507
+        width: 311
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_2
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 1507
+        width: 312
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_3
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 1507
+        width: 313
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_4
+      rect:
+        serializedVersion: 2
+        x: 1733
+        y: 1507
+        width: 315
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_5
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 1144
+        width: 314
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_6
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 1144
+        width: 315
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_7
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 1144
+        width: 316
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_8
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 1144
+        width: 314
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_9
+      rect:
+        serializedVersion: 2
+        x: 1733
+        y: 1144
+        width: 313
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_10
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 781
+        width: 312
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_11
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 781
+        width: 312
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_12
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 781
+        width: 314
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_13
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 781
+        width: 314
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_14
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 781
+        width: 315
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_15
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 418
+        width: 316
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_16
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 418
+        width: 317
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_17
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 418
+        width: 319
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_18
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 418
+        width: 319
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_19
+      rect:
+        serializedVersion: 2
+        x: 1727
+        y: 418
+        width: 320
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_20
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 55
+        width: 319
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_21
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 55
+        width: 318
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_22
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 55
+        width: 316
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_23
+      rect:
+        serializedVersion: 2
+        x: 1315
+        y: 55
+        width: 314
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __white_sheep_1_eating_24
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 55
+        width: 313
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

@@ -1,13 +1,28 @@
 fileFormatVersion: 2
 guid: 470e5e36b8e4f4048b7dde02fef24db6
-timeCreated: 1510064809
+timeCreated: 1510143747
 licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: __black_sheep_2_run_0
+    21300002: __black_sheep_2_run_1
+    21300004: __black_sheep_2_run_2
+    21300006: __black_sheep_2_run_3
+    21300008: __black_sheep_2_run_4
+    21300010: __black_sheep_2_run_5
+    21300012: __black_sheep_2_run_6
+    21300014: __black_sheep_2_run_7
+    21300016: __black_sheep_2_run_8
+    21300018: __black_sheep_2_run_9
+    21300020: __black_sheep_2_run_10
+    21300022: __black_sheep_2_run_11
+    21300024: __black_sheep_2_run_12
+    21300026: __black_sheep_2_run_13
+    21300028: __black_sheep_2_run_14
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -33,13 +48,13 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapU: -1
+    wrapU: 1
     wrapV: -1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -47,9 +62,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -63,9 +78,235 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: __black_sheep_2_run_0
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 786
+        width: 331
+        height: 273
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_1
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 787
+        width: 327
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_2
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 789
+        width: 303
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_3
+      rect:
+        serializedVersion: 2
+        x: 1378
+        y: 805
+        width: 327
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_4
+      rect:
+        serializedVersion: 2
+        x: 1796
+        y: 848
+        width: 374
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_5
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 484
+        width: 386
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_6
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 459
+        width: 392
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_7
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 428
+        width: 396
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_8
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 413
+        width: 394
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_9
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 411
+        width: 403
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_10
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 46
+        width: 403
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_11
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 46
+        width: 390
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_12
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 47
+        width: 349
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_13
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 48
+        width: 343
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: __black_sheep_2_run_14
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 51
+        width: 337
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
