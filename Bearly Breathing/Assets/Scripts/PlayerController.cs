@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     public float health;
     public float maxHealth;
     [SerializeField] private InputScript _inputScript = null;
+    private Animator anim;
 
-    
+
     // Use this for initialization
     void Start()
     {
+        anim = GetComponent<Animator>();
         _playerMoverment = GetComponent<MovementScript>();
         _playerAttack = GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
@@ -44,6 +46,8 @@ public class PlayerController : MonoBehaviour
         {
             return false;
         }
+        Debug.Log("set animator");
+        anim.SetBool("isWalking", true);
         _playerMoverment.MoveDirection = new Vector3(movement.x, 0, movement.y);
         _playerMoverment.LookDirection = new Vector3(movement.x, 0, movement.y);
 
@@ -58,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if (isAttacking)
         {
             _playerAttack.Attack();
+            //animator.setbool
             _inputScript.IsAttacking = false;
         }
 
