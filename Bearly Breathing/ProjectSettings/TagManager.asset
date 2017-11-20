@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Sheep
   - Hunter
+  - Bush
   layers:
   - Default
   - TransparentFX
