@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
         _playerMoverment = GetComponent<MovementScript>();
         _playerAttack = GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
-        _playerMoverment.SecondDemoIsPlaying = _inputScript.EnableSecondProtype;
         maxHealth = 100f;
         health = maxHealth;
         isHiding = false;
@@ -43,23 +42,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("One of Script is missing");
             return;
         }
-        HandleMoveInput();
         HandleAttackInput();
-    }
-
-    public bool HandleMoveInput()
-    {
-
-        //handles movement of the player
-        var movement = _inputScript.GetDirection();
-        if (_inputScript.EnableSecondProtype)
-        {
-            return false;
-        }
-        _playerMoverment.MoveDirection = new Vector3(movement.x, 0, movement.y);
-        _playerMoverment.LookDirection = new Vector3(movement.x, 0, movement.y);
-
-        return true;
     }
 
     //Activate BushAbility
@@ -87,7 +70,7 @@ public class PlayerController : MonoBehaviour
     private void HandleAttackInput()
     {
         //handles the attacks of the player
-        bool isAttacking = _inputScript.IsAttacking;
+        bool isAttacking = _inputScript.isAttacking;
         
         if (isAttacking)
         {
@@ -95,7 +78,7 @@ public class PlayerController : MonoBehaviour
             IAbility = gameObject.AddComponent<AttackScript>();
             IAbility.InitializeVariables();
             IAbility.ActivateAbility(null);
-            _inputScript.IsAttacking = false;
+            _inputScript.isAttacking = false;
         }else
         {
            // IAbility.DeactivateAbility();

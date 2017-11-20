@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3357,11 +3357,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7eb6189e1195504d8eef94bf7b2bc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JoyStickScript: {fileID: 1234934742}
-  Player: {fileID: 938611530}
-  IsAttacking: 0
-  EnableSecondProtype: 1
-  _moveJoystickToGestureStartLocation: 0
+  _minimumDurationLongTap: 0.1
+  _thresholdUnits: 8
+  _minimumDistanceSwipe: 1.5
+  _minimumSpeedSwipe: 3.5
+  _swipeDirection: 4
+  isAttacking: 0
+  _firstTouchTime: 0
 --- !u!1 &1624270295
 GameObject:
   m_ObjectHideFlags: 0
@@ -3997,12 +3999,12 @@ Prefab:
     - target: {fileID: 224478311610931892, guid: 3986c0844c59a824889e5f5ec15e2e1d,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.492
       objectReference: {fileID: 0}
     - target: {fileID: 224478311610931892, guid: 3986c0844c59a824889e5f5ec15e2e1d,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224478311610931892, guid: 3986c0844c59a824889e5f5ec15e2e1d,
         type: 2}
