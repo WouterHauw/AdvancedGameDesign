@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AttackScript _playerAttack = null;
     public float health;
     public float maxHealth;
+    public bool beingChased;
     public bool isHiding;
     [SerializeField] private InputScript _inputScript = null;
     public Component abilityInterface;
@@ -66,9 +67,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Bush")
         {
+            Debug.Log("entered Bush");
             IAbility = gameObject.AddComponent<Bush>();
             IAbility.InitializeVariables();
-            IAbility.ActivateAbility();
+            IAbility.ActivateAbility(other.gameObject);
         }
     }
 
@@ -77,8 +79,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Bush")
         {
-            IAbility = gameObject.AddComponent<Bush>();
-            IAbility.DeactivateAbility();
+            IAbility.DeactivateAbility(other.gameObject);
+            Destroy(GetComponent<Bush>());  
         }
     }
 
@@ -86,20 +88,19 @@ public class PlayerController : MonoBehaviour
     {
         //handles the attacks of the player
         bool isAttacking = _inputScript.IsAttacking;
-        IAbility = gameObject.AddComponent<AttackScript>();
-
+        
         if (isAttacking)
         {
-          
+            
+            IAbility = gameObject.AddComponent<AttackScript>();
             IAbility.InitializeVariables();
-            IAbility.ActivateAbility();
+            IAbility.ActivateAbility(null);
             _inputScript.IsAttacking = false;
         }else
         {
-            IAbility.DeactivateAbility();
+           // IAbility.DeactivateAbility();
+            //Destroy(GetComponent<AttackScript>());
         }
 
-    }
-
-   
+    } 
 }
