@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DigitalRubyShared;
 using UnityEngine;
-using UnityEngine.VR.WSA;
+//using UnityEngine.VR.WSA;
 
 namespace Assets.Scripts
 {
