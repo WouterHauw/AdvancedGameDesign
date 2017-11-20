@@ -42,7 +42,7 @@ namespace Assets.Scripts
 
         private void Start()
         {
-            anim = player.GetComponentInChildren<Animator>();
+            anim = player.GetComponent<Animator>();
             CreateSwipeGesture();
 
             _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;

@@ -10,7 +10,6 @@ TagManager:
   - Sheep
   - Hunter
   - Bush
-  - BearClaw
   layers:
   - Default
   - TransparentFX
