@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("One of Script is missing");
             return;
         }
+
+       
+            
+        
         HandleAttackInput();
     }
 
@@ -56,7 +60,7 @@ public class PlayerController : MonoBehaviour
         {
             IAbility = gameObject.AddComponent<Bush>();
             IAbility.InitializeVariables();
-            IAbility.ActivateAbility(other.gameObject);
+            IAbility.ActivateAbility(other.gameObject, anim);
         }
     }
 
@@ -66,7 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Bush")
         {
-            IAbility.DeactivateAbility(other.gameObject);
+            IAbility.DeactivateAbility(other.gameObject, anim);
             Destroy(GetComponent<Bush>());  
         }
     }
@@ -78,11 +82,10 @@ public class PlayerController : MonoBehaviour
         
         if (isAttacking)
         {
-
-            
             IAbility = gameObject.AddComponent<AttackScript>();
             IAbility.InitializeVariables();
-            IAbility.ActivateAbility(null);
+            IAbility.ActivateAbility(null, anim);
+           
             _inputScript.isAttacking = false;
         }else
         {
