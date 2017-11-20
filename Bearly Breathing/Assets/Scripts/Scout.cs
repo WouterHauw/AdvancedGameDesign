@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scout : NPCBaseHunter
 {
@@ -15,8 +13,9 @@ public class Scout : NPCBaseHunter
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    {       
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        opponent.GetComponent<PlayerController>().beingChased = false;
         currentWP = 0;
     }
 
@@ -43,4 +42,3 @@ public class Scout : NPCBaseHunter
         hunter.speed = 3.5f;
     }
 }
-
