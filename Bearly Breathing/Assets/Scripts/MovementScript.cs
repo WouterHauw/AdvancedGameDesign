@@ -4,8 +4,8 @@ public class MovementScript : MonoBehaviour
 {
     public bool SecondDemoIsPlaying = false;
     [SerializeField] private Transform movementTransform;
-    [HideInInspector] public Vector3 LookDirection = Vector3.zero;
-    [HideInInspector] public Vector3 MoveDirection = Vector3.zero;
+    [HideInInspector] public Vector3 lookDirection = Vector3.zero;
+    [HideInInspector] public Vector3 moveDirection = Vector3.zero;
     [SerializeField] private readonly float _speed = 6f;
 
 
@@ -14,7 +14,9 @@ public class MovementScript : MonoBehaviour
         if (!SecondDemoIsPlaying)
         {
             
-            movementTransform.position = new Vector3(movementTransform.position.x+ MoveDirection.x,movementTransform.position.y,movementTransform.position.z + MoveDirection.y);
+            movementTransform.position = new Vector3(movementTransform.position.x+ moveDirection.x,movementTransform.position.y,movementTransform.position.z + moveDirection.y);
+
+
             //remove y
             //MoveDirection.Set(MoveDirection.x, 0, MoveDirection.y);
             //move the player position

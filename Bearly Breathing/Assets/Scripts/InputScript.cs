@@ -4,34 +4,36 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class InputScript : MonoBehaviour {
-        public FingersJoystickScript JoyStickScript;
-        // Update is called once per frame
-        public GameObject Player;
+    public class InputScript : MonoBehaviour
+    {
+        [SerializeField] private float _minimumDurationLongTap;
 
-        public bool IsAttacking = false;
+        [SerializeField] private float _thresholdUnits;
 
-        public bool EnableSecondProtype;
+        [SerializeField] private float _minimumDistanceSwipe;
 
-        [SerializeField] private readonly float _smoothing = 5f;
+        [SerializeField] private float _minimumSpeedSwipe;
 
-        [SerializeField] private bool _moveJoystickToGestureStartLocation;
+        [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
 
-        private LongPressGestureRecognizer _longPressGestureRecognizer;
+        public bool isAttacking;
 
-        private SwipeGestureRecognizer _swipeGestureRecognizer;
-
-        private TapGestureRecognizer _pressGestureRecognizer;
+        [SerializeField] private bool _firstTouchTime;
 
         private Vector2 _moveDirection;
 
         private Vector2 _moveOrigin;
 
+        private TapGestureRecognizer _pressGestureRecognizer;
+
         private Vector2 _smoothDirection;
 
-        private float speed = 10.0f;
+        [SerializeField] private readonly float _smoothing = 5f;
 
-        
+        private SwipeGestureRecognizer _swipeGestureRecognizer;
+
+        private LongPressGestureRecognizer _longPressGestureRecognizer;
+
 
 
         private GestureTouch FirstTouch(ICollection<GestureTouch> touches)
@@ -47,26 +49,28 @@ namespace Assets.Scripts
         {
             _moveDirection = Vector2.zero;
             _moveOrigin = Vector2.zero;
-            IsAttacking = false;
-            if (!EnableSecondProtype)
-            {
-                return;
-            }
-            JoyStickScript.JoystickExecuted = JoystickExecuted;
-            JoyStickScript.MoveJoystickToGestureStartLocation = _moveJoystickToGestureStartLocation;
+            isAttacking = false;
+            _firstTouchTime = false;
         }
 
         //  public bool MoveJoysticktoGestureStartLocation;
 
         private void Start()
         {
-            if (EnableSecondProtype)
-            {
-                CreateTapGesture();
-                return;
-            }
-            CreateLongTapGesture();
+            CreateTapGesture();
             CreateSwipeGesture();
+        }
+
+        private void Update()
+        {
+            _longPressGestureRecognizer.MinimumDurationSeconds = _minimumDurationLongTap;
+            _longPressGestureRecognizer.ThresholdUnits = _thresholdUnits;
+
+            _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
+            _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
+            _swipeGestureRecognizer.Direction = _swipeDirection;
+
+
         }
 
 
@@ -114,22 +118,41 @@ namespace Assets.Scripts
         {
             if (gesture.State == GestureRecognizerState.Ended)
             {
-                IsAttacking = true;
+                isAttacking = true;
             }
+
         }
 
         private void CreateTapGesture()
         {
-           _pressGestureRecognizer = new TapGestureRecognizer();
+            _pressGestureRecognizer = new TapGestureRecognizer()
+            {
+                
+
+            };
             _pressGestureRecognizer.Updated += TapGestureCallback;
             FingersScript.Instance.AddGesture(_pressGestureRecognizer);
         }
 
         private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
         {
+            var t = FirstTouch(touches);
+            //when touch begin set the origin of touch
+            if (gesture.State == GestureRecognizerState.Began)
+            {
+                _moveOrigin = new Vector2(t.X, t.Y);
+            }
+            //when touch is executing is compare origin of touch with new position of touch
+            if (gesture.State == GestureRecognizerState.Executing)
+            {
+                var currentposition = new Vector2(t.X, t.Y);
+                var directionVectorRaw = currentposition - _moveOrigin;
+                _moveDirection = directionVectorRaw.normalized;
+            }
+            //when touch end set the move direction to zero
             if (gesture.State == GestureRecognizerState.Ended)
             {
-                IsAttacking = true;
+                _moveDirection = Vector2.zero;
             }
         }
 
@@ -141,17 +164,5 @@ namespace Assets.Scripts
             return _smoothDirection;
         }
 
-        private void JoystickExecuted(FingersJoystickScript script, Vector2 amount)
-        {
-            Vector3 pos = Player.transform.position;
-            pos.x += (amount.x * speed * Time.deltaTime);
-            pos.z += (amount.y * speed * Time.deltaTime);
-            Vector3 faceDirection = pos - Player.transform.position;
-            var step = speed * Time.deltaTime;
-
-            Vector3 newDirection = Vector3.RotateTowards(Player.transform.forward, faceDirection, step, 0.0f);
-            Player.transform.position = pos;
-            Player.transform.rotation = Quaternion.LookRotation(newDirection);
-        }
     }
 }
