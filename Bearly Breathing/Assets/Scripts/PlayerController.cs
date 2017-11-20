@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Bush")
         {
-            Debug.Log("entered Bush");
             IAbility = gameObject.AddComponent<Bush>();
             IAbility.InitializeVariables();
             IAbility.ActivateAbility(other.gameObject);
