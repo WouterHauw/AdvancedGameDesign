@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class AttackScript : MonoBehaviour
+public class AttackScript : MonoBehaviour, AbilityInterface
 {
     public GameObject BearClaw;
     private RaycastHit _hit;
-    [SerializeField] private float _bearActiveTime = 3f;
-    [SerializeField] private readonly float _range = 10;
+    [SerializeField] private float _bearActiveTime;
+    [SerializeField] private readonly float _range = 10f;
 
     [SerializeField] private GameObject explosion;
     [SerializeField] private float time;
@@ -19,40 +19,46 @@ public class AttackScript : MonoBehaviour
 
     [SerializeField] private float range;
 
-    [SerializeField] private int testOption = 1;
+    [SerializeField] private int testOption;
     private bool isBeingDestroyed;
 
 
     // Use this for initialization
     void Start()
     {
+        InitializeVariables();
+    }
+   
+    //Must be public as its used in interface
+    public void InitializeVariables()
+    {
+        _bearActiveTime = 3f;
+        testOption = 1;
         theTimeBetweenFlashes = 0.2f;
         range = 5;
         isBeingDestroyed = false;
     }
-
-    public void Attack()
+   
+    //Must be public as its used in interface
+    //Launch an explosion and bearclaw on GUI
+    public void ActivateAbility()
     {
         var vectorForwards = transform.TransformDirection(Vector3.forward);
         if (Physics.Raycast(transform.position, vectorForwards, out _hit, _range))
         {
             if (_hit.transform.gameObject.tag == "Sheep")
             {
-                if (testOption == 1)
-                {
-                    _hit.transform.gameObject.SetActive(false);
-                    instantiatedObj = (GameObject) Instantiate(explosion, _hit.transform.position,
-                        Quaternion.LookRotation(Vector3.up));
-                    Destroy(instantiatedObj, time);
+                InitializeExplosion();
 
-                }
-                else if (testOption == 2)
-                {
-                    StartCoroutine(StartFlashing(_hit.transform.gameObject));
-                }
+                
                 StartCoroutine(BearClawCourotine());
             }
         }
+    }
+
+    public void DeactivateAbility()
+    {
+
     }
 
     private IEnumerator BearClawCourotine()
@@ -62,8 +68,16 @@ public class AttackScript : MonoBehaviour
         BearClaw.SetActive(false);
     }
 
+    private void InitializeExplosion()
+    {
+        _hit.transform.gameObject.SetActive(false);
+        instantiatedObj = (GameObject)Instantiate(explosion, _hit.transform.position,
+            Quaternion.LookRotation(Vector3.up));
+        Destroy(instantiatedObj, time);
+    }
 
-    private IEnumerator StartFlashing(GameObject sheep)
+
+    /**private IEnumerator StartFlashing(GameObject sheep)
     {
         if (isBeingDestroyed) yield break;
 
@@ -75,5 +89,5 @@ public class AttackScript : MonoBehaviour
         yield return new WaitForSeconds(theTimeBetweenFlashes);
         DestroyObject(sheep.gameObject);
         isBeingDestroyed = true;
-    }
+    }**/
 }

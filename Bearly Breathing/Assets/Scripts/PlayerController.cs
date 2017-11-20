@@ -11,11 +11,20 @@ public class PlayerController : MonoBehaviour
     public float maxHealth;
     public bool isHiding;
     [SerializeField] private InputScript _inputScript = null;
+    public Component abilityInterface;
+    [SerializeField] private AbilityInterface IAbility;
 
     
     // Use this for initialization
     void Start()
     {
+        InitializeVariables();
+    }
+
+    private void InitializeVariables()
+    {
+        //To prevent Unity from creating multiple copies of the same component in inspector at runtime
+        abilityInterface = gameObject.GetComponent<AbilityInterface>() as Component;
 
         _playerMoverment = GetComponent<MovementScript>();
         _playerAttack = GetComponent<AttackScript>();
@@ -25,7 +34,6 @@ public class PlayerController : MonoBehaviour
         health = maxHealth;
         isHiding = false;
     }
-
 
     void Update()
     {
@@ -53,15 +61,42 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
+    //Activate BushAbility
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Bush")
+        {
+            IAbility = gameObject.AddComponent<Bush>();
+            IAbility.InitializeVariables();
+            IAbility.ActivateAbility();
+        }
+    }
+
+    //Deactivate BushAbility
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Bush")
+        {
+            IAbility = gameObject.AddComponent<Bush>();
+            IAbility.DeactivateAbility();
+        }
+    }
+
     private void HandleAttackInput()
     {
         //handles the attacks of the player
-        var isAttacking = _inputScript.IsAttacking;
+        bool isAttacking = _inputScript.IsAttacking;
+        IAbility = gameObject.AddComponent<AttackScript>();
 
         if (isAttacking)
         {
-            _playerAttack.Attack();
+          
+            IAbility.InitializeVariables();
+            IAbility.ActivateAbility();
             _inputScript.IsAttacking = false;
+        }else
+        {
+            IAbility.DeactivateAbility();
         }
 
     }
