@@ -15,8 +15,9 @@ public class Scout : NPCBaseHunter
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log("entered Scout");
-        opponent.GetComponent<PlayerController>().beingChased = false;
+       
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        opponent.GetComponent<PlayerController>().beingChased = false;
         currentWP = 0;
     }
 
