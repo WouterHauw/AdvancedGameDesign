@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using DigitalRubyShared;
 using UnityEngine;
+using UnityEngine.VR.WSA;
 
 namespace Assets.Scripts
 {
     public class InputScript : MonoBehaviour
     {
-        [SerializeField] private float _minimumDurationLongTap;
-
-        [SerializeField] private float _thresholdUnits;
+        public FingersJoystickScript joystickScript;
 
         [SerializeField] private float _minimumDistanceSwipe;
 
@@ -16,23 +15,20 @@ namespace Assets.Scripts
 
         [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
 
+        public GameObject player;
+
         public bool isAttacking;
-
-        [SerializeField] private bool _firstTouchTime;
-
-        private Vector2 _moveDirection;
-
-        private Vector2 _moveOrigin;
 
         private TapGestureRecognizer _pressGestureRecognizer;
 
         private Vector2 _smoothDirection;
 
-        [SerializeField] private readonly float _smoothing = 5f;
 
         private SwipeGestureRecognizer _swipeGestureRecognizer;
 
         private LongPressGestureRecognizer _longPressGestureRecognizer;
+
+        private bool _facingRight = false;
 
 
 
@@ -47,60 +43,29 @@ namespace Assets.Scripts
 
         private void Awake()
         {
-            _moveDirection = Vector2.zero;
-            _moveOrigin = Vector2.zero;
+            joystickScript.JoystickExecuted = JoystickExecuted;
+            joystickScript.MoveJoystickToGestureStartLocation = false; 
             isAttacking = false;
-            _firstTouchTime = false;
         }
 
         //  public bool MoveJoysticktoGestureStartLocation;
 
         private void Start()
         {
-            CreateTapGesture();
             CreateSwipeGesture();
+
+            _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
+            _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
+            _swipeGestureRecognizer.Direction = _swipeDirection;
         }
 
         private void Update()
         {
-            _longPressGestureRecognizer.MinimumDurationSeconds = _minimumDurationLongTap;
-            _longPressGestureRecognizer.ThresholdUnits = _thresholdUnits;
-
             _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
             _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
             _swipeGestureRecognizer.Direction = _swipeDirection;
 
 
-        }
-
-
-        private void CreateLongTapGesture()
-        {
-            _longPressGestureRecognizer = new LongPressGestureRecognizer();
-            _longPressGestureRecognizer.Updated += LongPressLongGestureCallback;
-            FingersScript.Instance.AddGesture(_longPressGestureRecognizer);
-        }
-
-        private void LongPressLongGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
-        {
-            var t = FirstTouch(touches);
-            //when touch begin set the origin of touch
-            if (gesture.State == GestureRecognizerState.Began)
-            {
-                _moveOrigin = new Vector2(t.X, t.Y);
-            }
-            //when touch is executing is compare origin of touch with new position of touch
-            if (gesture.State == GestureRecognizerState.Executing)
-            {
-                var currentposition = new Vector2(t.X, t.Y);
-                var directionVectorRaw = currentposition - _moveOrigin;
-                _moveDirection = directionVectorRaw.normalized;
-            }
-            //when touch end set the move direction to zero
-            if (gesture.State == GestureRecognizerState.Ended)
-            {
-                _moveDirection = Vector2.zero;
-            }
         }
 
         private void CreateSwipeGesture()
@@ -123,45 +88,34 @@ namespace Assets.Scripts
 
         }
 
-        private void CreateTapGesture()
+        private void JoystickExecuted(FingersJoystickScript script, Vector2 amount)
         {
-            _pressGestureRecognizer = new TapGestureRecognizer()
+            if (amount.x > 0 && !_facingRight)
             {
-                
-
-            };
-            _pressGestureRecognizer.Updated += TapGestureCallback;
-            FingersScript.Instance.AddGesture(_pressGestureRecognizer);
+                FlipXAxis();
+            }
+            else if (amount.x < 0 && _facingRight)
+            {
+                FlipXAxis();
+            }
+            Vector3 pos = player.transform.position;
+            pos.x += (amount.x * 8 * Time.deltaTime);
+            pos.z += (amount.y * 8 * Time.deltaTime);
+            player.transform.position = pos;
         }
-
-        private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
+        private void FlipXAxis()
         {
-            var t = FirstTouch(touches);
-            //when touch begin set the origin of touch
-            if (gesture.State == GestureRecognizerState.Began)
-            {
-                _moveOrigin = new Vector2(t.X, t.Y);
-            }
-            //when touch is executing is compare origin of touch with new position of touch
-            if (gesture.State == GestureRecognizerState.Executing)
-            {
-                var currentposition = new Vector2(t.X, t.Y);
-                var directionVectorRaw = currentposition - _moveOrigin;
-                _moveDirection = directionVectorRaw.normalized;
-            }
-            //when touch end set the move direction to zero
-            if (gesture.State == GestureRecognizerState.Ended)
-            {
-                _moveDirection = Vector2.zero;
-            }
-        }
+            //oposite direction
+            _facingRight = !_facingRight;
 
-        public Vector2 GetDirection()
-        {
-            //clamp value so player won't move really fast when touch is dragged all way acroos the screen.
-            _smoothDirection = Vector2.MoveTowards(_smoothDirection, _moveDirection, _smoothing);
-            //return the direction the player should move
-            return _smoothDirection;
+            //get local scale
+            var theScale = player.transform.localScale;
+
+            //flip on x axis
+            theScale.x *= -1;
+
+            //apply that to the local scale
+            player.transform.localScale = theScale;
         }
 
     }

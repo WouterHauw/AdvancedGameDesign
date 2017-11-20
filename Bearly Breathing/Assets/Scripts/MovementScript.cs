@@ -1,32 +1,41 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 
 public class MovementScript : MonoBehaviour
 {
-    public bool SecondDemoIsPlaying = false;
-    [SerializeField] private Transform movementTransform;
-    [HideInInspector] public Vector3 lookDirection = Vector3.zero;
-    [HideInInspector] public Vector3 moveDirection = Vector3.zero;
-    [SerializeField] private readonly float _speed = 6f;
+    //[SerializeField] private Transform _movementTransform;
+    //[HideInInspector] public Vector3 lookDirection = Vector3.zero;
+    //[HideInInspector] public Vector3 moveDirection = Vector3.zero;
+    //[SerializeField] private readonly float _speed = 6f;
+    //private bool _facingRight = true;
+    //public Rigidbody _rigidbody;
 
 
-    private void Update()
-    {
-        if (!SecondDemoIsPlaying)
-        {
-            
-            movementTransform.position = new Vector3(movementTransform.position.x+ moveDirection.x,movementTransform.position.y,movementTransform.position.z + moveDirection.y);
+    //private void Update()
+    //{
+    //    if (_rigidbody.velocity.x > 0 && _facingRight)
+    //    {
+    //        FlipXAxis();
+    //    }
+    //    else if (_rigidbody.velocity.x < 0 && !_facingRight)
+    //    {
+    //        FlipXAxis();
+    //    }
+    //}
 
+    //private void FlipXAxis()
+    //{
+    //    //oposite direction
+    //    _facingRight = !_facingRight;
 
-            //remove y
-            //MoveDirection.Set(MoveDirection.x, 0, MoveDirection.y);
-            //move the player position
-            //_rigidbody.MovePosition(transform.position + MoveDirection.normalized * _speed * Time.deltaTime);
+    //    //get local scale
+    //    var theScale = transform.localScale;
 
-            ////remove y
-            //LookDirection.Set(LookDirection.x, 0, LookDirection.z);
-            ////rotate the player to lookdirection
-            //_rigidbody.MoveRotation(Quaternion.LookRotation(LookDirection));
-        }
-        
-    }
+    //    //flip on x axis
+    //    theScale.x *= -1;
+
+    //    //apply that to the local scale
+    //    transform.localScale = theScale;
+    //}
+    
 }

@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
         _playerMoverment = GetComponent<MovementScript>();
         _playerAttack = GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
-        //_playerMoverment.SecondDemoIsPlaying = _inputScript.enableSecondProtype;
         maxHealth = 100f;
         health = maxHealth;
     }
@@ -31,20 +30,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("One of Script is missing");
             return;
         }
-        HandleMoveInput();
         HandleAttackInput();
-    }
-
-    public bool HandleMoveInput()
-    {
-        //handles movement of the player
-        var movement = _inputScript.GetDirection();
-        if (!(movement.x > 0) && !(movement.y > 0))
-        {
-            return false;
-        }
-        _playerMoverment.moveDirection = new Vector3(movement.x, 0, movement.y);
-        return true;
     }
 
     private void HandleAttackInput()
