@@ -8,27 +8,17 @@ namespace Assets.Scripts
     public class InputScript : MonoBehaviour
     {
         public FingersJoystickScript joystickScript;
-
         [SerializeField] private float _minimumDistanceSwipe;
-
         [SerializeField] private float _minimumSpeedSwipe;
-
         [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
-
         public GameObject player;
-
         public bool isAttacking;
-
         private TapGestureRecognizer _pressGestureRecognizer;
-
         private Vector2 _smoothDirection;
-
-
         private SwipeGestureRecognizer _swipeGestureRecognizer;
-
         private LongPressGestureRecognizer _longPressGestureRecognizer;
-
         private bool _facingRight = false;
+        private Animator anim;
 
 
 
@@ -52,6 +42,7 @@ namespace Assets.Scripts
 
         private void Start()
         {
+            anim = player.GetComponent<Animator>();
             CreateSwipeGesture();
 
             _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
@@ -102,7 +93,14 @@ namespace Assets.Scripts
             pos.x += (amount.x * 8 * Time.deltaTime);
             pos.z += (amount.y * 8 * Time.deltaTime);
             player.transform.position = pos;
+            anim.SetBool("isWalking", true);
+
+            if (amount == Vector2.zero)
+            {
+                anim.SetBool("isWalking", false);
+            }
         }
+
         private void FlipXAxis()
         {
             //oposite direction

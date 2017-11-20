@@ -36,21 +36,22 @@ public class AttackScript : MonoBehaviour, AbilityInterface
    
     //Must be public as its used in interface
     //Launch an explosion and bearclaw on GUI
-    public void ActivateAbility(GameObject aObject)
+    public void ActivateAbility(GameObject aObject, Animator playerAnimation)
     {
+        
         var vectorForwards = transform.TransformDirection(Vector3.forward);
         if (Physics.Raycast(transform.position, vectorForwards, out _hit, _range))
         {
             if (_hit.transform.gameObject.tag == "Sheep")
             {
                 InitializeExplosion();
-              
+                
                 StartCoroutine(BearClawCourotine());
             }
         }
     }
 
-    public void DeactivateAbility(GameObject aObject)
+    public void DeactivateAbility(GameObject aObject, Animator playerAnimation)
     {
         //TODO: can be used in case stuff needs deconstructing
     }

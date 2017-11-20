@@ -20,7 +20,7 @@ public class Bush : MonoBehaviour, AbilityInterface {
     }
 
     //Must be public as its used in interface
-    public void ActivateAbility(GameObject aObject)
+    public void ActivateAbility(GameObject aObject, Animator anim)
     {
         _opacity.a = 0.2f;
         _player.GetComponent<PlayerController>().isHiding = true;
@@ -28,7 +28,7 @@ public class Bush : MonoBehaviour, AbilityInterface {
     }
    
     //Must be public as its used in interface
-    public void DeactivateAbility(GameObject aObject)
+    public void DeactivateAbility(GameObject aObject, Animator anim)
     {
         _player.GetComponent<PlayerController>().isHiding = false;
         aObject.GetComponent<SpriteRenderer>().color = _color;
