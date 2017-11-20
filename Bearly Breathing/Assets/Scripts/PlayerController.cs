@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject BearClaw;
+    public GameObject bearClaw;
     [SerializeField] private MovementScript _playerMoverment = null;
     [SerializeField] private AttackScript _playerAttack = null;
     public float health;
@@ -94,5 +94,12 @@ public class PlayerController : MonoBehaviour
 
         }
 
-    } 
+    }
+    //method for use for the attack button
+    public void Attack()
+    {
+        IAbility = gameObject.AddComponent<AttackScript>();
+        IAbility.InitializeVariables();
+        IAbility.ActivateAbility(null, anim);
+    }
 }
