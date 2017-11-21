@@ -41,5 +41,6 @@ public class NPC_AI : MonoBehaviour {
     void Update()
     {
         anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
+        anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
     }
 }
