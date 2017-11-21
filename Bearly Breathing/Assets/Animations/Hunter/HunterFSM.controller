@@ -33,6 +33,24 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!114 &114099531698071052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78e3dc6dadf1a24fa7cce3a46cde9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPC: {fileID: 0}
+  hunter: {fileID: 0}
+  opponent: {fileID: 0}
+  speed: 0.25
+  rotationSpeed: 2
+  accuracy: 3
+  isHiding: 0
 --- !u!114 &114234045861000466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,24 +105,6 @@ MonoBehaviour:
   rotationSpeed: 2
   accuracy: 3
   isHiding: 0
---- !u!114 &114686791024959576
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d78e3dc6dadf1a24fa7cce3a46cde9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPC: {fileID: 0}
-  hunter: {fileID: 0}
-  opponent: {fileID: 0}
-  speed: 0.25
-  rotationSpeed: 2
-  accuracy: 3
-  isHiding: 0
 --- !u!1101 &1101361764072683468
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -115,9 +115,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: distance
     m_EventTreshold: 20
-  - m_ConditionMode: 2
-    m_ConditionEvent: isHiding
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102913440738963966}
   m_Solo: 0
@@ -166,9 +163,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: distance
     m_EventTreshold: 10
-  - m_ConditionMode: 2
-    m_ConditionEvent: isHiding
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102183541316918124}
   m_Solo: 0
@@ -265,9 +259,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: distance
     m_EventTreshold: 20
-  - m_ConditionMode: 2
-    m_ConditionEvent: isHiding
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102913440738963966}
   m_Solo: 0
@@ -302,13 +293,11 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
   m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &1102183541316918124
 AnimatorState:
   serializedVersion: 5
@@ -329,13 +318,11 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
   m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &1102355969440563592
 AnimatorState:
   serializedVersion: 5
@@ -350,7 +337,7 @@ AnimatorState:
   - {fileID: 1101740369117377102}
   - {fileID: 1101361764072683468}
   m_StateMachineBehaviours:
-  - {fileID: 114686791024959576}
+  - {fileID: 114099531698071052}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -358,13 +345,11 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
   m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &1102913440738963966
 AnimatorState:
   serializedVersion: 5
@@ -386,13 +371,11 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
   m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1107 &1107932194209217044
 AnimatorStateMachine:
   serializedVersion: 5
