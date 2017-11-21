@@ -33,6 +33,24 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!114 &114099531698071052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78e3dc6dadf1a24fa7cce3a46cde9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPC: {fileID: 0}
+  hunter: {fileID: 0}
+  opponent: {fileID: 0}
+  speed: 0.25
+  rotationSpeed: 2
+  accuracy: 3
+  isHiding: 0
 --- !u!114 &114234045861000466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -50,6 +68,7 @@ MonoBehaviour:
   speed: 0.25
   rotationSpeed: 2
   accuracy: 3
+  isHiding: 0
 --- !u!114 &114295268928597268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,6 +86,7 @@ MonoBehaviour:
   speed: 0
   rotationSpeed: 2
   accuracy: 3
+  isHiding: 0
 --- !u!114 &114412028895419464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,6 +104,7 @@ MonoBehaviour:
   speed: 0.25
   rotationSpeed: 2
   accuracy: 3
+  isHiding: 0
 --- !u!1101 &1101361764072683468
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -315,7 +336,8 @@ AnimatorState:
   - {fileID: 1101854751628210870}
   - {fileID: 1101740369117377102}
   - {fileID: 1101361764072683468}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114099531698071052}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
