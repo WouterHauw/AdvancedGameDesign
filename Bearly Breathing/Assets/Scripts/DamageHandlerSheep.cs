@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 public class DamageHandlerSheep : MonoBehaviour
 {
    
-    public float health = 10;
+    public float health = 10    ;
     public AudioClip[] clips;
     public AudioMixerGroup output;
 
