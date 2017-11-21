@@ -33,6 +33,6 @@ public class ScoreManager : MonoBehaviour {
 
     private void setScoreSlider()
     {
-        SliderVar.value = _player._currentScore / _player.maxHealth;
+        SliderVar.value = _player._currentScore / _requiredScore;
     }
 }
