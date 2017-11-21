@@ -16,11 +16,14 @@ public class NPCBaseFSM : StateMachineBehaviour {
     [SerializeField]
     public float accuracy = 3.0f;
 
+    public GameObject sheepTransform;
+
 
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        NPC1 = animator.gameObject;
+	{
+	    NPC1 = animator.transform.parent.gameObject;
         opponent = NPC1.GetComponent<NPC_AI>().GetPlayer();
         sheep = NPC1.GetComponent<NavMeshAgent>();
 	}
+
 }

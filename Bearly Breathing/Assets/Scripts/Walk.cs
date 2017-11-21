@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class Walk : NPCBaseFSM
 {
+    //private NavMeshAgent nav;
     GameObject[] waypoints;
     int currentWP;
-    private NavMeshAgent nav;
 
-    void Awake()
+    private void Awake()
     {
         waypoints = GameObject.FindGameObjectsWithTag("waypoint");
-        nav = GameObject.FindObjectOfType<NavMeshAgent>();
+        //sheep = FindObjectOfType<Animator>().gameObject.GetComponentInParent<NavMeshAgent>();
     }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state

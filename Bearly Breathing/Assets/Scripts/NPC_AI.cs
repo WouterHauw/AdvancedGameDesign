@@ -40,7 +40,8 @@ public class NPC_AI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
-        anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
+        //TODO fix animator.
+        //anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
+        //anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
     }
 }

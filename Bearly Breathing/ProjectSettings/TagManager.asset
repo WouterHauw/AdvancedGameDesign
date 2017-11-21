@@ -11,6 +11,7 @@ TagManager:
   - Hunter
   - Bush
   - BearClaw
+  - SheepTransform
   layers:
   - Default
   - TransparentFX
