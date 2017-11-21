@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &558758681
 Light:
   m_ObjectHideFlags: 0
@@ -725,7 +725,17 @@ Prefab:
       propertyPath: bearClaw
       value: 
       objectReference: {fileID: 1137439867}
-    m_RemovedComponents: []
+    - target: {fileID: 143475832929837486, guid: ae87897f05c70d24a82b52105ad27de2,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1070561501133818, guid: ae87897f05c70d24a82b52105ad27de2, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114698527995292634, guid: ae87897f05c70d24a82b52105ad27de2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ae87897f05c70d24a82b52105ad27de2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1988515695
@@ -960,6 +970,40 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62cb16f88fd378148a9738acc7b53774, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2088800850 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1544000375136792, guid: 09083029ee9bb0943b034dff1fc1fd61,
+    type: 2}
+  m_PrefabInternal: {fileID: 2141971009}
+--- !u!95 &2088800853
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2088800850}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 117779c7d89055e408cc46eb028982d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!65 &2088800854
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2088800850}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0999997, y: 2.6799998, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2141971009
 Prefab:
   m_ObjectHideFlags: 0
@@ -1006,6 +1050,10 @@ Prefab:
     - target: {fileID: 4754366170031750, guid: 09083029ee9bb0943b034dff1fc1fd61, type: 2}
       propertyPath: m_LocalScale.y
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544000375136792, guid: 09083029ee9bb0943b034dff1fc1fd61, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09083029ee9bb0943b034dff1fc1fd61, type: 2}
