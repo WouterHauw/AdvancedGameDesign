@@ -1,14 +1,14 @@
-﻿
-using UnityEngine;
-
-
+﻿using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private GameObject _sheep;
     [SerializeField] private GameObject _player;
-    [SerializeField] private float spawnTime = 3f;
+    [SerializeField] private float spawnTime = 3;
     [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private int _sheepCount = 0;
+    
+    private int _maxSheep = 10;
 
     void Start()
     {
@@ -24,6 +24,15 @@ public class EnemyManager : MonoBehaviour
 
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
-        Instantiate(_sheep, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        if (_sheepCount >= _maxSheep)
+        {
+            CancelInvoke("Spawn");
+        }
+
+        if (_sheepCount < _maxSheep)
+        {
+            Instantiate(_sheep, spawnPoints[spawnPointIndex].transform.position, spawnPoints[spawnPointIndex].transform.rotation);
+            _sheepCount++;
+        }
     }
 }

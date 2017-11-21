@@ -13,13 +13,13 @@ AnimatorController:
     m_DefaultFloat: 100
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isHiding
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -76,23 +76,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 810c299baffd5094f87dbcaa3429b8f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPC: {fileID: 0}
-  hunter: {fileID: 0}
-  opponent: {fileID: 0}
-  speed: 0.25
-  rotationSpeed: 2
-  accuracy: 3
---- !u!114 &114686791024959576
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d78e3dc6dadf1a24fa7cce3a46cde9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NPC: {fileID: 0}
@@ -332,8 +315,7 @@ AnimatorState:
   - {fileID: 1101854751628210870}
   - {fileID: 1101740369117377102}
   - {fileID: 1101361764072683468}
-  m_StateMachineBehaviours:
-  - {fileID: 114686791024959576}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
