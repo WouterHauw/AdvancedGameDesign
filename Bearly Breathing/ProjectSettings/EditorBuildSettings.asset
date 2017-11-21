@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2D/2DScene.unity
     guid: 2414591217a15fa48a8431c379d59d33
+  - enabled: 1
+    path: Assets/Scenes/GameOverScreen.unity
+    guid: bc3349822048ca544992b72bad0995a8
