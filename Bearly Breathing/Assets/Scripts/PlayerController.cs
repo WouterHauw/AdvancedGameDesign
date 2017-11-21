@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float maxHealth;
     public bool beingChased;
     public bool isHiding;
+    public int _currentScore;
     [SerializeField] private InputScript _inputScript = null;
     public Component abilityInterface;
     [SerializeField] private AbilityInterface IAbility;
@@ -95,4 +97,9 @@ public class PlayerController : MonoBehaviour
         }
 
     } 
+
+    public void die()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

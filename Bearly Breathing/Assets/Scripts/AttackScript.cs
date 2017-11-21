@@ -45,8 +45,9 @@ public class AttackScript : MonoBehaviour, AbilityInterface
             if (_hit.transform.gameObject.tag == "Sheep")
             {
                 InitializeExplosion();
-                
+                GetComponent<PlayerController>()._currentScore += 1;
                 StartCoroutine(BearClawCourotine());
+
             }
         }
     }
