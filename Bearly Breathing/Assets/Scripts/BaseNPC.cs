@@ -42,8 +42,8 @@ public class BaseNPC : MonoBehaviour {
     void Update()
     {
         //TODO fix animator.
-        //anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
-        //anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
+        anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
+        anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
     }
     protected void FlipXAxis()
     {
