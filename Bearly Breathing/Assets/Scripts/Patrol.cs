@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Patrol : NPCBaseHunter
+public class Patrol : HunterFSM
 {
     GameObject[] waypoints;
     int currentWP;

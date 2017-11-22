@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class NPCBaseHunter : StateMachineBehaviour
+public class HunterFSM : StateMachineBehaviour
 {
     public GameObject NPC;
     public NavMeshAgent hunter;
@@ -20,7 +18,7 @@ public class NPCBaseHunter : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         NPC = animator.gameObject;
-        opponent = NPC.GetComponent<NPC_AI>().GetPlayer();
+        opponent = NPC.GetComponent<BaseNPC>().GetPlayer();
         hunter = NPC.GetComponent<NavMeshAgent>();
         distance = Vector3.Distance(NPC.transform.position, opponent.transform.position);
         isHiding = opponent.GetComponent<PlayerController>().isHiding;
