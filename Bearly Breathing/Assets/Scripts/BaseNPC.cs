@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC_AI : MonoBehaviour {
+public class BaseNPC : MonoBehaviour {
 
     Animator anim;
     private float timer;
     public GameObject player;
     public GameObject bullet;
     public GameObject gun;
+    protected bool facingRight;
 
     public GameObject GetPlayer()
     {
@@ -43,5 +44,19 @@ public class NPC_AI : MonoBehaviour {
         //TODO fix animator.
         //anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
         //anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
+    }
+    protected void FlipXAxis()
+    {
+        //oposite direction
+        facingRight = !facingRight;
+
+        //get local scale
+        var theScale = player.transform.localScale;
+
+        //flip on x axis
+        theScale.x *= -1;
+
+        //apply that to the local scale
+        player.transform.localScale = theScale;
     }
 }

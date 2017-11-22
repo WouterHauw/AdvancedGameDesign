@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Scout : NPCBaseHunter
+public class Scout : HunterFSM
 {
 
     GameObject[] waypoints;

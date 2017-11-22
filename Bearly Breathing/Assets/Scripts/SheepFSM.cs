@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPCBaseFSM : StateMachineBehaviour {
+public class SheepFSM : StateMachineBehaviour {
 
 
     public GameObject NPC1;
@@ -22,7 +22,7 @@ public class NPCBaseFSM : StateMachineBehaviour {
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 	    NPC1 = animator.transform.parent.gameObject;
-        opponent = NPC1.GetComponent<NPC_AI>().GetPlayer();
+        opponent = NPC1.GetComponent<BaseNPC>().GetPlayer();
         sheep = NPC1.GetComponent<NavMeshAgent>();
 	}
 
