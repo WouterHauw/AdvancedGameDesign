@@ -14,6 +14,7 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private GameObject _player;
     private PlayerController _playerScript;
     [SerializeField] private ScoreManager _scoreScript;
+    private bool isEndOfDay;
 
     float sunInitialIntensity;
 
@@ -39,8 +40,12 @@ public class DayNightCycle : MonoBehaviour
 
         if (currentTimeOfDay >= 1)
         {
+            DayChanges();
+            NightChanges();
             currentTimeOfDay = 0;
         }
+        
+       
     }
 
     void UpdateSun()
@@ -55,13 +60,14 @@ public class DayNightCycle : MonoBehaviour
         else if (currentTimeOfDay <= 0.25f) //beginning of day
         {
             intensityMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
-            DayChanges();
+            
+            
             
         }
         else if (currentTimeOfDay >= 0.73f) // end of day
         {
             intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
-            NightChanges();
+           
             
         }
 
@@ -70,17 +76,20 @@ public class DayNightCycle : MonoBehaviour
 
     private void DayChanges()
     {
-        _playerScript._currentScore = 0;
+        
         daysSurvived++;
         Debug.Log("DayChanges");
     }
 
     private void NightChanges()
     {
-        if(_playerScript._currentScore < 10)
+      if(_playerScript._currentScore < 10)
         {
             Debug.Log("NightChanges");
             _playerScript.die();
+        }
+        else {
+            _playerScript._currentScore = 0;
         }
     }
 }
