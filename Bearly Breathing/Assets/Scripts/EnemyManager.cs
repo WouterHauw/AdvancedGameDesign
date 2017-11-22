@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private int _sheepCount = 0;
     
-    private int _maxSheep = 10;
+    private int _maxSheep = 5;
 
     void Start()
     {

@@ -30,7 +30,7 @@ public class AttackScript : MonoBehaviour, AbilityInterface
     {
         _bearActiveTime = 0.5f;
         _theTimeBetweenFlashes = 0.2f;
-        _range = 2f;
+        _range = 4f;
         _isBeingDestroyed = false;
         var script = GetComponent<PlayerController>();
         _bearClaw = script.bearClaw;
