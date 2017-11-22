@@ -56,6 +56,7 @@ public class AttackScript : MonoBehaviour, AbilityInterface
             hitColliders[0].gameObject.SetActive(false);
             StartCoroutine(BearClawCourotine());
             playerAnimation.SetTrigger("isAttacking");
+
         }
     }
 
