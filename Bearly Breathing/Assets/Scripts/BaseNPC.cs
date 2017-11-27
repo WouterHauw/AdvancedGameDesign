@@ -41,12 +41,9 @@ public class BaseNPC : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.CompareTag("Hunter"))
-        {
-            //TODO fix animator.
-            anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
-            anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
-        }
+        //TODO fix animator.
+        anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
+        anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
     }
     protected void FlipXAxis()
     {
