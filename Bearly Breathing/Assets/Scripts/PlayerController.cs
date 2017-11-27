@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (_playerMoverment == null || _inputScript == null)
+        if (_playerMoverment == null || _inputScript == null || _playerAttack == null)
         {
             Debug.Log("One of Script is missing");
             return;
