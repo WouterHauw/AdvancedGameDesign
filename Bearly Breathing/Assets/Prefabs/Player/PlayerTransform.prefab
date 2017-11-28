@@ -175,6 +175,7 @@ MonoBehaviour:
   maxHealth: 100
   beingChased: 0
   isHiding: 1
+  _currentScore: 0
   _inputScript: {fileID: 0}
   abilityInterface: {fileID: 0}
 --- !u!114 &114411783718381478

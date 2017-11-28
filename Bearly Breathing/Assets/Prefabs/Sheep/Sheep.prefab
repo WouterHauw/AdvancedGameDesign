@@ -106,3 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  clips: []
+  output: {fileID: 0}
+  minPitch: 0.95
+  maxPitch: 1.05

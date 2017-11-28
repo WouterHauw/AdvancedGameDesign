@@ -339,9 +339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6b58a26f5a2df438bc9234dcb67ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 0}
-  LookDirection: {x: 0, y: 0, z: 0}
-  MoveDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &114718439534522428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -353,10 +350,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b15700dbd3ee541a14e42587c3f78e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BearClaw: {fileID: 0}
+  bearClaw: {fileID: 0}
   _playerMoverment: {fileID: 0}
   _playerAttack: {fileID: 0}
+  health: 0
+  maxHealth: 0
+  beingChased: 0
+  isHiding: 0
+  _currentScore: 0
   _inputScript: {fileID: 0}
+  abilityInterface: {fileID: 0}
 --- !u!114 &114845750897906968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -368,13 +371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc14bc1e227c70746919cad8b40ffa5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BearClaw: {fileID: 0}
+  _bearClaw: {fileID: 0}
   _bearActiveTime: 2
+  _range: 0
+  _theTimeBetweenFlashes: 0
+  _time: 0
   explosion: {fileID: 0}
-  time: 0
-  theTimeBetweenFlashes: 0
-  range: 0
-  testOption: 1
 --- !u!205 &205699134457996744
 LODGroup:
   m_ObjectHideFlags: 1
