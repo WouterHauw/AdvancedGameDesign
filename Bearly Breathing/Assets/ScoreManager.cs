@@ -29,15 +29,22 @@ public class ScoreManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        setScoreSlider();
+        SetScoreSlider();
         text.GetComponent<Text>().text = _player._currentScore + "/" + _requiredScore;
-        _survived = cycle.daysSurvived;
+        if(cycle.daysSurvived > _survived) {
+            UpdateScore();
+        }
     }
 
-
-
-    private void setScoreSlider()
+    private void UpdateScore()
     {
+        _survived = cycle.daysSurvived;
+        PlayerPrefs.SetInt("DaysSurvived", _survived);
+    }
+
+    private void SetScoreSlider()
+    {
+        
         SliderVar.value = _player._currentScore / _requiredScore;
     }
 }
