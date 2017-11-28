@@ -20,6 +20,7 @@ public class BaseNPC : MonoBehaviour {
     {
         GameObject b = Instantiate(bullet, gun.transform.position, gun.transform.rotation);
         b.GetComponent<Rigidbody>().AddForce(gun.transform.forward * 1500);
+        Destroy(b, 1f);
     }
 
     public void StopFiring()
