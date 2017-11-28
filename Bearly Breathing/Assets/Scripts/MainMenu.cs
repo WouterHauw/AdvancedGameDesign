@@ -5,7 +5,7 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour {
 
     [SerializeField] private GameObject toBeAddedText;
-
+   
     // Use this for initialization
     void Start () {
         toBeAddedText.SetActive(false);
