@@ -44,7 +44,7 @@ public class BaseNPC : MonoBehaviour {
         if (gameObject.CompareTag("Hunter"))
         {
             //TODO fix animator.
-            anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
+            anim.SetFloat("distance", Vector3.Distance(transform.parent.position, player.transform.parent.position));
             anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
         }
     }

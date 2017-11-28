@@ -17,7 +17,7 @@ public class HunterFSM : StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        NPC = animator.gameObject;
+        NPC = animator.transform.parent.gameObject;
         opponent = NPC.GetComponent<BaseNPC>().GetPlayer();
         hunter = NPC.GetComponent<NavMeshAgent>();
         distance = Vector3.Distance(NPC.transform.position, opponent.transform.position);
