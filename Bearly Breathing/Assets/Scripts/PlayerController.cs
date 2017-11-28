@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     public void die()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("GameOverScreen");
 
     }
     //method for use for the attack button
