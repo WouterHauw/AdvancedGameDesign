@@ -28,7 +28,7 @@ public class HunterController : BaseNPC
 
     void Fire()
     {
-        GameObject b = Instantiate(bullet, gun.transform.position, gun.transform.rotation);
+        GameObject b = Instantiate(bullet, gun.transform.position, Quaternion.identity);
         b.GetComponent<Rigidbody>().AddForce(gun.transform.forward * 1500);
     }
 
