@@ -12,6 +12,8 @@ TagManager:
   - Bush
   - BearClaw
   - SheepTransform
+  - PlayerTransform
+  - HunterTransform
   layers:
   - Default
   - TransparentFX

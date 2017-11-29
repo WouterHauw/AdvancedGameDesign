@@ -4,50 +4,18 @@ using UnityEngine;
 
 public class BaseNPC : MonoBehaviour {
 
-    Animator anim;
     private float timer;
     public GameObject player;
-    public GameObject bullet;
-    public GameObject gun;
     protected bool facingRight;
 
     public GameObject GetPlayer()
     {
         return player;
     }
-
-    void Fire()
-    {
-        GameObject b = Instantiate(bullet, gun.transform.position, gun.transform.rotation);
-        b.GetComponent<Rigidbody>().AddForce(gun.transform.forward * 1500);
-        Destroy(b, 1f);
-    }
-
-    public void StopFiring()
-    {
-        CancelInvoke("Fire");
-    }
-
-    public void StartFiring()
-    {
-        InvokeRepeating("Fire", 0.5f, 2.0f);
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.CompareTag("Hunter"))
-        {
-            //TODO fix animator.
-            anim.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
-            anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
-        }
+
     }
     protected void FlipXAxis()
     {

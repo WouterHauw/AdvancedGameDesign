@@ -26,7 +26,7 @@ public class Walk : SheepFSM
     {
         if (waypoints.Length == 0) return;
         if (Vector3.Distance(waypoints[currentWP].transform.position,
-            NPC1.transform.position) < 3.0f)
+            NPC1.transform.position) < accuracy)
         {
             currentWP++;
             if (currentWP >= waypoints.Length)
