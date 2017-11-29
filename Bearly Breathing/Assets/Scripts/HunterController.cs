@@ -30,6 +30,7 @@ public class HunterController : BaseNPC
     {
         GameObject b = Instantiate(bullet, gun.transform.position, Quaternion.identity);
         b.GetComponent<Rigidbody>().AddForce(gun.transform.forward * 1500);
+        Destroy(b, 1f);
     }
 
     public void StopFiring()

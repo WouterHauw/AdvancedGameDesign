@@ -12,7 +12,6 @@ public class BaseNPC : MonoBehaviour {
     {
         return player;
     }
-
     // Update is called once per frame
     void Update()
     {
