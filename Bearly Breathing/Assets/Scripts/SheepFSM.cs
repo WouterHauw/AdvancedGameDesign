@@ -5,25 +5,17 @@ using UnityEngine.AI;
 
 public class SheepFSM : StateMachineBehaviour {
 
-
-    public GameObject NPC1;
+    public GameObject NPCSheep;
     public NavMeshAgent sheep;
+    public NavMeshHit navHit;
     public GameObject opponent;
-    [SerializeField]
-    private float speed = 0.25f;
-    [SerializeField]
-    public float rotationSpeed = 2.0f;
-    [SerializeField]
-    public float accuracy = 3.0f;
-
-    public GameObject sheepTransform;
-
+    public float _accuracy = 3.0f;
 
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
-	    NPC1 = animator.transform.parent.gameObject;
-        opponent = NPC1.GetComponent<BaseNPC>().GetPlayer();
-        sheep = NPC1.GetComponent<NavMeshAgent>();
+	    NPCSheep = animator.transform.parent.gameObject;
+        opponent = NPCSheep.GetComponent<BaseNPC>().GetPlayer();
+        sheep = NPCSheep.GetComponent<NavMeshAgent>();
 	}
 
 }
