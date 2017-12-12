@@ -22,12 +22,11 @@ GameObject:
   - component: {fileID: 212312115091459212}
   - component: {fileID: 95815904247316788}
   - component: {fileID: 114411783718381478}
-  - component: {fileID: 114698527995292634}
   - component: {fileID: 114039903281447182}
   - component: {fileID: 143475832929837486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +41,7 @@ GameObject:
   - component: {fileID: 4388151700921824}
   m_Layer: 0
   m_Name: PlayerTransform
-  m_TagString: Untagged
+  m_TagString: PlayerTransform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1189329092199052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.49, y: 2, z: 1.98}
+  m_LocalPosition: {x: 3.39, y: 1.2, z: 1.98}
   m_LocalScale: {x: 0.4, y: 0.40000004, z: 0.4}
   m_Children:
   - {fileID: 4649736306334480}
@@ -169,12 +168,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bearClaw: {fileID: 0}
+  collisionEffects:
+  - {fileID: 1784824983302716, guid: aea7c3ff965e9424d99e098160fbe859, type: 2}
+  - {fileID: 1642654379256156, guid: a68c4697b3a70194d922133061efc53d, type: 2}
+  - {fileID: 1396632264637456, guid: 177fe7e23d657f543bdb4338c9564199, type: 2}
+  - {fileID: 1359892311132620, guid: 9a129a3284a160a489161a325c6b8937, type: 2}
+  - {fileID: 1324207245360016, guid: 9e3dc7c64d65ad244b0dac91d82d0f80, type: 2}
+  - {fileID: 1924299049830564, guid: 698152f2f9f01fb4ba58122670931fca, type: 2}
+  - {fileID: 1720079796708364, guid: b16fad93af6db0c46b195b05ff05013b, type: 2}
+  cartoonBubbles:
+  - {fileID: 1271218404876758, guid: a033f5ed3cac9564eb7e43aa964f08ac, type: 2}
+  - {fileID: 1138078779304680, guid: 71cb498e3cc647d468666812dace907b, type: 2}
+  - {fileID: 1346256249193192, guid: 11987566ee7edbe4092ba886956b9ccc, type: 2}
+  - {fileID: 1886726290557376, guid: 076c6c6f800892945bb9b747c2a53e12, type: 2}
+  - {fileID: 1601976521910440, guid: 0f3feb110f796a6479ef0f31fa5bf30f, type: 2}
+  - {fileID: 1623430431045622, guid: a45af518df1f1ca498eb0db04debf6c2, type: 2}
+  - {fileID: 1207572635999950, guid: 6aea90e3ad9cc134f857e102b08f8ddd, type: 2}
+  - {fileID: 1215228146096914, guid: 77c7a3040a0f59d4b80694795af3cefc, type: 2}
+  - {fileID: 1168665532542266, guid: 9a2df20471fb46942aa125f93f7df110, type: 2}
+  - {fileID: 1993712296153468, guid: 1386641de8e66e64386d840d8559c436, type: 2}
+  - {fileID: 1542284335433610, guid: 037a82024dba7d5469e6a7b56d4196e0, type: 2}
+  - {fileID: 1670936322566996, guid: 141e720d561c39d4dbfbe018b229853a, type: 2}
+  - {fileID: 1351975416131888, guid: 6097f12f74cd3a84aa35fdb44e9fa384, type: 2}
+  - {fileID: 1655954851424700, guid: ee0ae645bd12fa9479ff0290406f53fc, type: 2}
+  - {fileID: 1801333924454222, guid: 6be239d8d6682854eb7d1410746bb7f3, type: 2}
+  - {fileID: 1712094581053248, guid: 07812b19a71f4db439fd6cfbeceb7114, type: 2}
+  - {fileID: 1900625793087718, guid: 14ded40ef77e3ef4fa060bacb21213be, type: 2}
+  - {fileID: 1618028625047744, guid: 86a5c2c3d5f5dfe41bc0ed6c9fc52e60, type: 2}
+  - {fileID: 1440948758568520, guid: 8237655836ea9264d9bc4177009c6b20, type: 2}
+  - {fileID: 1155101590083708, guid: f0f1168347fc0274199d66f106b9732d, type: 2}
+  - {fileID: 1525221332168570, guid: 49170929197652e4ca217a022b226eca, type: 2}
+  - {fileID: 1860885546812940, guid: a27b036c2beeabe4dac174adabca8575, type: 2}
+  - {fileID: 1849636419080056, guid: 88648f562d85dc141a684274cadb2721, type: 2}
+  - {fileID: 1950427486216800, guid: 0ebf5f8bf0e132e458d9e548ccb67531, type: 2}
+  - {fileID: 1538426443600734, guid: a9884450caec37c428d345ee9f8132e0, type: 2}
+  - {fileID: 1357378589130450, guid: 9e5f196556eb1d342a189bc9b532444e, type: 2}
+  textBubbles:
+  - {fileID: 1706680157319548, guid: 922c1ea9ada98174f9c94825313f510d, type: 2}
+  - {fileID: 1828505435279478, guid: 84a328d9ea0cb3c498d16cc70fab4154, type: 2}
+  - {fileID: 1408467627848576, guid: 769cb29d1b4b6cc4a9223a66ef970439, type: 2}
+  - {fileID: 1538524562878740, guid: 26ce1feb86f004c4b88ced6ece753379, type: 2}
+  - {fileID: 1787338215088242, guid: ccd7755d63bfa2b4895bba1b376f8bc5, type: 2}
+  - {fileID: 1753255826432178, guid: c110dc2d95504d149baa75f091d2692a, type: 2}
+  - {fileID: 1240258058627628, guid: b01b54a9570d4d746ba8d0325d4fb7ad, type: 2}
+  - {fileID: 1151963439381310, guid: df2f94f07cb24014a81b3d7c90b29486, type: 2}
+  - {fileID: 1352990250308968, guid: 17c9a3255c574c34ebef35f56d970a63, type: 2}
+  - {fileID: 1077409626185384, guid: 80a13d95ac0473f419b1f484ad07e982, type: 2}
+  - {fileID: 1053225591726874, guid: 1a4cb7ae4483248498fd448e30e27175, type: 2}
+  - {fileID: 1713486622236812, guid: 0f5f7e6443c296345aa3e11aab307bc9, type: 2}
+  thisDemo: 0
   _playerMoverment: {fileID: 0}
   _playerAttack: {fileID: 0}
   health: 100
   maxHealth: 100
   beingChased: 0
   isHiding: 1
+  _currentScore: 0
   _inputScript: {fileID: 0}
   abilityInterface: {fileID: 0}
 --- !u!114 &114411783718381478
@@ -188,23 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6b58a26f5a2df438bc9234dcb67ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114698527995292634
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1070561501133818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc14bc1e227c70746919cad8b40ffa5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bearClaw: {fileID: 0}
-  _bearActiveTime: 3
-  _range: 0
-  _theTimeBetweenFlashes: 0
-  _time: 0
-  explosion: {fileID: 0}
 --- !u!143 &143475832929837486
 CharacterController:
   m_ObjectHideFlags: 1
