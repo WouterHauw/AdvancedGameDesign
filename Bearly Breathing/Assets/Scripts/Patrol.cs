@@ -22,7 +22,7 @@ public class Patrol : HunterFSM
     {
         if (waypoints.Length == 0) return;
         if (Vector3.Distance(waypoints[currentWP].transform.position,
-            NPC.transform.position) < accuracy)
+            NPCHunter.transform.position) < accuracy)
         {
             currentWP = Random.Range(0, waypoints.Length);
             if (currentWP >= waypoints.Length)

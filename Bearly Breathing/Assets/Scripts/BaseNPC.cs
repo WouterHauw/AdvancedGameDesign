@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BaseNPC : MonoBehaviour {
 
-    private float timer;
     public GameObject player;
     protected bool facingRight;
 
@@ -12,11 +11,7 @@ public class BaseNPC : MonoBehaviour {
     {
         return player;
     }
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
     protected void FlipXAxis()
     {
         //oposite direction
