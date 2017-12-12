@@ -15,13 +15,12 @@ public class Flee : SheepFSM
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (opponent.transform.position.z > sheep.transform.position.z)
+        Vector3 runTo = sheep.transform.position + (sheep.transform.position - opponent.transform.position);
+        if (NavMesh.SamplePosition(runTo, out navHit, 3.0f, NavMesh.AllAreas))
         {
-            Vector3 runTo = (opponent.transform.position - sheep.transform.position).normalized;
-            //if (NavMesh.SamplePosition(runTo, out navHit, 3.0f, NavMesh.AllAreas))
-            //sheep.destination = navHit.position;
-            //sheep.speed = 5;
-            sheep.destination = runTo;
+            sheep.destination = navHit.position;
+            sheep.speed = 5;
         }
+        //sheep.SetDestination(runTo);
     }
 }

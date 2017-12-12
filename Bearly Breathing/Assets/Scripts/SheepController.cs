@@ -18,7 +18,6 @@ public class SheepController : BaseNPC
 
     void Update()
     {
-
         _anim.SetFloat("distance", Vector3.Distance(_sheepTransform.position, _playerTransform.position));
     }
 

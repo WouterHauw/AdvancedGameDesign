@@ -9,7 +9,7 @@ public class SheepFSM : StateMachineBehaviour {
     public NavMeshAgent sheep;
     public NavMeshHit navHit;
     public GameObject opponent;
-    public float _accuracy = 3.0f;
+    public float accuracy = 3.0f;
 
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
