@@ -1,11 +1,26 @@
-﻿using Assets.Scripts;
+﻿using System;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
+public enum Demo
+{
+    Demo1,
+    Demo2,
+    Demo3
+}
+
+
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject bearClaw;
+    public GameObject[] collisionEffects;
+    public GameObject[] cartoonBubbles;
+    public GameObject[] textBubbles;
+    public Demo thisDemo;
     [SerializeField] private MovementScript _playerMoverment = null;
     [SerializeField] private AttackScript _playerAttack = null;
     public float health;
@@ -111,5 +126,21 @@ public class PlayerController : MonoBehaviour
         IAbility.InitializeVariables();
         IAbility.ActivateAbility(null, anim);
 
+    }
+
+    public GameObject GetParticleEffect()
+    {
+        switch (thisDemo)
+        {
+            case Demo.Demo1:
+                var random = Random.Range(0, collisionEffects.Length);
+                return collisionEffects[random];
+            case Demo.Demo2:
+                return collisionEffects[1];
+            case Demo.Demo3:
+                return collisionEffects[1];
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }

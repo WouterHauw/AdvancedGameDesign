@@ -10,7 +10,7 @@ public class AttackScript : MonoBehaviour, AbilityInterface
     [SerializeField] private float _range ;
     [SerializeField] private float _theTimeBetweenFlashes;
     [SerializeField] private float _time;
-    [SerializeField] private GameObject explosion;
+    [SerializeField] private GameObject specialEffect;
     [SerializeField] private AbilityInterface IAbility;
 
 
@@ -34,6 +34,7 @@ public class AttackScript : MonoBehaviour, AbilityInterface
         _isBeingDestroyed = false;
         var script = GetComponent<PlayerController>();
         _bearClaw = script.bearClaw;
+        specialEffect = script.GetParticleEffect();
     }
    
     //Must be public as its used in interface
@@ -47,9 +48,11 @@ public class AttackScript : MonoBehaviour, AbilityInterface
         }
         if (hitColliders[0].gameObject.CompareTag("Sheep"))
         {
+            SetExplosions(hitColliders[0]);
             hitColliders[0].gameObject.SetActive(false);
             StartCoroutine(BearClawCourotine());
             playerAnimation.SetTrigger("isAttacking");
+
         }
         if (hitColliders[0].gameObject.CompareTag("Hunter"))
         {
@@ -72,13 +75,21 @@ public class AttackScript : MonoBehaviour, AbilityInterface
         _bearClaw.SetActive(false);
     }
 
-    private void InitializeExplosion()
+    private void SetExplosions(Component collider)
     {
-        _hit.transform.gameObject.SetActive(false);
-        _instantiatedObj = Instantiate(explosion, _hit.transform.position,
-            Quaternion.LookRotation(Vector3.up));
-        Destroy(_instantiatedObj, _time);
+        _instantiatedObj = Instantiate(specialEffect);
+        _instantiatedObj.transform.position = collider.gameObject.transform.position;
+        _instantiatedObj.transform.Translate(Vector3.back * 2);
+
     }
+
+    //private void InitializeExplosion()
+    //{
+    //    _hit.transform.gameObject.SetActive(false);
+    //    _instantiatedObj = Instantiate(explosion, _hit.transform.position,
+    //        Quaternion.LookRotation(Vector3.up));
+    //    Destroy(_instantiatedObj, _time);
+    //}
     //defines the attack range of the player
     private void OnDrawGizmos()
     {
