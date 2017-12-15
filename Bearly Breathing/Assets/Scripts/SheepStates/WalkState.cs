@@ -17,7 +17,10 @@ public class WalkState : ISheepState
 
     public void Execute()
     {
+        Walk();
+
         _sheep.Move();
+
         Debug.Log("Moving");
     }
 
@@ -28,7 +31,6 @@ public class WalkState : ISheepState
 
     private void Walk()
     {
-
         _walkTimer += Time.deltaTime;
 
         if (_walkTimer >= _walkDuration)

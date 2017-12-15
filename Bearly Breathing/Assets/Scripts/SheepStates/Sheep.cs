@@ -11,7 +11,10 @@ public class Sheep : MonoBehaviour
     public float accuracy = 3;
     public float distance;
 
-    private ISheepState currentState;
+    public static int radius = 5;
+    public static Vector3 goalPos = Vector3.zero;
+
+    private ISheepState _currentState;
     private Transform _playerTransform;
     private Transform _sheepTransform;
     private GameObject[] _waypoints;
@@ -33,37 +36,29 @@ public class Sheep : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentState.Execute();
+        _currentState.Execute();
         distance = Vector3.Distance(_sheepTransform.position, _playerTransform.position);
     }
 
     public void ChangeState(ISheepState newState)
     {
-        if (currentState != null)
+        if (_currentState != null)
         {
-            currentState.Exit();
+            _currentState.Exit();
         }
 
-        currentState = newState;
+        _currentState = newState;
 
-        currentState.Enter(this);
+        _currentState.Enter(this);
     }
 
     public void Move()
     {
-        if (_waypoints.Length == 0) return;
-        if (Vector3.Distance(_waypoints[currentWP].transform.position,
-            _sheepTransform.position) < accuracy)
+        if (Random.Range(0, 10000) < 50)
         {
-            currentWP = Random.Range(0, _waypoints.Length);
-
-            if (currentWP >= _waypoints.Length)
-            {
-                currentWP = 0;
-            }
+            goalPos = new Vector3(Random.Range(-radius, radius), 0, Random.Range(-radius, radius));
+            sheepAgent.destination = goalPos;
         }
-
-        sheepAgent.SetDestination(_waypoints[currentWP].transform.position);
     }
 
     public void Run()

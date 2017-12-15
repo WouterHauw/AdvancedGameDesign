@@ -16,6 +16,9 @@ public class IdleState : ISheepState
 
     public void Execute()
     {
+
+        _sheep.sheepAgent.isStopped = true;
+
         Debug.Log("Idle");
 
         Idle();
@@ -24,6 +27,7 @@ public class IdleState : ISheepState
         {
             _sheep.ChangeState(new FleeState());
         }
+
 
     }
 

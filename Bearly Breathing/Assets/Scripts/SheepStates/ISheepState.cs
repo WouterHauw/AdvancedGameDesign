@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ISheepState
 {
-    void Execute();
     void Enter(Sheep sheep);
+    void Execute();
     void Exit();
 }

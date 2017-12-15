@@ -26,6 +26,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: isFleeing
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -39,36 +45,6 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!114 &114069440703762232
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d806bed14a9eacc40ad9a3abbece5000, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCSheep: {fileID: 0}
-  sheep: {fileID: 0}
-  opponent: {fileID: 0}
-  _accuracy: 3
---- !u!114 &114166626340530110
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d31ae73d9169040b8735fbfffa17e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCSheep: {fileID: 0}
-  sheep: {fileID: 0}
-  opponent: {fileID: 0}
-  _accuracy: 3
 --- !u!114 &114186373104531966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,22 +59,7 @@ MonoBehaviour:
   NPCSheep: {fileID: 0}
   sheep: {fileID: 0}
   opponent: {fileID: 0}
-  _accuracy: 3
---- !u!114 &114225449663268366
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d462db00fd967b049a22487018c756ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCSheep: {fileID: 0}
-  sheep: {fileID: 0}
-  opponent: {fileID: 0}
-  _accuracy: 3
+  accuracy: 3
 --- !u!114 &114299075023248486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,14 +74,14 @@ MonoBehaviour:
   NPCSheep: {fileID: 0}
   sheep: {fileID: 0}
   opponent: {fileID: 0}
-  _accuracy: 3
+  accuracy: 3
 --- !u!114 &114958966482492652
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42d31ae73d9169040b8735fbfffa17e0, type: 3}
   m_Name: 
@@ -128,7 +89,7 @@ MonoBehaviour:
   NPCSheep: {fileID: 0}
   sheep: {fileID: 0}
   opponent: {fileID: 0}
-  _accuracy: 3
+  accuracy: 3
 --- !u!1101 &1101071617848058348
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -229,8 +190,8 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: IsWalking
+  - m_ConditionMode: 2
+    m_ConditionEvent: isIdle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102909471129274472}
@@ -468,8 +429,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1101796813159723850}
   - {fileID: 1101129245441472156}
-  m_StateMachineBehaviours:
-  - {fileID: 114166626340530110}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -493,8 +453,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101244918640164104}
-  m_StateMachineBehaviours:
-  - {fileID: 114069440703762232}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -568,8 +527,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1101071617848058348}
   - {fileID: 1101701009154561440}
-  m_StateMachineBehaviours:
-  - {fileID: 114225449663268366}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

@@ -135,7 +135,24 @@ GameObject:
   m_PrefabParentObject: {fileID: 1291595567594164, guid: 8db36aa5dc09c5f45b7828bcc3e3a6cb,
     type: 2}
   m_PrefabInternal: {fileID: 2049180084}
---- !u!114 &266384020
+--- !u!95 &266384017
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 266384014}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 117779c7d89055e408cc46eb028982d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &266384021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -143,10 +160,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 266384014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a806c767ce76a964ea075f5f9a0db110, type: 3}
+  m_Script: {fileID: 11500000, guid: e772539e83caf524297cd738685a4e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 261028550}
+  sheepAgent: {fileID: 0}
+  currentWP: 0
+  accuracy: 3
+  distance: 0
 --- !u!1001 &275799001
 Prefab:
   m_ObjectHideFlags: 0
@@ -697,12 +717,12 @@ Prefab:
     - target: {fileID: 224622983773137224, guid: 3986c0844c59a824889e5f5ec15e2e1d,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 679
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224622983773137224, guid: 3986c0844c59a824889e5f5ec15e2e1d,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 170
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224622983773137224, guid: 3986c0844c59a824889e5f5ec15e2e1d,
         type: 2}
@@ -976,7 +996,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4388151700921824, guid: ae87897f05c70d24a82b52105ad27de2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 16.17
+      value: 35.08
       objectReference: {fileID: 0}
     - target: {fileID: 4388151700921824, guid: ae87897f05c70d24a82b52105ad27de2, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1373,6 +1393,17 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 95285923914664902, guid: 8db36aa5dc09c5f45b7828bcc3e3a6cb,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565435346097004, guid: 8db36aa5dc09c5f45b7828bcc3e3a6cb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.76
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114417596074210148, guid: 8db36aa5dc09c5f45b7828bcc3e3a6cb, type: 2}
+    - {fileID: 95285923914664902, guid: 8db36aa5dc09c5f45b7828bcc3e3a6cb, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8db36aa5dc09c5f45b7828bcc3e3a6cb, type: 2}
   m_IsPrefabParent: 0
