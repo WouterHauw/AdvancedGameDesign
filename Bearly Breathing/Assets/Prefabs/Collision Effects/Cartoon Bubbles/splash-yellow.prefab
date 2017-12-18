@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4563154251220064}
   - component: {fileID: 212902355835059856}
+  - component: {fileID: 95976694369591018}
+  - component: {fileID: 114385867331352666}
   m_Layer: 0
   m_Name: splash-yellow
   m_TagString: Untagged
@@ -40,6 +42,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!95 &95976694369591018
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1538426443600734}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bdd3c5128ebf5a4e874e9cc84f168b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114385867331352666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1538426443600734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54743147791bcf41970541fecd50e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212902355835059856
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
     //Activate BushAbility
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bush")
+        if (other.gameObject.CompareTag("Bush"))
         {
             IAbility = gameObject.AddComponent<Bush>();
             IAbility.InitializeVariables();
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     //Deactivate BushAbility
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Bush")
+        if (other.gameObject.CompareTag("Bush"))
         {
             IAbility.DeactivateAbility(other.gameObject, anim);
             Destroy(GetComponent<Bush>());  
@@ -133,12 +133,14 @@ public class PlayerController : MonoBehaviour
         switch (thisDemo)
         {
             case Demo.Demo1:
-                var random = Random.Range(0, collisionEffects.Length);
-                return collisionEffects[random];
+                var randcollisioneffects = Random.Range(0, collisionEffects.Length);
+                return collisionEffects[randcollisioneffects];
             case Demo.Demo2:
-                return collisionEffects[1];
+                var randcartoonbubble = Random.Range(0, cartoonBubbles.Length);
+                return cartoonBubbles[randcartoonbubble];
             case Demo.Demo3:
-                return collisionEffects[1];
+                var randtextbubble = Random.Range(0, textBubbles.Length);
+                return textBubbles[randtextbubble];
             default:
                 throw new ArgumentOutOfRangeException();
         }
