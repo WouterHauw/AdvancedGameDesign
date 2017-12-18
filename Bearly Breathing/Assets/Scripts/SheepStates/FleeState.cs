@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FleeState : ISheepState
 {
     private Sheep _sheep;
+    private NavMeshHit _navHit;
 
     public void Enter(Sheep _sheep)
     {
@@ -14,8 +16,7 @@ public class FleeState : ISheepState
 
     public void Execute()
     {
-        _sheep.Run();
-        Debug.Log("Fleeing");
+        Run();
 
         if (_sheep.distance >= 20)
         {
@@ -26,6 +27,16 @@ public class FleeState : ISheepState
     public void Exit()
     {
 
+    }
+
+    public void Run()
+    {
+        Vector3 runTo = _sheep.sheepTransform.position + (_sheep.sheepTransform.position - _sheep.playerTransform.position);
+        if (NavMesh.SamplePosition(runTo, out _navHit, 3.0f, NavMesh.AllAreas))
+        {
+            _sheep.sheepAgent.destination = _navHit.position;
+            _sheep.sheepAgent.speed = 5;
+        }
     }
 
 }

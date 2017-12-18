@@ -19,16 +19,12 @@ public class IdleState : ISheepState
 
         _sheep.sheepAgent.isStopped = true;
 
-        Debug.Log("Idle");
-
         Idle();
 
-        if(_sheep.distance <= 20)
+        if (_sheep.distance <= 20)
         {
             _sheep.ChangeState(new FleeState());
         }
-
-
     }
 
     public void Exit()
@@ -42,10 +38,9 @@ public class IdleState : ISheepState
 
         _idleTimer += Time.deltaTime;
 
-        if(_idleTimer >= _idleDuration)
+        if (_idleTimer >= _idleDuration)
         {
             _sheep.ChangeState(new WalkState());
         }
     }
-
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 using UnityEngine;
 
 public class WalkState : ISheepState
@@ -9,19 +10,25 @@ public class WalkState : ISheepState
     private float _walkTimer;
     private float _walkDuration = 5;
 
+    public static int radius = 5;
+    public static Vector3 goalPos = Vector3.zero;
+
     public void Enter(Sheep _sheep)
     {
         this._sheep = _sheep;
-        _sheep.currentWP = 0;
     }
 
     public void Execute()
     {
         Walk();
 
-        _sheep.Move();
+        Move();
 
-        Debug.Log("Moving");
+        if (_sheep.distance <= 20)
+        {
+            _sheep.ChangeState(new FleeState());
+        }
+
     }
 
     public void Exit()
@@ -36,6 +43,16 @@ public class WalkState : ISheepState
         if (_walkTimer >= _walkDuration)
         {
             _sheep.ChangeState(new IdleState());
+        }
+    }
+
+    private void Move()
+    {
+        // Chooses a random destination in a certain radius
+        if (Random.Range(0, 10000) < 50)
+        {
+            goalPos = new Vector3(Random.Range(-radius, radius), 0, Random.Range(-radius, radius));
+            _sheep.sheepAgent.destination = goalPos;
         }
     }
 

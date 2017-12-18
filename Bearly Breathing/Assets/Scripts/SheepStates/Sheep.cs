@@ -7,18 +7,10 @@ public class Sheep : MonoBehaviour
 {
     public Animator anim { get; set; }
     public NavMeshAgent sheepAgent;
-    public int currentWP;
-    public float accuracy = 3;
+    public Transform playerTransform;
+    public Transform sheepTransform;
     public float distance;
-
-    public static int radius = 5;
-    public static Vector3 goalPos = Vector3.zero;
-
     private ISheepState _currentState;
-    private Transform _playerTransform;
-    private Transform _sheepTransform;
-    private GameObject[] _waypoints;
-    private NavMeshHit _navHit;
 
     // Use this for initialization
     void Start()
@@ -27,17 +19,16 @@ public class Sheep : MonoBehaviour
         ChangeState(new IdleState());
 
         anim = GetComponent<Animator>();
-        _waypoints = GameObject.FindGameObjectsWithTag("waypoint");
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        _sheepTransform = GameObject.FindGameObjectWithTag("SheepTransform").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        sheepTransform = GameObject.FindGameObjectWithTag("SheepTransform").transform;
         sheepAgent = GameObject.FindGameObjectWithTag("SheepTransform").GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        distance = Vector3.Distance(sheepTransform.position, playerTransform.position);
         _currentState.Execute();
-        distance = Vector3.Distance(_sheepTransform.position, _playerTransform.position);
     }
 
     public void ChangeState(ISheepState newState)
@@ -50,24 +41,5 @@ public class Sheep : MonoBehaviour
         _currentState = newState;
 
         _currentState.Enter(this);
-    }
-
-    public void Move()
-    {
-        if (Random.Range(0, 10000) < 50)
-        {
-            goalPos = new Vector3(Random.Range(-radius, radius), 0, Random.Range(-radius, radius));
-            sheepAgent.destination = goalPos;
-        }
-    }
-
-    public void Run()
-    {
-        Vector3 runTo = _sheepTransform.position + (_sheepTransform.position - _playerTransform.position);
-        if (NavMesh.SamplePosition(runTo, out _navHit, 3.0f, NavMesh.AllAreas))
-        {
-            sheepAgent.destination = _navHit.position;
-            sheepAgent.speed = 5;
-        }
     }
 }
