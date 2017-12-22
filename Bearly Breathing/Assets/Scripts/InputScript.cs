@@ -19,7 +19,7 @@ namespace Assets.Scripts
         private LongPressGestureRecognizer _longPressGestureRecognizer;
         private bool _facingRight = false;
         private Animator anim;
-
+        public int walkingSpeed;
 
 
         private GestureTouch FirstTouch(ICollection<GestureTouch> touches)
@@ -48,6 +48,8 @@ namespace Assets.Scripts
             _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
             _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
             _swipeGestureRecognizer.Direction = _swipeDirection;
+
+            walkingSpeed = 8;
         }
 
         private void Update()
@@ -90,8 +92,8 @@ namespace Assets.Scripts
                 FlipXAxis();
             }
             Vector3 pos = player.transform.position;
-            pos.x += (amount.x * 8 * Time.deltaTime);
-            pos.z += (amount.y * 8 * Time.deltaTime);
+            pos.x += (amount.x * walkingSpeed * Time.deltaTime);
+            pos.z += (amount.y * walkingSpeed * Time.deltaTime);
             player.transform.position = pos;
             anim.SetBool("isWalking", true);
 

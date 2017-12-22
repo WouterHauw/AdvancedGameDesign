@@ -8,19 +8,16 @@ public class PlayerController : MonoBehaviour
     public GameObject bearClaw;
     [SerializeField] private MovementScript _playerMoverment = null;
     [SerializeField] private AttackScript _playerAttack = null;
-    public float health;
-    public float maxHealth;
+  //  public int health;
+    public int previousHealth;
     public bool beingChased;
     public bool isHiding;
-    public int _currentScore;
+  //  public int _currentScore;
     [SerializeField] private InputScript _inputScript = null;
     public Component abilityInterface;
     [SerializeField] private AbilityInterface IAbility;
     private Animator anim;
-
-
-    
-
+    private UIManagerScript _UIScript;
 
     // Use this for initialization
     void Start()
@@ -36,8 +33,10 @@ public class PlayerController : MonoBehaviour
         _playerMoverment = GetComponent<MovementScript>();
         _playerAttack = GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
-        maxHealth = 100f;
-        health = maxHealth;
+        _UIScript = FindObjectOfType<UIManagerScript>();
+        GameManager.Instance.health = 3;
+        previousHealth = GameManager.Instance.health = 3;
+
         isHiding = false;
     }
 
@@ -48,11 +47,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("One of Script is missing");
             return;
         }
-
-       
-            
-        
+ 
         HandleAttackInput();
+
+        ChangeInHealth();
     }
 
     //Activate BushAbility
@@ -99,7 +97,15 @@ public class PlayerController : MonoBehaviour
 
     } 
 
-    public void die()
+    private void ChangeInHealth()
+    {
+        if(previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
+        {
+            previousHealth = GameManager.Instance.health;
+            _UIScript.setHealthSlider();
+        }
+    }
+    public void Die()
     {
         SceneManager.LoadScene("GameOverScreen");
 

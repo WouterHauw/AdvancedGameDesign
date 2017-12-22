@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
+using Assets.Scripts;
 
 public class AttackScript : MonoBehaviour, AbilityInterface
 {
-    [SerializeField]private GameObject _bearClaw;
+    [SerializeField] private GameObject _bearClaw;
     private RaycastHit _hit;
     [SerializeField] private float _bearActiveTime;
-    [SerializeField] private float _range ;
+    [SerializeField] private float _range;
     [SerializeField] private float _theTimeBetweenFlashes;
     [SerializeField] private float _time;
     [SerializeField] private GameObject explosion;
@@ -24,7 +25,7 @@ public class AttackScript : MonoBehaviour, AbilityInterface
     {
         InitializeVariables();
     }
-   
+
     //Must be public as its used in interface
     public void InitializeVariables()
     {
@@ -34,22 +35,25 @@ public class AttackScript : MonoBehaviour, AbilityInterface
         _isBeingDestroyed = false;
         var script = GetComponent<PlayerController>();
         _bearClaw = script.bearClaw;
+        GameObject player = GameObject.Find("Player");
+
     }
-   
+
     //Must be public as its used in interface
     //Launch an explosion and bearclaw on GUI
     public void ActivateAbility(GameObject aObject, Animator playerAnimation)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _range,LayerMask.GetMask("Player"));
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _range, LayerMask.GetMask("Player"));
         if (hitColliders.Length == 0)
         {
             return;
         }
         if (hitColliders[0].gameObject.CompareTag("Sheep"))
         {
-            hitColliders[0].gameObject.SetActive(false);
+            hitColliders[0].transform.parent.gameObject.SetActive(false);
             StartCoroutine(BearClawCourotine());
             playerAnimation.SetTrigger("isAttacking");
+            GameManager.Instance.currentScore++;
         }
         if (hitColliders[0].gameObject.CompareTag("Hunter"))
         {
@@ -84,9 +88,9 @@ public class AttackScript : MonoBehaviour, AbilityInterface
     {
         Gizmos.color = Color.red;
         //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-        Gizmos.DrawWireSphere(transform.position , _range);
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 }
 
-       
+
 
