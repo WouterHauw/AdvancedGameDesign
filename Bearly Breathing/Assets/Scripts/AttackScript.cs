@@ -1,79 +1,103 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using System.Linq;
 using UnityEngine;
 
-public class AttackScript : MonoBehaviour
+public class AttackScript : MonoBehaviour, AbilityInterface
 {
-    public GameObject BearClaw;
+    [SerializeField]private GameObject _bearClaw;
     private RaycastHit _hit;
-    [SerializeField] private float _bearActiveTime = 3f;
-    [SerializeField] private readonly float _range = 10;
+    [SerializeField] private float _bearActiveTime;
+    [SerializeField] private float _range ;
+    [SerializeField] private float _theTimeBetweenFlashes;
+    [SerializeField] private float _time;
+    [SerializeField] private GameObject specialEffect;
+    [SerializeField] private AbilityInterface IAbility;
 
-    [SerializeField] private GameObject explosion;
-    [SerializeField] private float time;
 
-    private GameObject instantiatedObj;
-    [SerializeField] private float theTimeBetweenFlashes;
-    private bool isFlashing;
-
-    [SerializeField] private float range;
-
-    [SerializeField] private int testOption = 1;
-    private bool isBeingDestroyed;
+    private GameObject _instantiatedObj;
+    private bool _isBeingDestroyed;
+    private bool _isFlashing;
 
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
-        theTimeBetweenFlashes = 0.2f;
-        range = 5;
-        isBeingDestroyed = false;
+        InitializeVariables();
+    }
+   
+    //Must be public as its used in interface
+    public void InitializeVariables()
+    {
+        _bearActiveTime = 0.5f;
+        _theTimeBetweenFlashes = 0.2f;
+        _range = 2f;
+        _isBeingDestroyed = false;
+        var script = GetComponent<PlayerController>();
+        _bearClaw = script.bearClaw;
+        specialEffect = script.GetParticleEffect();
+    }
+   
+    //Must be public as its used in interface
+    //Launch an explosion and bearclaw on GUI
+    public void ActivateAbility(GameObject aObject, Animator playerAnimation)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _range,LayerMask.GetMask("Player"));
+        if (hitColliders.Length == 0)
+        {
+            return;
+        }
+        if (hitColliders[0].gameObject.CompareTag("Sheep"))
+        {
+            SetExplosions(hitColliders[0]);
+            hitColliders[0].gameObject.SetActive(false);
+            StartCoroutine(BearClawCourotine());
+            playerAnimation.SetTrigger("isAttacking");
+
+        }
+        if (hitColliders[0].gameObject.CompareTag("Hunter"))
+        {
+            hitColliders[0].gameObject.SetActive(false);
+            StartCoroutine(BearClawCourotine());
+            playerAnimation.SetTrigger("isAttacking");
+
+        }
     }
 
-    public void Attack()
+    public void DeactivateAbility(GameObject aObject, Animator playerAnimation)
     {
-        var vectorForwards = transform.TransformDirection(Vector3.forward);
-        if (Physics.Raycast(transform.position, vectorForwards, out _hit, _range))
-        {
-            if (_hit.transform.gameObject.tag == "Sheep")
-            {
-                if (testOption == 1)
-                {
-                    _hit.transform.gameObject.SetActive(false);
-                    instantiatedObj = (GameObject) Instantiate(explosion, _hit.transform.position,
-                        Quaternion.LookRotation(Vector3.up));
-                    Destroy(instantiatedObj, time);
-
-                }
-                else if (testOption == 2)
-                {
-                    StartCoroutine(StartFlashing(_hit.transform.gameObject));
-                }
-                StartCoroutine(BearClawCourotine());
-            }
-        }
+        //TODO: can be used in case stuff needs deconstructing
     }
 
     private IEnumerator BearClawCourotine()
     {
-        BearClaw.SetActive(true);
+        _bearClaw.SetActive(true);
         yield return new WaitForSeconds(_bearActiveTime);
-        BearClaw.SetActive(false);
+        _bearClaw.SetActive(false);
     }
 
-
-    private IEnumerator StartFlashing(GameObject sheep)
+    private void SetExplosions(Component collider)
     {
-        if (isBeingDestroyed) yield break;
+        _instantiatedObj = Instantiate(specialEffect);
+        _instantiatedObj.transform.position = collider.gameObject.transform.position;
+        _instantiatedObj.transform.Translate(Vector3.back * 2);
 
-        sheep.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
-        sheep.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        sheep.SetActive(false);
-        yield return new WaitForSeconds(theTimeBetweenFlashes);
-        sheep.SetActive(true);
-        yield return new WaitForSeconds(theTimeBetweenFlashes);
-        DestroyObject(sheep.gameObject);
-        isBeingDestroyed = true;
+    }
+
+    //private void InitializeExplosion()
+    //{
+    //    _hit.transform.gameObject.SetActive(false);
+    //    _instantiatedObj = Instantiate(explosion, _hit.transform.position,
+    //        Quaternion.LookRotation(Vector3.up));
+    //    Destroy(_instantiatedObj, _time);
+    //}
+    //defines the attack range of the player
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+        Gizmos.DrawWireSphere(transform.position , _range);
     }
 }
+
+       
+

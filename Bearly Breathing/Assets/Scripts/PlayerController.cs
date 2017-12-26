@@ -1,67 +1,148 @@
-﻿using Assets.Scripts;
+﻿using System;
+using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
+public enum Demo
+{
+    Demo1,
+    Demo2,
+    Demo3
+}
+
+
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject BearClaw;
+    public GameObject bearClaw;
+    public GameObject[] collisionEffects;
+    public GameObject[] cartoonBubbles;
+    public GameObject[] textBubbles;
+    public Demo thisDemo;
     [SerializeField] private MovementScript _playerMoverment = null;
     [SerializeField] private AttackScript _playerAttack = null;
     public float health;
     public float maxHealth;
+    public bool beingChased;
+    public bool isHiding;
+    public int _currentScore;
     [SerializeField] private InputScript _inputScript = null;
+    public Component abilityInterface;
+    [SerializeField] private AbilityInterface IAbility;
+    private Animator anim;
+
 
     
+
+
     // Use this for initialization
     void Start()
     {
+        InitializeVariables();
+    }
+
+    private void InitializeVariables()
+    {
+        //To prevent Unity from creating multiple copies of the same component in inspector at runtime
+        abilityInterface = gameObject.GetComponent<AbilityInterface>() as Component;
+        anim = GetComponent<Animator>();
         _playerMoverment = GetComponent<MovementScript>();
         _playerAttack = GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
-        _playerMoverment.SecondDemoIsPlaying = _inputScript.EnableSecondProtype;
         maxHealth = 100f;
         health = maxHealth;
+        isHiding = false;
     }
-
 
     void Update()
     {
-        if (_playerMoverment == null || _inputScript == null || _playerAttack == null)
+        if (_playerMoverment == null || _inputScript == null)
         {
             Debug.Log("One of Script is missing");
             return;
         }
-        HandleMoveInput();
+
+       
+            
+        
         HandleAttackInput();
     }
 
-    public bool HandleMoveInput()
+    //Activate BushAbility
+    private void OnTriggerEnter(Collider other)
     {
-
-        //handles movement of the player
-        var movement = _inputScript.GetDirection();
-        if (_inputScript.EnableSecondProtype)
+        if (other.gameObject.CompareTag("Bush"))
         {
-            return false;
+            IAbility = gameObject.AddComponent<Bush>();
+            IAbility.InitializeVariables();
+            IAbility.ActivateAbility(other.gameObject, anim);
         }
-        _playerMoverment.MoveDirection = new Vector3(movement.x, 0, movement.y);
-        _playerMoverment.LookDirection = new Vector3(movement.x, 0, movement.y);
+    }
 
-        return true;
+
+    //Deactivate BushAbility
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bush"))
+        {
+            IAbility.DeactivateAbility(other.gameObject, anim);
+            Destroy(GetComponent<Bush>());  
+        }
     }
 
     private void HandleAttackInput()
     {
         //handles the attacks of the player
-        var isAttacking = _inputScript.IsAttacking;
-
+        bool isAttacking = _inputScript.isAttacking;
+        
         if (isAttacking)
         {
-            _playerAttack.Attack();
-            _inputScript.IsAttacking = false;
+            IAbility = gameObject.AddComponent<AttackScript>();
+            IAbility.InitializeVariables();
+            IAbility.ActivateAbility(null, anim);
+           
+            _inputScript.isAttacking = false;
+        }else
+        {
+           // IAbility.DeactivateAbility();
+            //Destroy(GetComponent<AttackScript>());
+
         }
+
+
+    } 
+
+    public void die()
+    {
+        SceneManager.LoadScene("GameOverScreen");
+
+    }
+    //method for use for the attack button
+    public void Attack()
+    {
+        IAbility = gameObject.AddComponent<AttackScript>();
+        IAbility.InitializeVariables();
+        IAbility.ActivateAbility(null, anim);
 
     }
 
-   
+    public GameObject GetParticleEffect()
+    {
+        switch (thisDemo)
+        {
+            case Demo.Demo1:
+                var randcollisioneffects = Random.Range(0, collisionEffects.Length);
+                return collisionEffects[randcollisioneffects];
+            case Demo.Demo2:
+                var randcartoonbubble = Random.Range(0, cartoonBubbles.Length);
+                return cartoonBubbles[randcartoonbubble];
+            case Demo.Demo3:
+                var randtextbubble = Random.Range(0, textBubbles.Length);
+                return textBubbles[randtextbubble];
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
 }

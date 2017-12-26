@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Scout : NPCBaseHunter
+public class Scout : HunterFSM
 {
 
     GameObject[] waypoints;
@@ -15,8 +13,9 @@ public class Scout : NPCBaseHunter
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
+    {       
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        opponent.GetComponent<PlayerController>().beingChased = false;
         currentWP = 0;
     }
 
@@ -26,7 +25,7 @@ public class Scout : NPCBaseHunter
         hunter.speed = 15;
         if (waypoints.Length == 0) return;
         if (Vector3.Distance(waypoints[currentWP].transform.position,
-            NPC.transform.position) < accuracy)
+            NPCHunter.transform.position) < accuracy)
         {
             currentWP = Random.Range(0, waypoints.Length);
             if (currentWP >= waypoints.Length)
@@ -43,4 +42,3 @@ public class Scout : NPCBaseHunter
         hunter.speed = 3.5f;
     }
 }
-

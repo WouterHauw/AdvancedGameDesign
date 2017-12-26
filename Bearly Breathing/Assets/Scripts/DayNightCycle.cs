@@ -1,34 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DayNightCycle : MonoBehaviour
 {
 
     public Light sun;
-    public float secondsInFullDay = 120f;
+    private float secondsInFullDay;
     [Range(0, 1)]
-    public float currentTimeOfDay = 25f;
+    public float currentTimeOfDay;
     [HideInInspector]
     public float timeMultiplier = 1f;
+    public int daysSurvived;
+   // public bool isDay;
+    [SerializeField] private GameObject _player;
+    private PlayerController _playerScript;
+    [SerializeField] private ScoreManager _scoreScript;
+    private bool isEndOfDay;
 
     float sunInitialIntensity;
 
     void Start()
     {
+        InitializeVariables();
+        
+    }
+
+    private void InitializeVariables()
+    {
+        _playerScript = _player.GetComponent<PlayerController>();
+        currentTimeOfDay = 0.20f;
         sunInitialIntensity = sun.intensity;
+        secondsInFullDay = 60f;
     }
 
     void Update()
     {
         UpdateSun();
 
-        currentTimeOfDay += (Time.deltaTime / secondsInFullDay) * timeMultiplier;
+        currentTimeOfDay += (Time.deltaTime / secondsInFullDay) * timeMultiplier;        
 
         if (currentTimeOfDay >= 1)
         {
+            DayChanges();
+            NightChanges();
             currentTimeOfDay = 0;
         }
+        
+       
     }
 
     void UpdateSun()
@@ -40,15 +57,39 @@ public class DayNightCycle : MonoBehaviour
         {
             intensityMultiplier = 0;
         }
-        else if (currentTimeOfDay <= 0.25f)
+        else if (currentTimeOfDay <= 0.25f) //beginning of day
         {
             intensityMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
+            
+            
+            
         }
-        else if (currentTimeOfDay >= 0.73f)
+        else if (currentTimeOfDay >= 0.73f) // end of day
         {
             intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
+           
+            
         }
 
         sun.intensity = sunInitialIntensity * intensityMultiplier;
+    }
+
+    private void DayChanges()
+    {
+        
+        daysSurvived++;
+        Debug.Log("DayChanges");
+    }
+
+    private void NightChanges()
+    {
+      if(_playerScript._currentScore < 10)
+        {
+            Debug.Log("NightChanges");
+            _playerScript.die();
+        }
+        else {
+            _playerScript._currentScore = 0;
+        }
     }
 }

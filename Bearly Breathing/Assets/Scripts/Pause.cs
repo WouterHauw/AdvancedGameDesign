@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class Pause : MonoBehaviour {
 
@@ -16,6 +14,7 @@ public class Pause : MonoBehaviour {
     void Start () {
         _isPaused = false;
         _pauseMenu.SetActive(false);
+        
 	}
 	
 	// Update is called once per frame

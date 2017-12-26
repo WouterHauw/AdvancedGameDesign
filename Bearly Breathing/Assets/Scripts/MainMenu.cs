@@ -1,12 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
     [SerializeField] private GameObject toBeAddedText;
-
+   
     // Use this for initialization
     void Start () {
         toBeAddedText.SetActive(false);

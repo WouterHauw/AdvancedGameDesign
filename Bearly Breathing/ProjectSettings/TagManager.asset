@@ -9,6 +9,11 @@ TagManager:
   - Ground
   - Sheep
   - Hunter
+  - Bush
+  - BearClaw
+  - SheepTransform
+  - PlayerTransform
+  - HunterTransform
   layers:
   - Default
   - TransparentFX
@@ -18,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Player
   - 
   - 
   - 

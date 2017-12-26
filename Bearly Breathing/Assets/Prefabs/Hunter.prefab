@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 195269633126178948}
   - component: {fileID: 95046076762322506}
   - component: {fileID: 114057721094759586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hunter
   m_TagString: Hunter
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 33695206444718878}
   - component: {fileID: 65408269535960022}
   - component: {fileID: 23582638258365286}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1408488309894762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.8, y: 0.62, z: -2}
+  m_LocalPosition: {x: 9.905533, y: 1, z: 32.996468}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4606276937101340}

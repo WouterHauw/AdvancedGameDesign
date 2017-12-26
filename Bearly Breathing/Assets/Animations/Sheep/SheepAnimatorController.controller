@@ -44,6 +44,7 @@ MonoBehaviour:
   speed: 0.25
   rotationSpeed: 2
   accuracy: 3
+  sheepTransform: {fileID: 0}
 --- !u!114 &114782098620288422
 MonoBehaviour:
   m_ObjectHideFlags: 1

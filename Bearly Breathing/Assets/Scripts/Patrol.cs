@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Patrol : NPCBaseHunter
+public class Patrol : HunterFSM
 {
     GameObject[] waypoints;
     int currentWP;
@@ -24,7 +22,7 @@ public class Patrol : NPCBaseHunter
     {
         if (waypoints.Length == 0) return;
         if (Vector3.Distance(waypoints[currentWP].transform.position,
-            NPC.transform.position) < accuracy)
+            NPCHunter.transform.position) < accuracy)
         {
             currentWP = Random.Range(0, waypoints.Length);
             if (currentWP >= waypoints.Length)
