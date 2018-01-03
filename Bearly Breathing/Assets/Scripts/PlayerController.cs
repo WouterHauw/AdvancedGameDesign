@@ -1,44 +1,28 @@
-﻿using System;
-using Assets.Scripts;
+﻿using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
-
-public enum Demo
-{
-    Demo1,
-    Demo2,
-    Demo3
-}
-
-
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject bearClaw;
-    public GameObject[] collisionEffects;
-    public GameObject[] cartoonBubbles;
-    public GameObject[] textBubbles;
-    public Demo thisDemo;
-    [SerializeField] private MovementScript _playerMoverment = null;
-    [SerializeField] private AttackScript _playerAttack = null;
-    public float health;
-    public float maxHealth;
-    public bool beingChased;
-    public bool isHiding;
     public int _currentScore;
-    [SerializeField] private InputScript _inputScript = null;
     public Component abilityInterface;
-    [SerializeField] private AbilityInterface IAbility;
+    public GameObject bearClaw;
+    public bool beingChased;
+    public GameObject[] cartoonBubbles;
+    public GameObject[] collisionEffects;
+    public float health;
+    public bool isHiding;
+    public float maxHealth;
+    public GameObject[] textBubbles;
+    [SerializeField] private InputScript _inputScript;
+    [SerializeField] private AttackScript _playerAttack;
+    [SerializeField] private MovementScript _playerMoverment;
     private Animator anim;
-
-
-    
+    [SerializeField] private AbilityInterface IAbility;
 
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         InitializeVariables();
     }
@@ -56,7 +40,7 @@ public class PlayerController : MonoBehaviour
         isHiding = false;
     }
 
-    void Update()
+    private void Update()
     {
         if (_playerMoverment == null || _inputScript == null)
         {
@@ -64,9 +48,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-       
-            
-        
         HandleAttackInput();
     }
 
@@ -88,61 +69,47 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Bush"))
         {
             IAbility.DeactivateAbility(other.gameObject, anim);
-            Destroy(GetComponent<Bush>());  
+            Destroy(GetComponent<Bush>());
         }
     }
 
     private void HandleAttackInput()
     {
         //handles the attacks of the player
-        bool isAttacking = _inputScript.isAttacking;
-        
+        var isAttacking = _inputScript.isAttacking;
+
         if (isAttacking)
         {
             IAbility = gameObject.AddComponent<AttackScript>();
             IAbility.InitializeVariables();
             IAbility.ActivateAbility(null, anim);
-           
+
             _inputScript.isAttacking = false;
-        }else
-        {
-           // IAbility.DeactivateAbility();
-            //Destroy(GetComponent<AttackScript>());
-
         }
-
-
-    } 
+    }
 
     public void die()
     {
         SceneManager.LoadScene("GameOverScreen");
-
     }
+
     //method for use for the attack button
     public void Attack()
     {
         IAbility = gameObject.AddComponent<AttackScript>();
         IAbility.InitializeVariables();
         IAbility.ActivateAbility(null, anim);
-
     }
 
     public GameObject GetParticleEffect()
     {
-        switch (thisDemo)
-        {
-            case Demo.Demo1:
-                var randcollisioneffects = Random.Range(0, collisionEffects.Length);
-                return collisionEffects[randcollisioneffects];
-            case Demo.Demo2:
-                var randcartoonbubble = Random.Range(0, cartoonBubbles.Length);
-                return cartoonBubbles[randcartoonbubble];
-            case Demo.Demo3:
-                var randtextbubble = Random.Range(0, textBubbles.Length);
-                return textBubbles[randtextbubble];
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        var randcollisioneffects = Random.Range(0, collisionEffects.Length);
+        return collisionEffects[randcollisioneffects];
+    }
+
+    public GameObject GetTextParticleEffect()
+    {
+        var randtextbubble = Random.Range(0, textBubbles.Length);
+        return textBubbles[randtextbubble];
     }
 }

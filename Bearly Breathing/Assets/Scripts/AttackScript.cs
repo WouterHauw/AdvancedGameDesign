@@ -11,10 +11,8 @@ public class AttackScript : MonoBehaviour, AbilityInterface
     [SerializeField] private float _theTimeBetweenFlashes;
     [SerializeField] private float _time;
     [SerializeField] private GameObject specialEffect;
+    [SerializeField] private GameObject textSpecialEffect;
     [SerializeField] private AbilityInterface IAbility;
-
-
-    private GameObject _instantiatedObj;
     private bool _isBeingDestroyed;
     private bool _isFlashing;
 
@@ -35,6 +33,7 @@ public class AttackScript : MonoBehaviour, AbilityInterface
         var script = GetComponent<PlayerController>();
         _bearClaw = script.bearClaw;
         specialEffect = script.GetParticleEffect();
+        textSpecialEffect = script.GetTextParticleEffect();
     }
    
     //Must be public as its used in interface
@@ -77,9 +76,13 @@ public class AttackScript : MonoBehaviour, AbilityInterface
 
     private void SetExplosions(Component collider)
     {
-        _instantiatedObj = Instantiate(specialEffect);
-        _instantiatedObj.transform.position = collider.gameObject.transform.position;
-        _instantiatedObj.transform.Translate(Vector3.back * 2);
+        var instantiatedObj = Instantiate(specialEffect);
+        instantiatedObj.transform.position = collider.gameObject.transform.position;
+        instantiatedObj.transform.Translate(Vector3.back * 2);
+
+        instantiatedObj = Instantiate(textSpecialEffect);
+        instantiatedObj.transform.position = collider.gameObject.transform.position;
+        instantiatedObj.transform.Translate(Vector3.back * 2);
 
     }
 
