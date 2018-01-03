@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-public interface AbilityInterface 
+public interface IAbilityInterface
 {
-
     //Activate the actual ability and all the changes that need to be made
     void ActivateAbility(GameObject aObject, Animator playerAnimation);
 

@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CollisionDestroy : MonoBehaviour
 {
-
-    void DestroyGameObject()
+    public void DestroyGameObject()
     {
         Destroy(gameObject);
     }

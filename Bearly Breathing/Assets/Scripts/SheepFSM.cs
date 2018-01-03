@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class SheepFSM : StateMachineBehaviour {
 
-    public GameObject NPCSheep;
+    public GameObject npcSheep;
     public NavMeshAgent sheep;
     public NavMeshHit navHit;
     public GameObject opponent;
@@ -13,9 +13,9 @@ public class SheepFSM : StateMachineBehaviour {
 
 	public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
-	    NPCSheep = animator.transform.parent.gameObject;
-        opponent = NPCSheep.GetComponent<BaseNPC>().GetPlayer();
-        sheep = NPCSheep.GetComponent<NavMeshAgent>();
+	    npcSheep = animator.transform.parent.gameObject;
+        opponent = npcSheep.GetComponent<BaseNPC>().GetPlayer();
+        sheep = npcSheep.GetComponent<NavMeshAgent>();
 	}
 
 }

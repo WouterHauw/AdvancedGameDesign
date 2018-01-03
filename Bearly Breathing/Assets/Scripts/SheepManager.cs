@@ -2,8 +2,8 @@
 
 public class SheepManager : MonoBehaviour
 {
-    private readonly int _maxSheep = 10;
     [SerializeField] private AnimatorOverrideController[] _animatorcontroller;
+    private const int MaxSheep = 10;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _sheep;
     [SerializeField] private int _sheepCount;
@@ -24,19 +24,20 @@ public class SheepManager : MonoBehaviour
 
         var spawnPointIndex = Random.Range(0, _spawnPoints.Length);
 
-        if (_sheepCount >= _maxSheep)
+        if (_sheepCount >= MaxSheep)
         {
             CancelInvoke("Spawn");
         }
 
-        if (_sheepCount >= _maxSheep)
+        if (_sheepCount >= MaxSheep)
         {
             return;
         }
         var sheep = Instantiate(_sheep, _spawnPoints[spawnPointIndex].transform.position,
             _spawnPoints[spawnPointIndex].transform.rotation);
         var randomNumber = Random.Range(0, _animatorcontroller.Length);
-        sheep.gameObject.GetComponentInChildren<Animator>().runtimeAnimatorController = _animatorcontroller[randomNumber];
+        sheep.gameObject.GetComponentInChildren<Animator>().runtimeAnimatorController =
+            _animatorcontroller[randomNumber];
         _sheepCount++;
     }
 }
