@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputScript : MonoBehaviour
 {
+    public Camera camera;
     public bool isAttacking;
     public FingersJoystickScript joystickScript;
     private bool _facingRight;
@@ -11,6 +12,7 @@ public class InputScript : MonoBehaviour
     [SerializeField] private float _minimumSpeedSwipe;
     [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
     private SwipeGestureRecognizer _swipeGestureRecognizer;
+    private GestureRecognizer _tapGestureRecognizer;
     private Animator _anim;
 
 
@@ -26,7 +28,7 @@ public class InputScript : MonoBehaviour
     private void Awake()
     {
         joystickScript.JoystickExecuted = JoystickExecuted;
-        joystickScript.MoveJoystickToGestureStartLocation = true;
+        joystickScript.MoveJoystickToGestureStartLocation = false;
         isAttacking = false;
     }
 
@@ -35,6 +37,7 @@ public class InputScript : MonoBehaviour
     private void Start()
     {
         _anim = GetComponentInChildren<Animator>();
+        CreateTapGesture();
         CreateSwipeGesture();
 
         _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
@@ -42,12 +45,32 @@ public class InputScript : MonoBehaviour
         _swipeGestureRecognizer.Direction = _swipeDirection;
     }
 
-    private void Update()
+    private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
     {
-        _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
-        _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
-        _swipeGestureRecognizer.Direction = _swipeDirection;
+        if (gesture.State == GestureRecognizerState.Ended)
+        {
+            GestureTouch t = FirstTouch(touches);
+            RaycastHit hit;
+            var posRay = camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = camera.ScreenPointToRay(new Vector2(t.ScreenX, t.ScreenY));
+            if (Physics.Raycast(ray, out hit,100))
+            {
+                if (hit.collider != null)
+                {
+                    Debug.Log(hit.point);
+                }
+            }
+
+        }
     }
+
+    private void CreateTapGesture()
+    {
+        _tapGestureRecognizer = new TapGestureRecognizer();
+        _tapGestureRecognizer.Updated += TapGestureCallback;
+        FingersScript.Instance.AddGesture(_tapGestureRecognizer);
+    }
+
 
     private void CreateSwipeGesture()
     {
