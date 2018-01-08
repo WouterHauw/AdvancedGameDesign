@@ -1,22 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Bullet : MonoBehaviour {
-
-    void OnCollisionEnter(Collision col)
+public class Bullet : MonoBehaviour
+{
+    private void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Player" || col.gameObject.tag == "Ground")
-        Destroy(gameObject);
+        if (col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
-
-        // Use this for initialization
-        void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

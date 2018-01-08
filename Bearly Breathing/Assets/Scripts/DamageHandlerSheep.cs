@@ -1,49 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 
 public class DamageHandlerSheep : MonoBehaviour
 {
-   
-    public float health = 10    ;
     public AudioClip[] clips;
-    public AudioMixerGroup output;
 
-  
-
-    public float minPitch = .95f;
+    public float health = 10;
     public float maxPitch = 1.05f;
 
 
-
+    public float minPitch = .95f;
+    public AudioMixerGroup output;
 
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
-       
         InvokeRepeating("PlaySound", Time.deltaTime, 5.0f);
-
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (health <= 0)
         {
-        
-     
-           // Destroy(gameObject);
+            // Destroy(gameObject);
         }
-
     }
 
-    void PlaySound()
+    private void PlaySound()
     {
-        int randomClip = Random.Range(0, clips.Length);
+        var randomClip = Random.Range(0, clips.Length);
 
-        AudioSource source = gameObject.AddComponent<AudioSource>();
+        var source = gameObject.AddComponent<AudioSource>();
 
         source.clip = clips[randomClip];
 
@@ -54,6 +43,5 @@ public class DamageHandlerSheep : MonoBehaviour
         source.Play();
 
         Destroy(source, clips[randomClip].length);
-
     }
 }
