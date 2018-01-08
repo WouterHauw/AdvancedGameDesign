@@ -1,29 +1,25 @@
-﻿using Assets.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public IAbilityInterface abilityInterface;
     public GameObject bearClaw;
-    [SerializeField] private MovementScript _playerMoverment = null;
-    [SerializeField] private AttackScript _playerAttack = null;
-    public float health;
-    public float maxHealth;
     public bool beingChased;
+    public GameObject[] cartoonBubbles;
+    public GameObject[] collisionEffects;
+    public int currentScore;
+    public float health;
     public bool isHiding;
-    public int _currentScore;
-    [SerializeField] private InputScript _inputScript = null;
-    public Component abilityInterface;
-    [SerializeField] private AbilityInterface IAbility;
-    private Animator anim;
-
-
-    
+    public float maxHealth;
+    public GameObject[] textBubbles;
+    [SerializeField] private IAbilityInterface _ability;
+    private Animator _anim;
+    [SerializeField] private InputScript _inputScript;
 
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         InitializeVariables();
     }
@@ -31,38 +27,33 @@ public class PlayerController : MonoBehaviour
     private void InitializeVariables()
     {
         //To prevent Unity from creating multiple copies of the same component in inspector at runtime
-        abilityInterface = gameObject.GetComponent<AbilityInterface>() as Component;
-        anim = GetComponent<Animator>();
-        _playerMoverment = GetComponent<MovementScript>();
-        _playerAttack = GetComponent<AttackScript>();
+        _anim = GetComponent<Animator>();
+        GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
         maxHealth = 100f;
         health = maxHealth;
         isHiding = false;
     }
 
-    void Update()
+    private void Update()
     {
-        if (_playerMoverment == null || _inputScript == null)
+        if (_inputScript == null)
         {
             Debug.Log("One of Script is missing");
             return;
         }
 
-       
-            
-        
         HandleAttackInput();
     }
 
     //Activate BushAbility
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bush")
+        if (other.gameObject.CompareTag("Bush"))
         {
-            IAbility = gameObject.AddComponent<Bush>();
-            IAbility.InitializeVariables();
-            IAbility.ActivateAbility(other.gameObject, anim);
+            _ability = gameObject.AddComponent<Bush>();
+            _ability.InitializeVariables();
+            _ability.ActivateAbility(other.gameObject, _anim);
         }
     }
 
@@ -70,46 +61,50 @@ public class PlayerController : MonoBehaviour
     //Deactivate BushAbility
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Bush")
+        if (other.gameObject.CompareTag("Bush"))
         {
-            IAbility.DeactivateAbility(other.gameObject, anim);
-            Destroy(GetComponent<Bush>());  
+            _ability.DeactivateAbility(other.gameObject, _anim);
+            Destroy(GetComponent<Bush>());
         }
     }
 
     private void HandleAttackInput()
     {
         //handles the attacks of the player
-        bool isAttacking = _inputScript.isAttacking;
-        
+        var isAttacking = _inputScript.isAttacking;
+
         if (isAttacking)
         {
-            IAbility = gameObject.AddComponent<AttackScript>();
-            IAbility.InitializeVariables();
-            IAbility.ActivateAbility(null, anim);
-           
+            _ability = gameObject.AddComponent<AttackScript>();
+            _ability.InitializeVariables();
+            _ability.ActivateAbility(null, _anim);
+
             _inputScript.isAttacking = false;
-        }else
-        {
-           // IAbility.DeactivateAbility();
-            //Destroy(GetComponent<AttackScript>());
-
         }
+    }
 
-
-    } 
-
-    public void die()
+    public void Die()
     {
         SceneManager.LoadScene("GameOverScreen");
-
     }
+
     //method for use for the attack button
     public void Attack()
     {
-        IAbility = gameObject.AddComponent<AttackScript>();
-        IAbility.InitializeVariables();
-        IAbility.ActivateAbility(null, anim);
+        _ability = gameObject.AddComponent<AttackScript>();
+        _ability.InitializeVariables();
+        _ability.ActivateAbility(null, _anim);
+    }
 
+    public GameObject GetParticleEffect()
+    {
+        var randcollisioneffects = Random.Range(0, collisionEffects.Length);
+        return collisionEffects[randcollisioneffects];
+    }
+
+    public GameObject GetTextParticleEffect()
+    {
+        var randtextbubble = Random.Range(0, textBubbles.Length);
+        return textBubbles[randtextbubble];
     }
 }

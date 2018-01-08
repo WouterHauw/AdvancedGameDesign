@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BaseNPC : MonoBehaviour {
-
+public class BaseNPC : MonoBehaviour
+{
     public GameObject player;
     protected bool facingRight;
 
