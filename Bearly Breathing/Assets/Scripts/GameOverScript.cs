@@ -2,25 +2,22 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameOverScript : MonoBehaviour
-{
+public class GameOverScript : MonoBehaviour {
     private int _daysSurvived, _highScore;
-    [SerializeField] private GameObject _text;
+    [SerializeField] private GameObject text;
 
     // Use this for initialization
-    private void Start()
-    {
+    void Start () {
         _daysSurvived = PlayerPrefs.GetInt("DaysSurvived");
-        if (_daysSurvived > _highScore)
+        if(_daysSurvived > _highScore)
         {
             _highScore = _daysSurvived;
-            _text.GetComponent<Text>().text = "Days Survived: " + _daysSurvived;
+            text.GetComponent<Text>().text = "Days Survived: " + _daysSurvived;
         }
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
+	}
+	
+	// Update is called once per frame
+	void Update () {
         if (_daysSurvived > _highScore)
         {
             _highScore = _daysSurvived;
@@ -32,10 +29,10 @@ public class GameOverScript : MonoBehaviour
         PlayerPrefs.SetInt("DaysSurvived", 0);
         SceneManager.LoadScene("2DScene");
     }
-
     public void GoToMainMenu()
     {
         PlayerPrefs.SetInt("DaysSurvived", 0);
         SceneManager.LoadScene("MainMenu");
     }
 }
+

@@ -2,40 +2,41 @@
 
 public class DayNightCycle : MonoBehaviour
 {
-    [Range(0, 1)] public float currentTimeOfDay;
-
-    public int daysSurvived;
 
     public Light sun;
-
-    [HideInInspector] public float timeMultiplier = 1f;
-
-    // public bool isDay;
+    private float secondsInFullDay;
+    [Range(0, 1)]
+    public float currentTimeOfDay;
+    [HideInInspector]
+    public float timeMultiplier = 1f;
+    public int daysSurvived;
+   // public bool isDay;
     [SerializeField] private GameObject _player;
-
     private PlayerController _playerScript;
-    private float _secondsInFullDay;
+    [SerializeField] private ScoreManager _scoreScript;
+    private bool isEndOfDay;
 
-    private float _sunInitialIntensity;
+    float sunInitialIntensity;
 
-    private void Start()
+    void Start()
     {
         InitializeVariables();
+        
     }
 
     private void InitializeVariables()
     {
         _playerScript = _player.GetComponent<PlayerController>();
         currentTimeOfDay = 0.20f;
-        _sunInitialIntensity = sun.intensity;
-        _secondsInFullDay = 60f;
+        sunInitialIntensity = sun.intensity;
+        secondsInFullDay = 60f;
     }
 
-    private void Update()
+    void Update()
     {
         UpdateSun();
 
-        currentTimeOfDay += Time.deltaTime / _secondsInFullDay * timeMultiplier;
+        currentTimeOfDay += (Time.deltaTime / secondsInFullDay) * timeMultiplier;        
 
         if (currentTimeOfDay >= 1)
         {
@@ -43,11 +44,13 @@ public class DayNightCycle : MonoBehaviour
             NightChanges();
             currentTimeOfDay = 0;
         }
+        
+       
     }
 
-    private void UpdateSun()
+    void UpdateSun()
     {
-        sun.transform.localRotation = Quaternion.Euler(currentTimeOfDay * 360f - 90, 170, 0);
+        sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
 
         float intensityMultiplier = 1;
         if (currentTimeOfDay <= 0.23f || currentTimeOfDay >= 0.75f)
@@ -57,31 +60,36 @@ public class DayNightCycle : MonoBehaviour
         else if (currentTimeOfDay <= 0.25f) //beginning of day
         {
             intensityMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
+            
+            
+            
         }
         else if (currentTimeOfDay >= 0.73f) // end of day
         {
-            intensityMultiplier = Mathf.Clamp01(1 - (currentTimeOfDay - 0.73f) * (1 / 0.02f));
+            intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
+           
+            
         }
 
-        sun.intensity = _sunInitialIntensity * intensityMultiplier;
+        sun.intensity = sunInitialIntensity * intensityMultiplier;
     }
 
     private void DayChanges()
     {
+        
         daysSurvived++;
         Debug.Log("DayChanges");
     }
 
     private void NightChanges()
     {
-        if (_playerScript.currentScore < 10)
+      if(_playerScript._currentScore < 10)
         {
             Debug.Log("NightChanges");
-            _playerScript.Die();
+            _playerScript.die();
         }
-        else
-        {
-            _playerScript.currentScore = 0;
+        else {
+            _playerScript._currentScore = 0;
         }
     }
 }

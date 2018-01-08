@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
 public class Walk : SheepFSM
 {
+    private GameObject[] _waypoints;
+    private int _currentWP;
     public static int radius = 5;
     public static Vector3 goalPos = Vector3.zero;
-    private int _currentWp;
-    private GameObject[] _waypoints;
 
 
     private void Awake()
@@ -17,27 +20,25 @@ public class Walk : SheepFSM
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        _currentWp = 0;
+        _currentWP = 0;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_waypoints.Length == 0)
+       if (_waypoints.Length == 0) return;
+        if (Vector3.Distance(_waypoints[_currentWP].transform.position,
+            NPCSheep.transform.position) < accuracy)
         {
-            return;
-        }
-        if (Vector3.Distance(_waypoints[_currentWp].transform.position,
-                npcSheep.transform.position) < accuracy)
-        {
-            _currentWp = Random.Range(0, _waypoints.Length);
+            _currentWP = Random.Range(0, _waypoints.Length);
 
-            if (_currentWp >= _waypoints.Length)
+            if (_currentWP >= _waypoints.Length)
             {
-                _currentWp = 0;
+                _currentWP = 0;
             }
         }
-        sheep.SetDestination(_waypoints[_currentWp].transform.position);
+        sheep.SetDestination(_waypoints[_currentWP].transform.position);
+        
 
         /*
         if (Random.Range(0, 10000) < 50)

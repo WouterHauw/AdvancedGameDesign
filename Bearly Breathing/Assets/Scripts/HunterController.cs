@@ -1,32 +1,34 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class HunterController : BaseNPC
 {
+    Animator anim;
     public GameObject bullet;
     public GameObject gun;
-    private Animator _anim;
-    private Transform _hunterTransform;
-    private Transform _playerTransform;
+    private Transform playerTransform;
+    private Transform hunterTransform;
 
     // Use this for initialization
-    private void Start()
+    void Start()
     {
-        _anim = GetComponent<Animator>();
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        _hunterTransform = GameObject.FindGameObjectWithTag("HunterTransform").transform;
+        anim = GetComponent<Animator>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        hunterTransform = GameObject.FindGameObjectWithTag("HunterTransform").transform;
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         //TODO fix animator.
-        _anim.SetFloat("distance", Vector3.Distance(_hunterTransform.position, _playerTransform.position));
-        _anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
+        anim.SetFloat("distance", Vector3.Distance(hunterTransform.position, playerTransform.position));
+        anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
     }
 
-    private void Fire()
+    void Fire()
     {
-        var b = Instantiate(bullet, gun.transform.position, Quaternion.identity);
+        GameObject b = Instantiate(bullet, gun.transform.position, Quaternion.identity);
         b.GetComponent<Rigidbody>().AddForce(gun.transform.forward * 1500);
         Destroy(b, 1f);
     }

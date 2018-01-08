@@ -3,25 +3,24 @@ using UnityEngine.AI;
 
 public class HunterFSM : StateMachineBehaviour
 {
-    public static float distance;
-
-    [SerializeField] public float accuracy = 3.0f;
-
+    public GameObject NPCHunter;
     public NavMeshAgent hunter;
-    public bool isHiding;
-    public GameObject npcHunter;
     public GameObject opponent;
-
-    [SerializeField] public float rotationSpeed = 2.0f;
-
     public float speed = 0.25f;
+    [SerializeField]
+    public float rotationSpeed = 2.0f;
+    [SerializeField]
+    public float accuracy = 3.0f;
+
+    public static float distance;
+    public bool isHiding;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        npcHunter = animator.transform.gameObject;
-        opponent = npcHunter.GetComponent<BaseNPC>().GetPlayer();
-        hunter = npcHunter.GetComponentInParent<NavMeshAgent>();
-        distance = Vector3.Distance(npcHunter.transform.position, opponent.transform.position);
+        NPCHunter = animator.transform.gameObject;
+        opponent = NPCHunter.GetComponent<BaseNPC>().GetPlayer();
+        hunter = NPCHunter.GetComponentInParent<NavMeshAgent>();
+        distance = Vector3.Distance(NPCHunter.transform.position, opponent.transform.position);
         isHiding = opponent.GetComponent<PlayerController>().isHiding;
     }
 }

@@ -1,16 +1,21 @@
 ﻿using System.Collections;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
-public class MainMenu : MonoBehaviour
-{
-    [SerializeField] private GameObject _toBeAddedText;
+public class MainMenu : MonoBehaviour {
 
+    [SerializeField] private GameObject toBeAddedText;
+   
     // Use this for initialization
-    private void Start()
-    {
-        _toBeAddedText.SetActive(false);
-    }
+    void Start () {
+        toBeAddedText.SetActive(false);
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
     public void StartGame()
     {
         SceneManager.LoadScene("2DScene");
@@ -21,10 +26,12 @@ public class MainMenu : MonoBehaviour
         StartCoroutine("FadeInAndOutText");
     }
 
-    private IEnumerator FadeInAndOutText()
+    IEnumerator FadeInAndOutText()
     {
-        _toBeAddedText.SetActive(true);
+        toBeAddedText.SetActive(true);
         yield return new WaitForSeconds(2);
-        _toBeAddedText.SetActive(false);
+        toBeAddedText.SetActive(false);
     }
+
+
 }
