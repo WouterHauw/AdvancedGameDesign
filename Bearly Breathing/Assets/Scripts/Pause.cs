@@ -1,32 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class Pause : MonoBehaviour {
-
-    [SerializeField]private bool _isPaused;
+public class Pause : MonoBehaviour
+{
     [SerializeField] private GameObject _attackButton;
+
+    [SerializeField] private bool _isPaused;
     [SerializeField] private GameObject _moveButton;
-    [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _pauseButton;
+    [SerializeField] private GameObject _pauseMenu;
 
     // Use this for initialization
-    void Start () {
+    private void Start()
+    {
         _isPaused = false;
         _pauseMenu.SetActive(false);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    private void Update() { }
 
     public void OnClickPauseButton()
     {
         _isPaused = !_isPaused;
-        if(_isPaused)
+        if (_isPaused)
         {
             Time.timeScale = 0;
             HideButtons();
@@ -36,11 +33,12 @@ public class Pause : MonoBehaviour {
     public void OnClickResumeButton()
     {
         _isPaused = !_isPaused;
-        if (!_isPaused)
+        if (_isPaused)
         {
-            Time.timeScale = 1;
-            ShowButtons();
+            return;
         }
+        Time.timeScale = 1;
+        ShowButtons();
     }
 
     public void OnClickMenuButton()
