@@ -51,7 +51,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bush"))
         {
-            _ability = gameObject.AddComponent<Bush>();
+            if (!gameObject.GetComponent<Bush>()) {
+               
+                _ability = gameObject.AddComponent<Bush>();
+            }
             _ability.InitializeVariables();
             _ability.ActivateAbility(other.gameObject, _anim);
         }
@@ -91,9 +94,13 @@ public class PlayerController : MonoBehaviour
     //method for use for the attack button
     public void Attack()
     {
-        _ability = gameObject.AddComponent<AttackScript>();
+        if (!gameObject.GetComponent<AttackScript>())
+        {
+            _ability = gameObject.AddComponent<AttackScript>();
+        }
         _ability.InitializeVariables();
         _ability.ActivateAbility(null, _anim);
+        
     }
 
     public GameObject GetParticleEffect()
