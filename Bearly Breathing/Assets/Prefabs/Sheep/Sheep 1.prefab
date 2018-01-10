@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65443742983314502}
   - component: {fileID: 95285923914664902}
   - component: {fileID: 54662831900833112}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Sheep
   m_TagString: Sheep
   m_Icon: {fileID: 0}
@@ -39,22 +39,22 @@ GameObject:
   m_Component:
   - component: {fileID: 4081429571776218}
   - component: {fileID: 195955891106717344}
-  - component: {fileID: 114417596074210148}
-  m_Layer: 8
+  - component: {fileID: 114422220299064312}
+  m_Layer: 9
   m_Name: Sheep 1
   m_TagString: SheepTransform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4081429571776218
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665634631539950}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7833334, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4565435346097004}
@@ -67,8 +67,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1291595567594164}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: 0.0000029141172, y: -1.2706553, z: -2.712499}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4081429571776218}
@@ -110,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 1291595567594164}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 117779c7d89055e408cc46eb028982d7, type: 2}
+  m_Controller: {fileID: 22100000, guid: 9a05fa43ae290954b87c1df0eedba7d8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -118,7 +118,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114417596074210148
+--- !u!114 &114422220299064312
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -126,10 +126,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1665634631539950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b2ef4a6993838b49b40483c6bc7e2a9, type: 3}
+  m_Script: {fileID: 11500000, guid: a806c767ce76a964ea075f5f9a0db110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1154682115355250, guid: 1c6e0600499c43d4f9723a7bbe0d1733, type: 2}
 --- !u!195 &195955891106717344
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -139,7 +138,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -183,7 +182,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 740928aa7daf34b488368f39a12871f4, type: 3}
+  m_Sprite: {fileID: 21300012, guid: 97737dfa686359746971aec63e4a16ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

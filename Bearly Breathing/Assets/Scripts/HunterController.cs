@@ -4,24 +4,21 @@ public class HunterController : BaseNPC
 {
     public GameObject bullet;
     public GameObject gun;
-    private Animator _anim;
-    private Transform _hunterTransform;
-    private Transform _playerTransform;
 
     // Use this for initialization
-    private void Start()
+    protected override void StartNpc()
     {
-        _anim = GetComponent<Animator>();
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        _hunterTransform = GameObject.FindGameObjectWithTag("HunterTransform").transform;
+        base.StartNpc();
+        facingLeft = false;
     }
 
     // Update is called once per frame
-    private void Update()
+    protected override void UpdateNpc()
     {
+        base.UpdateNpc();
         //TODO fix animator.
-        _anim.SetFloat("distance", Vector3.Distance(_hunterTransform.position, _playerTransform.position));
-        _anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
+        animator.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
+        animator.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
     }
 
     private void Fire()
@@ -39,5 +36,13 @@ public class HunterController : BaseNPC
     public void StartFiring()
     {
         InvokeRepeating("Fire", 0.5f, 2.0f);
+    }
+    private void Start()
+    {
+        StartNpc();
+    }
+    private void Update()
+    {
+        UpdateNpc();
     }
 }
