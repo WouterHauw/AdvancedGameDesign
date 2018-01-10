@@ -5,17 +5,21 @@ public class PlayerController : MonoBehaviour
 {
     public IAbilityInterface abilityInterface;
     public GameObject bearClaw;
+    public int previousHealth;
     public bool beingChased;
     public GameObject[] cartoonBubbles;
     public GameObject[] collisionEffects;
     public int currentScore;
-    public float health;
+    public int health;
     public bool isHiding;
+
+    private UIManagerScript _UIScript;
     public float maxHealth;
     public GameObject[] textBubbles;
     [SerializeField] private IAbilityInterface _ability;
     private Animator _anim;
     [SerializeField] private InputScript _inputScript;
+
 
 
     // Use this for initialization
@@ -30,8 +34,8 @@ public class PlayerController : MonoBehaviour
         _anim = GetComponent<Animator>();
         GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
-        maxHealth = 100f;
-        health = maxHealth;
+        _UIScript = FindObjectOfType<UIManagerScript>();
+        GameManager.Instance.health = 3;
         isHiding = false;
     }
 
@@ -44,6 +48,8 @@ public class PlayerController : MonoBehaviour
         }
 
         HandleAttackInput();
+
+        ChangeInHealth();
     }
 
     //Activate BushAbility
@@ -87,6 +93,17 @@ public class PlayerController : MonoBehaviour
             _ability.ActivateAbility(null, _anim);
 
             _inputScript.isAttacking = false;
+        }
+    }
+
+    private void ChangeInHealth()
+    {
+        Debug.Log("change health");
+        GameManager.Instance.health = health;
+        if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
+        {
+            previousHealth = GameManager.Instance.health;
+            _UIScript.setHealthSlider();
         }
     }
 

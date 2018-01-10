@@ -20,7 +20,10 @@ public class HunterController : BaseNPC
     private void Update()
     {
         //TODO fix animator.
-        _anim.SetFloat("distance", Vector3.Distance(_hunterTransform.position, _playerTransform.position));
+        if(_hunterTransform != null)
+        {
+            _anim.SetFloat("distance", Vector3.Distance(_hunterTransform.position, _playerTransform.position));
+        }
         _anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
     }
 
