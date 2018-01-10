@@ -1,20 +1,43 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class SheepController : BaseNPC
 {
-    private Animator _anim;
-    private Transform _playerTransform;
-    private Transform _sheepTransform;
+    public float distance;
+    private ISheepState _currentState;
+
+    protected override void StartNpc()
+    {
+        base.StartNpc();
+        facingLeft = true;
+        ChangeState(new IdleState());
+    }
+
+    protected override void UpdateNpc()
+    {
+        base.UpdateNpc();
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        _currentState.Execute();
+    }
+    public void ChangeState(ISheepState newState)
+    {
+        if (_currentState != null)
+        {
+            _currentState.Exit();
+        }
+
+        _currentState = newState;
+
+        _currentState.Enter(this);
+    }
 
     private void Start()
     {
-        _anim = GetComponent<Animator>();
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        _sheepTransform = GameObject.FindGameObjectWithTag("SheepTransform").transform;
+        StartNpc();
     }
-
     private void Update()
     {
-        _anim.SetFloat("distance", Vector3.Distance(_sheepTransform.position, _playerTransform.position));
+        UpdateNpc();
     }
+    
 }

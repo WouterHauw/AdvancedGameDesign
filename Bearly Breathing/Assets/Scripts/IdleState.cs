@@ -2,18 +2,18 @@
 
 public class IdleState : ISheepState
 {
-    private Sheep _sheep;
+    private SheepController _sheep;
     private float _idleTimer;
     private float _idleDuration = 10;
 
-    public void Enter(Sheep _sheep)
+    public void Enter(SheepController _sheep)
     {
         this._sheep = _sheep;
     }
 
     public void Execute()
     {
-        _sheep.sheepAgent.isStopped = true;
+        _sheep.GetAgent().isStopped = true;
 
         Idle();
 
@@ -25,12 +25,12 @@ public class IdleState : ISheepState
 
     public void Exit()
     {
-        _sheep.sheepAgent.isStopped = false;
+        _sheep.GetAgent().isStopped = false;
     }
 
     private void Idle()
     {
-        _sheep.sheepAgent.isStopped = true;
+        _sheep.GetAgent().isStopped = true;
 
         _idleTimer += Time.deltaTime;
 
