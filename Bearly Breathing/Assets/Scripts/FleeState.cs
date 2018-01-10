@@ -3,10 +3,10 @@ using UnityEngine.AI;
 
 public class FleeState : ISheepState
 {
-    private Sheep _sheep;
+    private SheepController _sheep;
     private NavMeshHit _navHit;
 
-    public void Enter(Sheep _sheep)
+    public void Enter(SheepController _sheep)
     {
         this._sheep = _sheep;
     }
@@ -28,11 +28,11 @@ public class FleeState : ISheepState
 
     public void Run()
     {
-        Vector3 runTo = _sheep.sheepTransform.position + (_sheep.sheepTransform.position - _sheep.playerTransform.position);
+        Vector3 runTo = _sheep.transform.position + (_sheep.transform.position - _sheep.GetPlayer().transform.position);
         if (NavMesh.SamplePosition(runTo, out _navHit, 3.0f, NavMesh.AllAreas))
         {
-            _sheep.sheepAgent.destination = _navHit.position;
-            _sheep.sheepAgent.speed = 3;
+            _sheep.GetAgent().destination = _navHit.position;
+            _sheep.GetAgent().speed = 3;
         }
     }
 

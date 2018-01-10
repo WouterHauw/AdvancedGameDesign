@@ -2,7 +2,7 @@
 
 public interface ISheepState
 {
-    void Enter(Sheep sheep);
+    void Enter(SheepController sheep);
     void Execute();
     void Exit();
 }

@@ -20,13 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4565435346097004}
   - component: {fileID: 212466334269222022}
-  - component: {fileID: 65443742983314502}
   - component: {fileID: 95285923914664902}
-  - component: {fileID: 54662831900833112}
-<<<<<<< HEAD
-=======
-  - component: {fileID: 114542918283277622}
->>>>>>> Development
+  - component: {fileID: 136120366975399310}
   m_Layer: 9
   m_Name: Sheep
   m_TagString: Sheep
@@ -43,25 +38,22 @@ GameObject:
   m_Component:
   - component: {fileID: 4081429571776218}
   - component: {fileID: 195955891106717344}
-<<<<<<< HEAD
-  - component: {fileID: 114422220299064312}
-=======
->>>>>>> Development
+  - component: {fileID: 114201748305643496}
   m_Layer: 9
   m_Name: Sheep 1
   m_TagString: SheepTransform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4081429571776218
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665634631539950}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.7833334, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.03, y: 2, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4565435346097004}
@@ -81,33 +73,6 @@ Transform:
   m_Father: {fileID: 4081429571776218}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!54 &54662831900833112
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1291595567594164}
-  serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!65 &65443742983314502
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1291595567594164}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.0999997, y: 2.6799998, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95285923914664902
 Animator:
   serializedVersion: 3
@@ -125,30 +90,31 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-<<<<<<< HEAD
---- !u!114 &114422220299064312
-=======
---- !u!114 &114542918283277622
->>>>>>> Development
+--- !u!114 &114201748305643496
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1291595567594164}
+  m_GameObject: {fileID: 1665634631539950}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a806c767ce76a964ea075f5f9a0db110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-=======
-  m_Script: {fileID: 11500000, guid: 54e1333efc9b97d419514768912498f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sheepAgent: {fileID: 0}
-  playerTransform: {fileID: 0}
-  sheepTransform: {fileID: 0}
   distance: 0
->>>>>>> Development
+--- !u!136 &136120366975399310
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1291595567594164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.87
+  m_Height: 2.26
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.00000023841858, z: 0}
 --- !u!195 &195955891106717344
 NavMeshAgent:
   m_ObjectHideFlags: 1

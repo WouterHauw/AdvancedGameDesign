@@ -1,18 +1,34 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class SheepController : BaseNPC
 {
+    public float distance;
+    private ISheepState _currentState;
 
     protected override void StartNpc()
     {
         base.StartNpc();
         facingLeft = true;
+        ChangeState(new IdleState());
     }
 
     protected override void UpdateNpc()
     {
         base.UpdateNpc();
-        animator.SetFloat("distance", Vector3.Distance(transform.position, player.transform.position));
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        _currentState.Execute();
+    }
+    public void ChangeState(ISheepState newState)
+    {
+        if (_currentState != null)
+        {
+            _currentState.Exit();
+        }
+
+        _currentState = newState;
+
+        _currentState.Enter(this);
     }
 
     private void Start()
@@ -23,4 +39,5 @@ public class SheepController : BaseNPC
     {
         UpdateNpc();
     }
+    
 }

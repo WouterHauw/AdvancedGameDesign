@@ -6,27 +6,32 @@ public class BaseNPC : MonoBehaviour
     protected GameObject player;
     protected Animator animator;
     protected bool facingLeft;
-    private NavMeshAgent _agent;
+    protected NavMeshAgent agent;
 
     public GameObject GetPlayer()
     {
         return player;
     }
 
+    public NavMeshAgent GetAgent()
+    {
+        return agent;
+    }
+
     protected virtual void StartNpc()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponentInChildren<Animator>();
-        _agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     protected virtual void UpdateNpc()
     {
-        if (_agent.velocity.x > 0 && facingLeft)
+        if (agent.velocity.x > 0 && facingLeft)
         {
             FlipXAxis();
         }
-        else if (_agent.velocity.x < 0 && !facingLeft)
+        else if (agent.velocity.x < 0 && !facingLeft)
         {
             FlipXAxis();
         }
