@@ -1,4 +1,6 @@
-﻿public interface ISheepState
+﻿using UnityEngine;
+
+public interface ISheepState
 {
     void Enter(Sheep sheep);
     void Execute();

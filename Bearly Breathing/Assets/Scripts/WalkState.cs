@@ -7,7 +7,7 @@ public class WalkState : ISheepState
     private float _walkTimer;
     private float _walkDuration = 5;
 
-    public static int radius = 5;
+    public static int radius = 2;
     public static Vector3 goalPos = Vector3.zero;
 
     public void Enter(Sheep _sheep)

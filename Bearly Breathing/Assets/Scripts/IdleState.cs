@@ -13,7 +13,6 @@ public class IdleState : ISheepState
 
     public void Execute()
     {
-
         _sheep.sheepAgent.isStopped = true;
 
         Idle();

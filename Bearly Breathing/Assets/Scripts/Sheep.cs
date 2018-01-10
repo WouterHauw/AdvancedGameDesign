@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class Sheep : MonoBehaviour
@@ -18,8 +20,8 @@ public class Sheep : MonoBehaviour
 
         anim = GetComponent<Animator>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        sheepTransform = GameObject.FindGameObjectWithTag("SheepTransform").transform;
-        sheepAgent = GameObject.FindGameObjectWithTag("SheepTransform").GetComponent<NavMeshAgent>();
+        sheepTransform = gameObject.transform.parent;
+        sheepAgent = gameObject.GetComponentInParent<NavMeshAgent>();
     }
 
     // Update is called once per frame

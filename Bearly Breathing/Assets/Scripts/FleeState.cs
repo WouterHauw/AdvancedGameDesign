@@ -15,7 +15,7 @@ public class FleeState : ISheepState
     {
         Run();
 
-        if (_sheep.distance >= 20)
+        if (_sheep.distance >= 15)
         {
             _sheep.ChangeState(new IdleState());
         }
@@ -32,7 +32,7 @@ public class FleeState : ISheepState
         if (NavMesh.SamplePosition(runTo, out _navHit, 3.0f, NavMesh.AllAreas))
         {
             _sheep.sheepAgent.destination = _navHit.position;
-            _sheep.sheepAgent.speed = 5;
+            _sheep.sheepAgent.speed = 3;
         }
     }
 
