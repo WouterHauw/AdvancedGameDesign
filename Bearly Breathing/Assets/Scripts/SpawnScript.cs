@@ -19,7 +19,6 @@ public class SpawnScript : MonoBehaviour
             GameObject sheep = ObjectPool.Instance.GetPooledObject();
             if (sheep != null)
             {
-                Debug.Log("hi");
                 Vector3 position;
                 position = new Vector3(Random.Range(-50f, 50), 1, Random.Range(-50f, 50f));
                 sheep.transform.position = position;

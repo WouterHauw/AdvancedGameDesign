@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BaseNPC : MonoBehaviour {
-
-    private float timer;
+public class BaseNPC : MonoBehaviour
+{
     public GameObject player;
     protected bool facingRight;
 
@@ -12,11 +9,7 @@ public class BaseNPC : MonoBehaviour {
     {
         return player;
     }
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
     protected void FlipXAxis()
     {
         //oposite direction

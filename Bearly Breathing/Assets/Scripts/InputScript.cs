@@ -1,87 +1,110 @@
 ﻿using System.Collections.Generic;
 using DigitalRubyShared;
 using UnityEngine;
-//using UnityEngine.VR.WSA;
 
-namespace Assets.Scripts
+public class InputScript : MonoBehaviour
 {
-    public class InputScript : MonoBehaviour
+    public Camera camera;
+    public bool isAttacking;
+    public FingersJoystickScript joystickScript;
+    private bool _facingRight;
+    [SerializeField] private float _minimumDistanceSwipe;
+    [SerializeField] private float _minimumSpeedSwipe;
+    [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
+    private SwipeGestureRecognizer _swipeGestureRecognizer;
+    private GestureRecognizer _tapGestureRecognizer;
+    private Animator _anim;
+    public GameObject player;
+    public int walkingSpeed;
+
+    private GestureTouch FirstTouch(IEnumerable<GestureTouch> touches)
     {
-        public FingersJoystickScript joystickScript;
-        [SerializeField] private float _minimumDistanceSwipe;
-        [SerializeField] private float _minimumSpeedSwipe;
-        [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
-        public GameObject player;
-        public bool isAttacking;
-        private TapGestureRecognizer _pressGestureRecognizer;
-        private Vector2 _smoothDirection;
-        private SwipeGestureRecognizer _swipeGestureRecognizer;
-        private LongPressGestureRecognizer _longPressGestureRecognizer;
-        private bool _facingRight = false;
-        private Animator anim;
-        public int walkingSpeed;
+        foreach (var t in touches)
 
-
-        private GestureTouch FirstTouch(ICollection<GestureTouch> touches)
         {
-            foreach (var t in touches)
+            return t;
+        }
+        return new GestureTouch();
+    }
+
+    private void Awake()
+    {
+        joystickScript.JoystickExecuted = JoystickExecuted;
+        joystickScript.MoveJoystickToGestureStartLocation = false;
+        isAttacking = false;
+    }
+
+    //  public bool MoveJoysticktoGestureStartLocation;
+
+    private void Start()
+    {
+        _anim = GetComponentInChildren<Animator>();
+        CreateTapGesture();
+        CreateSwipeGesture();
+
+        _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
+        _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
+        _swipeGestureRecognizer.Direction = _swipeDirection;
+    }
+
+    private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
+    {
+        if (gesture.State == GestureRecognizerState.Ended)
+        {
+            GestureTouch t = FirstTouch(touches);
+            RaycastHit hit;
+            var posRay = camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = camera.ScreenPointToRay(new Vector2(t.ScreenX, t.ScreenY));
+            if (Physics.Raycast(ray, out hit,100))
             {
-                return t;
+                if (hit.collider != null)
+                {
+                    Debug.Log(hit.point);
+                }
             }
-            return new GestureTouch();
-        }
-
-        private void Awake()
-        {
-            joystickScript.JoystickExecuted = JoystickExecuted;
-            joystickScript.MoveJoystickToGestureStartLocation = false; 
-            isAttacking = false;
-        }
-
-        //  public bool MoveJoysticktoGestureStartLocation;
-
-        private void Start()
-        {
-            anim = player.GetComponentInChildren<Animator>();
-            CreateSwipeGesture();
-
             _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
             _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
             _swipeGestureRecognizer.Direction = _swipeDirection;
 
             walkingSpeed = 8;
-        }
 
-        private void Update()
+        }
+    }
+
+    private void CreateTapGesture()
+    {
+        _tapGestureRecognizer = new TapGestureRecognizer();
+        _tapGestureRecognizer.Updated += TapGestureCallback;
+        FingersScript.Instance.AddGesture(_tapGestureRecognizer);
+    }
+
+
+    private void CreateSwipeGesture()
+    {
+        _swipeGestureRecognizer = new SwipeGestureRecognizer
         {
-            _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
-            _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
-            _swipeGestureRecognizer.Direction = _swipeDirection;
+            Direction = SwipeGestureRecognizerDirection.Any,
+            DirectionThreshold = 1.0f
+        };
+        _swipeGestureRecognizer.Updated += SwipeGestureCallback;
+        FingersScript.Instance.AddGesture(_swipeGestureRecognizer);
+    }
 
-
-        }
-
-        private void CreateSwipeGesture()
+    private void SwipeGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
+    {
+        if (gesture.State == GestureRecognizerState.Ended)
         {
-            _swipeGestureRecognizer = new SwipeGestureRecognizer
-            {
-                Direction = SwipeGestureRecognizerDirection.Any,
-                DirectionThreshold = 1.0f
-            };
-            _swipeGestureRecognizer.Updated += SwipeGestureCallback;
-            FingersScript.Instance.AddGesture(_swipeGestureRecognizer);
+            isAttacking = true;
         }
+    }
 
-        private void SwipeGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
+    private void JoystickExecuted(FingersJoystickScript script, Vector2 amount)
+    {
+        if (amount.x > 0 && !_facingRight)
         {
-            if (gesture.State == GestureRecognizerState.Ended)
-            {
-                isAttacking = true;
-            }
-
+            FlipXAxis();
         }
-
-        private void JoystickExecuted(FingersJoystickScript script, Vector2 amount)
+        else if (amount.x < 0 && _facingRight)
         {
             if (amount.x > 0 && !_facingRight)
             {
@@ -91,32 +114,31 @@ namespace Assets.Scripts
             {
                 FlipXAxis();
             }
-            Vector3 pos = player.transform.position;
-            pos.x += (amount.x * walkingSpeed * Time.deltaTime);
-            pos.z += (amount.y * walkingSpeed * Time.deltaTime);
-            player.transform.position = pos;
-            anim.SetBool("isWalking", true);
-
-            if (amount == Vector2.zero)
-            {
-                anim.SetBool("isWalking", false);
-            }
         }
+        var pos = transform.position;
+        pos.x += amount.x * 8 * Time.deltaTime;
+        pos.z += amount.y * 8 * Time.deltaTime;
+        transform.position = pos;
+        _anim.SetBool("isWalking", true);
 
-        private void FlipXAxis()
+        if (amount == Vector2.zero)
         {
-            //oposite direction
-            _facingRight = !_facingRight;
-
-            //get local scale
-            var theScale = player.transform.localScale;
-
-            //flip on x axis
-            theScale.x *= -1;
-
-            //apply that to the local scale
-            player.transform.localScale = theScale;
+            _anim.SetBool("isWalking", false);
         }
+    }
 
+    private void FlipXAxis()
+    {
+        //oposite direction
+        _facingRight = !_facingRight;
+
+        //get local scale
+        var theScale = transform.localScale;
+
+        //flip on x axis
+        theScale.x *= -1;
+
+        //apply that to the local scale
+        transform.localScale = theScale;
     }
 }

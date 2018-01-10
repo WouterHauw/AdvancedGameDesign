@@ -1,37 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour {
+public class ScoreManager : MonoBehaviour
+{
+    private int _requiredScore, _survived;
 
+    [SerializeField] private PlayerController _player;
     [SerializeField] private DayNightCycle _cycle;
-    [SerializeField] private GameObject _text;
     public Slider sliderVar;
-    private int _survived;
-   // public int requiredScore;
+    [SerializeField] private GameObject _text;
+
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         InitializeVariables();
-        sliderVar.value = 0;
-
     }
 
     private void InitializeVariables()
     {
         DontDestroyOnLoad(this);
-        // _requiredScore = 5;
-        // SliderVar.maxValue = 5;
-        sliderVar.maxValue = GameManager.Instance.requiredScore;
-
+        _player = _player.GetComponent<PlayerController>();
+        _requiredScore = 10;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         SetScoreSlider();
-        _text.GetComponent<Text>().text = GameManager.Instance.currentScore + "/" + GameManager.Instance.requiredScore;
-        if(_cycle.daysSurvived > _survived) {
+        _text.GetComponent<Text>().text = _player.currentScore + "/" + _requiredScore;
+        if (_cycle.daysSurvived > _survived)
+        {
             UpdateScore();
         }
     }
@@ -44,8 +43,6 @@ public class ScoreManager : MonoBehaviour {
 
     private void SetScoreSlider()
     {
-        sliderVar.value = GameManager.Instance.currentScore;
+        sliderVar.value = _player.currentScore / _requiredScore;
     }
-
-
 }

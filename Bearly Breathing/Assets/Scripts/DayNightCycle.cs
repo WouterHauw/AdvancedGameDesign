@@ -1,26 +1,31 @@
 ﻿using UnityEngine;
-using Assets.Scripts;
 
 public class DayNightCycle : MonoBehaviour
 {
+    [Range(0, 1)] public float currentTimeOfDay;
 
-    public Light sun;
-
-    [Range(0, 1)]
-    public float currentTimeOfDay;
-    [HideInInspector]
-    public float timeMultiplier = 1f;
-    public int daysSurvived;
     [SerializeField]
     private InputScript _inputScript;
     [SerializeField]
     private DifficultyChanger _difficultyChanger;
     private NewDay _newDay;
     private bool _dayHasBeenChanged;
+
+    public int daysSurvived;
+
+    public Light sun;
+
+    [HideInInspector] public float timeMultiplier = 1f;
+
+    // public bool isDay;
+    [SerializeField] private GameObject _player;
+
+    private PlayerController _playerScript;
     private float _secondsInFullDay;
+
     private float _sunInitialIntensity;
 
-    void Start()
+    private void Start()
     {
         InitializeVariables();
         _difficultyChanger.ChangeDifficultyOnNewDay(daysSurvived);
@@ -30,31 +35,30 @@ public class DayNightCycle : MonoBehaviour
     {
         currentTimeOfDay = 0.25f;
         _sunInitialIntensity = sun.intensity;
-        _secondsInFullDay = 10f;
+        _secondsInFullDay = 60f;
         daysSurvived = 0;
         _inputScript = FindObjectOfType<InputScript>();
         _difficultyChanger = FindObjectOfType<DifficultyChanger>();
         _newDay = FindObjectOfType<NewDay>();
         _dayHasBeenChanged = false;
+        _playerScript = _player.GetComponent<PlayerController>();
     }
 
-    void Update()
+    private void Update()
     {
         UpdateSun();
 
-        currentTimeOfDay += (Time.deltaTime / _secondsInFullDay) * timeMultiplier;
+        currentTimeOfDay += Time.deltaTime / _secondsInFullDay * timeMultiplier;
 
         if (currentTimeOfDay >= 1)
         {
             currentTimeOfDay = 0;
         }
-
-
     }
 
     private void UpdateSun()
     {
-        sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
+        sun.transform.localRotation = Quaternion.Euler(currentTimeOfDay * 360f - 90, 170, 0);
 
         float intensityMultiplier = 1;
         if (currentTimeOfDay <= 0.23f || currentTimeOfDay >= 0.75f)

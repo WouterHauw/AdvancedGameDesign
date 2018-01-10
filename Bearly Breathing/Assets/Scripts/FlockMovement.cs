@@ -1,93 +1,87 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FlockMovement : MonoBehaviour
 {
     public float speed = 0.001f;
-    float rotationSpeed = 4.0f;
-    Vector3 averageHeading;
-    Vector3 averagePosition;
-    float neighbourDistance = 4.0f;
-    bool turning = false;
+    private const float NeighbourDistance = 4.0f;
+    private const float RotationSpeed = 4.0f;
+    private bool _turning;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         speed = Random.Range(0.5f, 1);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Vector3.Distance(transform.position, Vector3.zero) >= Flocking.mapSize)
+        _turning = Vector3.Distance(transform.position, Vector3.zero) >= Flocking.mapSize;
+        if (_turning)
         {
-            turning = true;
-        }
-        else
-            turning = false;
-        if(turning)
-        {
-            Vector3 direction = Vector3.zero - transform.position;
+            var direction = Vector3.zero - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation,
-                                                  Quaternion.LookRotation(direction),
-                                                  rotationSpeed * Time.deltaTime);
+                Quaternion.LookRotation(direction),
+                RotationSpeed * Time.deltaTime);
             speed = Random.Range(0.5f, 1);
         }
-          
 
-        if (Random.Range(0,5) < 1)
+        if (Random.Range(0, 5) < 1)
+        {
             ApplyRules();
+        }
 
         transform.Translate(0, 0, Time.deltaTime * speed);
     }
 
-    void ApplyRules()
+    private void ApplyRules()
     {
-        GameObject[] gos;
-        gos = Flocking.allSheep;
+        var gos = Flocking.allSheep;
 
-        Vector3 vcentre = Vector3.zero;
-        Vector3 vavoid = Vector3.zero;
-        float gSpeed = 0.1f;
+        var vcentre = Vector3.zero;
+        var vavoid = Vector3.zero;
+        var gSpeed = 0.1f;
 
-        Vector3 goalPos = Flocking.goalPos;
-        float dist;
+        var goalPos = Flocking.goalPos;
 
-        int groupSize = 0;
+        var groupSize = 0;
 
-        foreach (GameObject go in gos)
+        foreach (var go in gos)
         {
-
-            if (go != gameObject)
+            if (go == gameObject)
             {
-                dist = Vector3.Distance(go.transform.position, transform.position);
-                if(dist <= neighbourDistance)
-                {
-                    vcentre += go.transform.position;
-                    groupSize++;
-
-                    if(dist < 10.0f)
-                    {
-                        vavoid = vavoid + (transform.position - go.transform.position);
-                    }
-
-                    FlockMovement anotherFlock = go.GetComponent<FlockMovement>();
-                    gSpeed = gSpeed + anotherFlock.speed;
-                }
+                continue;
             }
+            var dist = Vector3.Distance(go.transform.position, transform.position);
+            if (!(dist <= NeighbourDistance))
+            {
+                continue;
+            }
+            vcentre += go.transform.position;
+            groupSize++;
+
+            if (dist < 10.0f)
+            {
+                vavoid = vavoid + (transform.position - go.transform.position);
+            }
+
+            var anotherFlock = go.GetComponent<FlockMovement>();
+            gSpeed = gSpeed + anotherFlock.speed;
         }
 
-        if(groupSize > 0)
+        if (groupSize <= 0)
         {
-            vcentre = vcentre / groupSize + (goalPos - transform.position);
-            speed = gSpeed / groupSize;
+            return;
+        }
+        vcentre = vcentre / groupSize + (goalPos - transform.position);
+        speed = gSpeed / groupSize;
 
-            Vector3 direction = (vcentre + vavoid) - transform.position;
-            if (direction != Vector3.zero)
-                transform.rotation = Quaternion.Slerp(transform.rotation,
-                                                      Quaternion.LookRotation(direction),
-                                                      rotationSpeed * Time.deltaTime);
+        var direction = vcentre + vavoid - transform.position;
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                Quaternion.LookRotation(direction),
+                RotationSpeed * Time.deltaTime);
         }
     }
 }
