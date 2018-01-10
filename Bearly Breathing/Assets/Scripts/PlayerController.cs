@@ -55,6 +55,10 @@ public class PlayerController : MonoBehaviour
                
                 _ability = gameObject.AddComponent<Bush>();
             }
+            else
+            {
+                _ability = gameObject.GetComponent<Bush>();
+            }
             _ability.InitializeVariables();
             _ability.ActivateAbility(other.gameObject, _anim);
         }
@@ -97,6 +101,10 @@ public class PlayerController : MonoBehaviour
         if (!gameObject.GetComponent<AttackScript>())
         {
             _ability = gameObject.AddComponent<AttackScript>();
+        }
+        else
+        {
+            _ability = gameObject.GetComponent<AttackScript>();
         }
         _ability.InitializeVariables();
         _ability.ActivateAbility(null, _anim);
