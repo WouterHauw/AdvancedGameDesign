@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour
         _inputScript = FindObjectOfType<InputScript>();
         _UIScript = FindObjectOfType<UIManagerScript>();
         GameManager.Instance.health = 3;
-        previousHealth = GameManager.Instance.health = 3;
-
         isHiding = false;
     }
 

@@ -3,9 +3,6 @@ using UnityEngine.UI;
 
 public class UIManagerScript : MonoBehaviour
 {
-    [SerializeField] private GameObject text;
-    [SerializeField] private Slider SliderVar;
-
     public Image heart;
     public int heartX;
     public int heartY;
@@ -18,8 +15,6 @@ public class UIManagerScript : MonoBehaviour
         heartX = -90;
         heartY = -20;
         heartWidth = 30;
-        currentHearts = 0;
-        setHealthSlider();
     }
 
 
