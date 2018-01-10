@@ -23,6 +23,10 @@ GameObject:
   - component: {fileID: 65443742983314502}
   - component: {fileID: 95285923914664902}
   - component: {fileID: 54662831900833112}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 114542918283277622}
+>>>>>>> Development
   m_Layer: 9
   m_Name: Sheep
   m_TagString: Sheep
@@ -39,7 +43,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4081429571776218}
   - component: {fileID: 195955891106717344}
+<<<<<<< HEAD
   - component: {fileID: 114422220299064312}
+=======
+>>>>>>> Development
   m_Layer: 9
   m_Name: Sheep 1
   m_TagString: SheepTransform
@@ -118,17 +125,30 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+<<<<<<< HEAD
 --- !u!114 &114422220299064312
+=======
+--- !u!114 &114542918283277622
+>>>>>>> Development
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1665634631539950}
+  m_GameObject: {fileID: 1291595567594164}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a806c767ce76a964ea075f5f9a0db110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+  m_Script: {fileID: 11500000, guid: 54e1333efc9b97d419514768912498f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sheepAgent: {fileID: 0}
+  playerTransform: {fileID: 0}
+  sheepTransform: {fileID: 0}
+  distance: 0
+>>>>>>> Development
 --- !u!195 &195955891106717344
 NavMeshAgent:
   m_ObjectHideFlags: 1
