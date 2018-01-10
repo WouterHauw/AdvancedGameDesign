@@ -14,11 +14,13 @@ public class InputScript : MonoBehaviour
     private SwipeGestureRecognizer _swipeGestureRecognizer;
     private GestureRecognizer _tapGestureRecognizer;
     private Animator _anim;
-
+    public GameObject player;
+    public int walkingSpeed;
 
     private GestureTouch FirstTouch(IEnumerable<GestureTouch> touches)
     {
         foreach (var t in touches)
+
         {
             return t;
         }
@@ -60,6 +62,11 @@ public class InputScript : MonoBehaviour
                     Debug.Log(hit.point);
                 }
             }
+            _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
+            _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
+            _swipeGestureRecognizer.Direction = _swipeDirection;
+
+            walkingSpeed = 8;
 
         }
     }
@@ -99,7 +106,14 @@ public class InputScript : MonoBehaviour
         }
         else if (amount.x < 0 && _facingRight)
         {
-            FlipXAxis();
+            if (amount.x > 0 && !_facingRight)
+            {
+                FlipXAxis();
+            }
+            else if (amount.x < 0 && _facingRight)
+            {
+                FlipXAxis();
+            }
         }
         var pos = transform.position;
         pos.x += amount.x * 8 * Time.deltaTime;
