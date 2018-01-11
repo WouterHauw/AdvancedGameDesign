@@ -8,6 +8,7 @@ public class BaseNPC : MonoBehaviour
     public NavMeshAgent agent;
     protected Animator animator;
     protected bool facingLeft;
+    public float sightRange;
 
 
     public Animator GetAnimator()

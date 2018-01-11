@@ -4,7 +4,6 @@ public class HunterController : BaseNPC
 {
     public GameObject[] waypoints;
     public float accuracy = 3.0f;
-    public float sightRange = 20f;
     public float shootRange = 10f;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _gun;
@@ -14,6 +13,7 @@ public class HunterController : BaseNPC
     protected override void StartNpc()
     {
         base.StartNpc();
+        sightRange = 20f;
         facingLeft = false;
         waypoints = GameObject.FindGameObjectsWithTag("waypoint");
     }

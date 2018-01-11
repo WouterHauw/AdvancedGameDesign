@@ -17,7 +17,7 @@ public class SheepFleeState : ISheepState
     {
         Run();
 
-        if (_sheep.distance >= 20)
+        if (_sheep.distance >= _sheep.sightRange)
         {
             _sheep.ChangeState(new SheepIdleState());
             _sheep.GetAnimator().SetBool("isIdle", true);
