@@ -1,14 +1,26 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+
 public class AttackScript : MonoBehaviour, IAbilityInterface
 {
+    private RaycastHit _hit;
     [SerializeField] private float _bearActiveTime;
     [SerializeField] private GameObject _bearClaw;
     [SerializeField] private float _range;
     [SerializeField] private GameObject _specialEffect;
     [SerializeField] private GameObject _textSpecialEffect;
 
+    private GameObject _instantiatedObj;
+    private bool _isBeingDestroyed;
+    private bool _isFlashing;
+
+
+    // Use this for initialization
+    private void Start()
+    {
+        InitializeVariables();
+    }
 
     //Must be public as its used in interface
     public void InitializeVariables()
@@ -17,8 +29,11 @@ public class AttackScript : MonoBehaviour, IAbilityInterface
         _range = 2f;
         var script = GetComponent<PlayerController>();
         _bearClaw = script.bearClaw;
+
+        GameObject player = GameObject.Find("Player");
         _specialEffect = script.GetParticleEffect();
         _textSpecialEffect = script.GetTextParticleEffect();
+
     }
 
     //Must be public as its used in interface
@@ -36,6 +51,7 @@ public class AttackScript : MonoBehaviour, IAbilityInterface
             hitColliders[0].gameObject.SetActive(false);
             StartCoroutine(BearClawCourotine());
             playerAnimation.SetTrigger("isAttacking");
+            GameManager.Instance.currentScore++;
         }
         if (hitColliders[0].gameObject.CompareTag("Hunter"))
         {
@@ -50,12 +66,6 @@ public class AttackScript : MonoBehaviour, IAbilityInterface
         //TODO: can be used in case stuff needs deconstructing
     }
 
-
-    // Use this for initialization
-    private void Start()
-    {
-        InitializeVariables();
-    }
 
     private IEnumerator BearClawCourotine()
     {
@@ -83,3 +93,4 @@ public class AttackScript : MonoBehaviour, IAbilityInterface
         Gizmos.DrawWireSphere(transform.position, _range);
     }
 }
+

@@ -1,7 +1,14 @@
-﻿using UnityEngine;
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int health;
+    public int requiredScore;
+    public int currentScore;
+
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -18,4 +25,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void AdjustScore() { }
+
 }
+

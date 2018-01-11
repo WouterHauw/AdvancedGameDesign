@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private PlayerController _player;
     [SerializeField] private DayNightCycle _cycle;
-    [SerializeField] private Slider _sliderVar;
+    public Slider sliderVar;
     [SerializeField] private GameObject _text;
 
 
@@ -43,6 +43,6 @@ public class ScoreManager : MonoBehaviour
 
     private void SetScoreSlider()
     {
-        _sliderVar.value = _player.currentScore / _requiredScore;
+        sliderVar.value = _player.currentScore / _requiredScore;
     }
 }

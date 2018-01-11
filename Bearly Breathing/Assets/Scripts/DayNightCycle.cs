@@ -4,6 +4,13 @@ public class DayNightCycle : MonoBehaviour
 {
     [Range(0, 1)] public float currentTimeOfDay;
 
+    [SerializeField]
+    private InputScript _inputScript;
+    [SerializeField]
+    private DifficultyChanger _difficultyChanger;
+    private NewDay _newDay;
+    private bool _dayHasBeenChanged;
+
     public int daysSurvived;
 
     public Light sun;
@@ -21,14 +28,20 @@ public class DayNightCycle : MonoBehaviour
     private void Start()
     {
         InitializeVariables();
+        _difficultyChanger.ChangeDifficultyOnNewDay(daysSurvived);
     }
 
     private void InitializeVariables()
     {
-        _playerScript = _player.GetComponent<PlayerController>();
-        currentTimeOfDay = 0.20f;
+        currentTimeOfDay = 0.25f;
         _sunInitialIntensity = sun.intensity;
         _secondsInFullDay = 60f;
+        daysSurvived = 0;
+        _inputScript = FindObjectOfType<InputScript>();
+        _difficultyChanger = FindObjectOfType<DifficultyChanger>();
+        _newDay = FindObjectOfType<NewDay>();
+        _dayHasBeenChanged = false;
+        _playerScript = _player.GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -39,8 +52,6 @@ public class DayNightCycle : MonoBehaviour
 
         if (currentTimeOfDay >= 1)
         {
-            DayChanges();
-            NightChanges();
             currentTimeOfDay = 0;
         }
     }
@@ -54,13 +65,20 @@ public class DayNightCycle : MonoBehaviour
         {
             intensityMultiplier = 0;
         }
-        else if (currentTimeOfDay <= 0.25f) //beginning of day
+
+        if (currentTimeOfDay >= 0.75f && currentTimeOfDay <= 0.76f)
         {
-            intensityMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
+            NightChanges();
+            _dayHasBeenChanged = false;
         }
-        else if (currentTimeOfDay >= 0.73f) // end of day
+
+        if (currentTimeOfDay >= 0.23f && currentTimeOfDay <= 0.24f)
         {
-            intensityMultiplier = Mathf.Clamp01(1 - (currentTimeOfDay - 0.73f) * (1 / 0.02f));
+            if (!_dayHasBeenChanged)
+            {
+                DayChanges();
+                _dayHasBeenChanged = true;
+            }
         }
 
         sun.intensity = _sunInitialIntensity * intensityMultiplier;
@@ -68,20 +86,41 @@ public class DayNightCycle : MonoBehaviour
 
     private void DayChanges()
     {
+        _inputScript.walkingSpeed = 8;
+        _newDay.OnNewDay();
         daysSurvived++;
         Debug.Log("DayChanges");
+        GameManager.Instance.currentScore = 0;
+        DestroyOnDay();
+        _difficultyChanger.ChangeDifficultyOnNewDay(daysSurvived);
     }
+
+    private void DestroyOnDay()
+    {
+        var sheep = GameObject.FindGameObjectsWithTag("SheepTransform");
+
+        foreach (var item in sheep)
+        {
+            item.SetActive(false);
+        }
+
+        var hunter = GameObject.FindGameObjectsWithTag("HunterTransform");
+
+        foreach (var item in hunter)
+        {
+            Destroy(item);
+        }
+    }
+
+
 
     private void NightChanges()
     {
-        if (_playerScript.currentScore < 10)
+        _inputScript.walkingSpeed = 4;
+        if (GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
         {
             Debug.Log("NightChanges");
-            _playerScript.Die();
-        }
-        else
-        {
-            _playerScript.currentScore = 0;
+            //  _playerScript.Die();
         }
     }
 }

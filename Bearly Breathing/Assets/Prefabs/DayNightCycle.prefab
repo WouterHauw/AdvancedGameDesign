@@ -51,7 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7811cd68078505d43b2e6cddf83f1071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sun: {fileID: 0}
-  secondsInFullDay: 120
   currentTimeOfDay: 0
+  _inputScript: {fileID: 0}
+  _difficultyChanger: {fileID: 0}
+  daysSurvived: 0
+  sun: {fileID: 0}
   timeMultiplier: 1
+  _player: {fileID: 0}

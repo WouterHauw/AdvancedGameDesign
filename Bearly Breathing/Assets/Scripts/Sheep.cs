@@ -42,6 +42,6 @@ public class Sheep : MonoBehaviour
 
         _currentState = newState;
 
-        _currentState.Enter(this);
+        //_currentState.Enter(this);
     }
 }
