@@ -10,6 +10,11 @@ public class BaseNPC : MonoBehaviour
     protected bool facingLeft;
 
 
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
+
     protected virtual void StartNpc()
     {
         player = GameObject.FindGameObjectWithTag("Player");
