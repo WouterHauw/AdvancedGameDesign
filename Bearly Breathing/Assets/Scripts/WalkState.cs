@@ -13,6 +13,8 @@ public class WalkState : ISheepState
     public void Enter(Sheep _sheep)
     {
         this._sheep = _sheep;
+        _sheep.anim.SetBool("isIdle", false);
+        _sheep.anim.SetBool("isEating", false);
     }
 
     public void Execute()
@@ -24,13 +26,14 @@ public class WalkState : ISheepState
         if (_sheep.distance <= 20)
         {
             _sheep.ChangeState(new FleeState());
+            _sheep.anim.SetBool("isFleeing", true);
         }
 
     }
 
     public void Exit()
     {
-
+        _sheep.anim.SetBool("isWalking", false);
     }
 
     private void Walk()
@@ -40,6 +43,7 @@ public class WalkState : ISheepState
         if (_walkTimer >= _walkDuration)
         {
             _sheep.ChangeState(new IdleState());
+            _sheep.anim.SetBool("isIdle", true);
         }
     }
 
@@ -50,6 +54,9 @@ public class WalkState : ISheepState
         {
             goalPos = new Vector3(Random.Range(-radius, radius), 0, Random.Range(-radius, radius));
             _sheep.sheepAgent.destination = goalPos;
+
+            if(_sheep.anim.velocity.magnitude > 0)
+                _sheep.anim.SetBool("isWalking", true);
         }
     }
 

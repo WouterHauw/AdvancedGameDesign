@@ -28,6 +28,8 @@ public class Sheep : MonoBehaviour
     void Update()
     {
         distance = Vector3.Distance(sheepTransform.position, playerTransform.position);
+        anim.SetFloat("speed", sheepAgent.velocity.magnitude);
+        anim.SetFloat("distance", distance);
         _currentState.Execute();
     }
 
