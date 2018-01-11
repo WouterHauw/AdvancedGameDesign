@@ -3,20 +3,18 @@ using UnityEngine.AI;
 
 public class SheepController : BaseNPC
 {
-    public float distance;
     private ISheepState _currentState;
 
     protected override void StartNpc()
     {
         base.StartNpc();
         facingLeft = true;
-        ChangeState(new IdleState());
+        ChangeState(new SheepIdleState());
     }
 
     protected override void UpdateNpc()
     {
         base.UpdateNpc();
-        distance = Vector3.Distance(transform.position, player.transform.position);
         _currentState.Execute();
     }
     public void ChangeState(ISheepState newState)

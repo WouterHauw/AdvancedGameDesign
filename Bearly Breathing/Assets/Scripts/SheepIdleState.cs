@@ -1,42 +1,42 @@
 ﻿using UnityEngine;
 
-public class IdleState : ISheepState
+public class SheepIdleState : ISheepState
 {
     private SheepController _sheep;
     private float _idleTimer;
     private float _idleDuration = 10;
 
-    public void Enter(SheepController _sheep)
+    public void Enter(SheepController sheep)
     {
-        this._sheep = _sheep;
+        _sheep = sheep;
     }
 
     public void Execute()
     {
-        _sheep.GetAgent().isStopped = true;
+        _sheep.agent.isStopped = true;
 
         Idle();
 
         if (_sheep.distance <= 20)
         {
-            _sheep.ChangeState(new FleeState());
+            _sheep.ChangeState(new SheepFleeState());
         }
     }
 
     public void Exit()
     {
-        _sheep.GetAgent().isStopped = false;
+        _sheep.agent.isStopped = false;
     }
 
     private void Idle()
     {
-        _sheep.GetAgent().isStopped = true;
+        _sheep.agent.isStopped = true;
 
         _idleTimer += Time.deltaTime;
 
         if (_idleTimer >= _idleDuration)
         {
-            _sheep.ChangeState(new WalkState());
+            _sheep.ChangeState(new SheepWalkState());
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Random = UnityEngine.Random;
 using UnityEngine;
 
-public class WalkState : ISheepState
+public class SheepWalkState : ISheepState
 {
     private SheepController _sheep;
     private float _walkTimer;
@@ -10,9 +10,9 @@ public class WalkState : ISheepState
     public static int radius = 2;
     public static Vector3 goalPos = Vector3.zero;
 
-    public void Enter(SheepController _sheep)
+    public void Enter(SheepController sheep)
     {
-        this._sheep = _sheep;
+        _sheep = sheep;
     }
 
     public void Execute()
@@ -23,7 +23,7 @@ public class WalkState : ISheepState
 
         if (_sheep.distance <= 20)
         {
-            _sheep.ChangeState(new FleeState());
+            _sheep.ChangeState(new SheepFleeState());
         }
 
     }
@@ -39,7 +39,7 @@ public class WalkState : ISheepState
 
         if (_walkTimer >= _walkDuration)
         {
-            _sheep.ChangeState(new IdleState());
+            _sheep.ChangeState(new SheepIdleState());
         }
     }
 
@@ -49,7 +49,7 @@ public class WalkState : ISheepState
         if (Random.Range(0, 10000) < 50)
         {
             goalPos = new Vector3(Random.Range(-radius, radius), 0, Random.Range(-radius, radius));
-            _sheep.GetAgent().destination = goalPos;
+            _sheep.agent.destination = goalPos;
         }
     }
 

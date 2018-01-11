@@ -765,11 +765,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc14bc1e227c70746919cad8b40ffa5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bearActiveTime: 0
-  _bearClaw: {fileID: 0}
-  _range: 0
-  _specialEffect: {fileID: 0}
-  _textSpecialEffect: {fileID: 0}
 --- !u!1 &270229711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3954,6 +3949,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1653037023 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1898875484528198, guid: 938d7769a5eba964b8f4b23c2bf14010,
+    type: 2}
+  m_PrefabInternal: {fileID: 1752306146}
 --- !u!4 &1657901026 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4149453903000586, guid: c17ba441e38e15642be247459f93401c,
@@ -4382,6 +4382,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114545288264716532, guid: 938d7769a5eba964b8f4b23c2bf14010,
+        type: 2}
+      propertyPath: _gun
+      value: 
+      objectReference: {fileID: 1653037023}
+    - target: {fileID: 114545288264716532, guid: 938d7769a5eba964b8f4b23c2bf14010,
+        type: 2}
+      propertyPath: _bullet
+      value: 
+      objectReference: {fileID: 1740845147830196, guid: b033f3a819cabec418f565285489ff71,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 938d7769a5eba964b8f4b23c2bf14010, type: 2}
   m_IsPrefabParent: 0

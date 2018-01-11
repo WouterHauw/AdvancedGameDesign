@@ -85,7 +85,7 @@ public class AttackScript : MonoBehaviour, IAbilityInterface
         instantiatedObj.transform.Translate(Vector3.back * 2);
     }
 
-    //defines the attack range of the player
+    //defines the attack sightRange of the player
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
