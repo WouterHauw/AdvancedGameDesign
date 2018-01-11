@@ -17,6 +17,8 @@ public class SheepController : BaseNPC
     {
         base.UpdateNpc();
         distance = Vector3.Distance(transform.position, player.transform.position);
+        animator.SetFloat("speed", agent.velocity.magnitude);
+        animator.SetFloat("distance", distance);
         _currentState.Execute();
     }
     public void ChangeState(ISheepState newState)

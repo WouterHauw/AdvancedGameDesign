@@ -9,21 +9,24 @@ public class FleeState : ISheepState
     public void Enter(SheepController _sheep)
     {
         this._sheep = _sheep;
+        _sheep.GetAnimator().SetBool("isIdle", false);
+        _sheep.GetAnimator().SetBool("isEating", false);
     }
 
     public void Execute()
     {
         Run();
 
-        if (_sheep.distance >= 15)
+        if (_sheep.distance >= 20)
         {
             _sheep.ChangeState(new IdleState());
+            _sheep.GetAnimator().SetBool("isIdle", true);
         }
     }
 
     public void Exit()
     {
-
+        _sheep.GetAnimator().SetBool("isFleeing", false);
     }
 
     public void Run()

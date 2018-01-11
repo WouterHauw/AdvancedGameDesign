@@ -18,6 +18,11 @@ public class BaseNPC : MonoBehaviour
         return agent;
     }
 
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
+
     protected virtual void StartNpc()
     {
         player = GameObject.FindGameObjectWithTag("Player");
