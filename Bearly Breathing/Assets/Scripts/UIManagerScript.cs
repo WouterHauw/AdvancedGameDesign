@@ -34,7 +34,7 @@ public class UIManagerScript : MonoBehaviour
         while (currentHearts > GameManager.Instance.health)
         {
             var Hearts = GameObject.FindGameObjectsWithTag("Heart");
-            var heartToDestroy = Hearts[(currentHearts - 1)];
+            GameObject heartToDestroy = Hearts[(currentHearts - 1)];
             Destroy(heartToDestroy);
             heartX += heartWidth;
             currentHearts--;

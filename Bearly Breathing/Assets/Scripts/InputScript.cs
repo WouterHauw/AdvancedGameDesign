@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputScript : MonoBehaviour
 {
-    public Camera camera;
+    [SerializeField] private Camera mainCamera;
     public bool isAttacking;
     public FingersJoystickScript joystickScript;
     private bool _facingRight;
@@ -53,8 +53,8 @@ public class InputScript : MonoBehaviour
         {
             GestureTouch t = FirstTouch(touches);
             RaycastHit hit;
-            var posRay = camera.ScreenPointToRay(Input.mousePosition);
-            Ray ray = camera.ScreenPointToRay(new Vector2(t.ScreenX, t.ScreenY));
+            var posRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(new Vector2(t.ScreenX, t.ScreenY));
             if (Physics.Raycast(ray, out hit,100))
             {
                 if (hit.collider != null)
