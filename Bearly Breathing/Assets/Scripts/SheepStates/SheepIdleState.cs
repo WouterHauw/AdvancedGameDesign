@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class IdleState : ISheepState
+public class SheepIdleState : ISheepState
 {
     private SheepController _sheep;
     private float _idleTimer;
@@ -8,33 +8,33 @@ public class IdleState : ISheepState
     private float _eatTimer;
     private float _eatDuration = 5;
 
-    public void Enter(SheepController _sheep)
+    public void Enter(SheepController sheep)
     {
-        this._sheep = _sheep;
+        _sheep = sheep;
     }
 
     public void Execute()
     {
-        _sheep.GetAgent().isStopped = true;
+        _sheep.agent.isStopped = true;
 
         Idle();
 
-        if (_sheep.distance <= 20)
+        if (_sheep.distance <= _sheep.sightRange)
         {
-            _sheep.ChangeState(new FleeState());
+            _sheep.ChangeState(new SheepFleeState());
             _sheep.GetAnimator().SetBool("isFleeing", true);
         }
     }
 
     public void Exit()
     {
-        _sheep.GetAgent().isStopped = false;
+        _sheep.agent.isStopped = false;
         _sheep.GetAnimator().SetBool("isIdle", false);
     }
 
     private void Idle()
     {
-        _sheep.GetAgent().isStopped = true;
+        _sheep.agent.isStopped = true;
 
         _idleTimer += Time.deltaTime;
         _sheep.GetAnimator().SetBool("isEating", true);
@@ -45,7 +45,7 @@ public class IdleState : ISheepState
         if (_idleTimer >= _idleDuration)
         {
             _sheep.GetAnimator().SetBool("isEating", false);
-            _sheep.ChangeState(new WalkState());
+            _sheep.ChangeState(new SheepWalkState());
             _sheep.GetAnimator().SetBool("isWalking", true);
         }
     }

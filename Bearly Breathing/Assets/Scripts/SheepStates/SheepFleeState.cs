@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class FleeState : ISheepState
+public class SheepFleeState : ISheepState
 {
     private SheepController _sheep;
     private NavMeshHit _navHit;
 
-    public void Enter(SheepController _sheep)
+    public void Enter(SheepController sheep)
     {
-        this._sheep = _sheep;
+        this._sheep = sheep;
         _sheep.GetAnimator().SetBool("isIdle", false);
         _sheep.GetAnimator().SetBool("isEating", false);
     }
@@ -17,9 +17,9 @@ public class FleeState : ISheepState
     {
         Run();
 
-        if (_sheep.distance >= 20)
+        if (_sheep.distance >= _sheep.sightRange)
         {
-            _sheep.ChangeState(new IdleState());
+            _sheep.ChangeState(new SheepIdleState());
             _sheep.GetAnimator().SetBool("isIdle", true);
         }
     }
@@ -31,11 +31,11 @@ public class FleeState : ISheepState
 
     public void Run()
     {
-        Vector3 runTo = _sheep.transform.position + (_sheep.transform.position - _sheep.GetPlayer().transform.position);
+        Vector3 runTo = _sheep.transform.position + (_sheep.transform.position - _sheep.player.transform.position);
         if (NavMesh.SamplePosition(runTo, out _navHit, 3.0f, NavMesh.AllAreas))
         {
-            _sheep.GetAgent().destination = _navHit.position;
-            _sheep.GetAgent().speed = 3;
+            _sheep.agent.destination = _navHit.position;
+            _sheep.agent.speed = 3;
         }
     }
 

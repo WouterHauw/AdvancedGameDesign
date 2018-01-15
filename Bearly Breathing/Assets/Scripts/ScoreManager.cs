@@ -43,6 +43,7 @@ public class ScoreManager : MonoBehaviour
 
     private void SetScoreSlider()
     {
-        sliderVar.value = _player.currentScore / _requiredScore;
+        var value = _player.currentScore / _requiredScore;
+        sliderVar.value = value;
     }
 }

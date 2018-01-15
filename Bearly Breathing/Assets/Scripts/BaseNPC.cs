@@ -3,20 +3,13 @@ using UnityEngine.AI;
 
 public class BaseNPC : MonoBehaviour
 {
-    protected GameObject player;
+    public float distance;
+    public GameObject player;
+    public NavMeshAgent agent;
     protected Animator animator;
     protected bool facingLeft;
-    protected NavMeshAgent agent;
+    public float sightRange;
 
-    public GameObject GetPlayer()
-    {
-        return player;
-    }
-
-    public NavMeshAgent GetAgent()
-    {
-        return agent;
-    }
 
     public Animator GetAnimator()
     {
@@ -32,6 +25,7 @@ public class BaseNPC : MonoBehaviour
 
     protected virtual void UpdateNpc()
     {
+        distance = Vector3.Distance(transform.position, player.transform.position);
         if (agent.velocity.x > 0 && facingLeft)
         {
             FlipXAxis();

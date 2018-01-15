@@ -3,14 +3,14 @@ using UnityEngine.AI;
 
 public class SheepController : BaseNPC
 {
-    public float distance;
     private ISheepState _currentState;
 
     protected override void StartNpc()
     {
         base.StartNpc();
+        sightRange = 20f;
         facingLeft = true;
-        ChangeState(new IdleState());
+        ChangeState(new SheepIdleState());
     }
 
     protected override void UpdateNpc()

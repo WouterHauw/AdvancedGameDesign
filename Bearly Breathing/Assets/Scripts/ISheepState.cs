@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿
 public interface ISheepState
 {
     void Enter(SheepController sheep);
