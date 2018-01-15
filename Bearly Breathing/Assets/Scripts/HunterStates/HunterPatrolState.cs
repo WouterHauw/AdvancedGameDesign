@@ -13,9 +13,10 @@ public class HunterPatrolState : IHunterState
 
     public void Execute()
     {
-        if (_hunter.distance <= _hunter.sightRange)
+        if (_hunter.distance <= _hunter.sightRange && _hunter.player.GetComponent<PlayerController>().isHiding == false)
         {
             _hunter.ChangeState(new HunterChaseState());
+            _hunter.GetAnimator().SetBool("isChasing", true);
         }
         if (_hunter.waypoints.Length == 0)
         {
@@ -35,5 +36,6 @@ public class HunterPatrolState : IHunterState
 
     public void Exit()
     {
+        _hunter.GetAnimator().SetBool("isPatroling", false);
     }
 }
