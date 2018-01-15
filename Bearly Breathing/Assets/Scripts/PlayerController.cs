@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
     {
         //To prevent Unity from creating multiple copies of the same component in inspector at runtime
         _anim = GetComponent<Animator>();
-        GetComponent<AttackScript>();
         _inputScript = FindObjectOfType<InputScript>();
         _UIScript = FindObjectOfType<UIManagerScript>();
         GameManager.Instance.health = 3;
@@ -45,7 +44,6 @@ public class PlayerController : MonoBehaviour
     {
         if (_inputScript == null)
         {
-            Debug.Log("One of Script is missing");
             return;
         }
 
@@ -90,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (isAttacking)
         {
-            _ability = gameObject.AddComponent<AttackScript>();
+            _ability = gameObject.AddComponent<PlayerAttackScript>();
             _ability.InitializeVariables();
             _ability.ActivateAbility(null, _anim);
 
@@ -104,7 +102,6 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.health = health;
         if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
         {
-            Debug.Log("change health");
             previousHealth = GameManager.Instance.health;
             _UIScript.setHealthSlider();
         }
@@ -118,13 +115,13 @@ public class PlayerController : MonoBehaviour
     //method for use for the attack button
     public void Attack()
     {
-        if (!gameObject.GetComponent<AttackScript>())
+        if (!gameObject.GetComponent<PlayerAttackScript>())
         {
-            _ability = gameObject.AddComponent<AttackScript>();
+            _ability = gameObject.AddComponent<PlayerAttackScript>();
         }
         else
         {
-            _ability = gameObject.GetComponent<AttackScript>();
+            _ability = gameObject.GetComponent<PlayerAttackScript>();
         }
         _ability.InitializeVariables();
         _ability.ActivateAbility(null, _anim);
