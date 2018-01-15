@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] cartoonBubbles;
     public GameObject[] collisionEffects;
     public int currentScore;
-    public int health;
+    private int health;
     public bool isHiding;
 
     private UIManagerScript _UIScript;
@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
         _inputScript = FindObjectOfType<InputScript>();
         _UIScript = FindObjectOfType<UIManagerScript>();
         GameManager.Instance.health = 3;
+        health = 3;
+
         isHiding = false;
     }
 
@@ -98,10 +100,11 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeInHealth()
     {
-        Debug.Log("change health");
+        
         GameManager.Instance.health = health;
         if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
         {
+            Debug.Log("change health");
             previousHealth = GameManager.Instance.health;
             _UIScript.setHealthSlider();
         }
