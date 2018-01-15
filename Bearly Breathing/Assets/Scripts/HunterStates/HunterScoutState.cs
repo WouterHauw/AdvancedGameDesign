@@ -4,6 +4,8 @@ public class HunterScoutState : IHunterState
 {
     private HunterController _hunter;
     private int _currentWp;
+    private float _scoutTimer;
+    private float _scoutDuration = 5;
 
     public void Enter(HunterController hunter)
     {
@@ -14,15 +16,22 @@ public class HunterScoutState : IHunterState
 
     public void Execute()
     {
-        if (_hunter.player.GetComponent<PlayerController>().isHiding)
-        {
-            _hunter.ChangeState(new HunterScoutState());
-        }
-        if (_hunter.distance <= _hunter.sightRange)
+        _scoutTimer += Time.deltaTime;
+        _hunter.agent.speed = 7;
+
+        if (_hunter.distance <= _hunter.sightRange && _hunter.player.GetComponent<PlayerController>().isHiding == false)
         {
             _hunter.ChangeState(new HunterChaseState());
+            _hunter.GetAnimator().SetBool("isChasing", true);
         }
-        _hunter.agent.speed = 15;
+
+        if (_scoutTimer >= _scoutDuration)
+        {
+            _hunter.agent.speed = 3.5f;
+            _hunter.ChangeState(new HunterPatrolState());
+            _hunter.GetAnimator().SetBool("isPatroling", true);
+        }
+                
         if (_hunter.waypoints.Length == 0)
         {
             return;
@@ -42,6 +51,6 @@ public class HunterScoutState : IHunterState
 
     public void Exit()
     {
-        _hunter.agent.speed = 3.5f;
+        _hunter.GetAnimator().SetBool("isScouting", false);
     }
 }

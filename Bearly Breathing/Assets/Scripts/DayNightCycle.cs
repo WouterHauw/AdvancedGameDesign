@@ -8,7 +8,7 @@ public class DayNightCycle : MonoBehaviour
     private InputScript _inputScript;
     [SerializeField]
     private DifficultyChanger _difficultyChanger;
-    private NewDay _newDay;
+    [SerializeField] private NewDay _newDay;
     private bool _dayHasBeenChanged;
 
     public int daysSurvived;
@@ -17,7 +17,6 @@ public class DayNightCycle : MonoBehaviour
 
     [HideInInspector] public float timeMultiplier = 1f;
 
-    // public bool isDay;
     [SerializeField] private GameObject _player;
 
     private PlayerController _playerScript;
@@ -89,7 +88,6 @@ public class DayNightCycle : MonoBehaviour
         _inputScript.walkingSpeed = 8;
         _newDay.OnNewDay();
         daysSurvived++;
-        Debug.Log("DayChanges");
         GameManager.Instance.currentScore = 0;
         DestroyOnDay();
         _difficultyChanger.ChangeDifficultyOnNewDay(daysSurvived);
@@ -119,7 +117,6 @@ public class DayNightCycle : MonoBehaviour
         _inputScript.walkingSpeed = 4;
         if (GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
         {
-            Debug.Log("NightChanges");
             //  _playerScript.Die();
         }
     }

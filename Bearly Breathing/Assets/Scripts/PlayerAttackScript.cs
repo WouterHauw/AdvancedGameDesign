@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class AttackScript : MonoBehaviour, IAbilityInterface
+public class PlayerAttackScript : MonoBehaviour, IAbilityInterface
 {
     private RaycastHit _hit;
     [SerializeField] private float _bearActiveTime;
@@ -27,7 +27,7 @@ public class AttackScript : MonoBehaviour, IAbilityInterface
     {
         _bearActiveTime = 0.5f;
         _range = 2f;
-        var script = GetComponent<PlayerController>();
+        PlayerController script = GetComponent<PlayerController>();
         _bearClaw = script.bearClaw;
 
         GameObject player = GameObject.Find("Player");
@@ -76,7 +76,7 @@ public class AttackScript : MonoBehaviour, IAbilityInterface
 
     private void SetExplosions(Component collider)
     {
-        var instantiatedObj = Instantiate(_specialEffect);
+        GameObject instantiatedObj = Instantiate(_specialEffect);
         instantiatedObj.transform.position = collider.gameObject.transform.position;
         instantiatedObj.transform.Translate(Vector3.back * 2);
 

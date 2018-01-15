@@ -1,6 +1,4 @@
-﻿
-
-public class HunterShootState : IHunterState
+﻿public class HunterShootState : IHunterState
 {
     private HunterController _hunter;
 
@@ -15,11 +13,13 @@ public class HunterShootState : IHunterState
         if (_hunter.distance >= _hunter.shootRange)
         {
             _hunter.ChangeState(new HunterChaseState());
+            _hunter.GetAnimator().SetBool("isChasing", true);
         }
     }
 
     public void Exit()
     {
         _hunter.GetComponent<HunterController>().StopFiring();
+        _hunter.GetAnimator().SetBool("isShooting", false);
     }
 }

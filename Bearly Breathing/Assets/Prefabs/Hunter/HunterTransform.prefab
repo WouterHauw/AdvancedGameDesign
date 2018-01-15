@@ -841,8 +841,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b38cea0a6c31345a5077437c28a97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1740845147830196, guid: b033f3a819cabec418f565285489ff71, type: 2}
-  gun: {fileID: 1898875484528198}
+  distance: 0
+  player: {fileID: 0}
+  agent: {fileID: 0}
+  sightRange: 0
+  waypoints: []
+  accuracy: 3
+  shootRange: 10
+  _bullet: {fileID: 1740845147830196, guid: b033f3a819cabec418f565285489ff71, type: 2}
+  _gun: {fileID: 1898875484528198}
 --- !u!114 &114682892766321300
 MonoBehaviour:
   m_ObjectHideFlags: 1
