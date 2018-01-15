@@ -98,10 +98,11 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeInHealth()
     {
-        Debug.Log("change health");
+        
         GameManager.Instance.health = health;
         if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
         {
+            Debug.Log("change health");
             previousHealth = GameManager.Instance.health;
             _UIScript.setHealthSlider();
         }
