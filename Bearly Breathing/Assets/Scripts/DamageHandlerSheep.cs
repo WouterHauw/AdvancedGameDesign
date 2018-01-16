@@ -19,16 +19,7 @@ public class DamageHandlerSheep : MonoBehaviour
         InvokeRepeating("PlaySound", Time.deltaTime, 5.0f);
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (health <= 0)
-        {
-            // Destroy(gameObject);
-        }
-    }
-
-    private void PlaySound()
+     private void PlaySound()
     {
         var randomClip = Random.Range(0, clips.Length);
 

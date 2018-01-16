@@ -30,7 +30,6 @@ public class PlayerAttackScript : MonoBehaviour, IAbilityInterface
         PlayerController script = GetComponent<PlayerController>();
         _bearClaw = script.bearClaw;
 
-        GameObject player = GameObject.Find("Player");
         _specialEffect = script.GetParticleEffect();
         _textSpecialEffect = script.GetTextParticleEffect();
 

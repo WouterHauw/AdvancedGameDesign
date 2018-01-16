@@ -34,7 +34,6 @@ public class InputScript : MonoBehaviour
         isAttacking = false;
     }
 
-    //  public bool MoveJoysticktoGestureStartLocation;
 
     private void Start()
     {

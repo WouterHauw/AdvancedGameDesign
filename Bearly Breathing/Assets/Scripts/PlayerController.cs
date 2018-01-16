@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
             _ability.InitializeVariables();
             _ability.ActivateAbility(other.gameObject, _anim);
         }
-    }
+         }
 
 
     //Deactivate BushAbility

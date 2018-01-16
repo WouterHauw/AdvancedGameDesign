@@ -18,10 +18,9 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //TODO: playermovement needs to work
-        // if (player.GetComponent<PlayerController>().HandleMoveInput()) { 
+
         MoveCamera();
-        //  }
+      
     }
 
     private void InitializeCameraVariables()

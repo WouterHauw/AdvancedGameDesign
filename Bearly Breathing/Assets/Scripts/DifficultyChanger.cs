@@ -28,12 +28,6 @@ public class DifficultyChanger : MonoBehaviour
         GameManager.Instance.requiredScore = 5;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ChangeDifficultyOnNewDay(int daysPassed)
     {
         if (daysPassed >= 5)
@@ -43,7 +37,6 @@ public class DifficultyChanger : MonoBehaviour
             {
                 if (rand.Next(0, 2) == 0)
                 {
-                    Debug.Log("difficult day " + hardDayNr);
                     hardDayNr++;
                     DifficultDay();
                 }
@@ -61,7 +54,6 @@ public class DifficultyChanger : MonoBehaviour
             }
             else
             {
-                Debug.Log("difficult day " + hardDayNr);
                 hardDayNr++;
                 DifficultDay();
             }
@@ -72,13 +64,11 @@ public class DifficultyChanger : MonoBehaviour
             switch (daysPassed)
             {
                 case 0:
-                    Debug.Log("day 1");
                     _spawnScript.Spawnsheep(sheepToSpawn);
                     _scoreManager.sliderVar.maxValue = GameManager.Instance.requiredScore;
                     GameManager.Instance.health = 3;
                     break;
                 case 1:
-                    Debug.Log("day 2");
                     sheepToSpawn++;
                     _spawnScript.Spawnsheep(sheepToSpawn);
                     GameManager.Instance.requiredScore++;
@@ -86,7 +76,6 @@ public class DifficultyChanger : MonoBehaviour
                     _spawnScript.SpawnHunter(1);
                     break;
                 case 2:
-                    Debug.Log("day 3");
                     sheepToSpawn++;
                     _spawnScript.Spawnsheep(sheepToSpawn);
                     GameManager.Instance.requiredScore++;
@@ -94,7 +83,6 @@ public class DifficultyChanger : MonoBehaviour
                     _spawnScript.SpawnHunter(1);
                     break;
                 case 3:
-                    Debug.Log("day 4");
                     sheepToSpawn++;
                     _spawnScript.Spawnsheep(sheepToSpawn);
                     GameManager.Instance.requiredScore++;
@@ -103,7 +91,6 @@ public class DifficultyChanger : MonoBehaviour
                     GameManager.Instance.health++;
                     break;
                 case 4:
-                    Debug.Log("day 5");
                     sheepToSpawn++;
                     _spawnScript.Spawnsheep(sheepToSpawn);
                     GameManager.Instance.requiredScore++;

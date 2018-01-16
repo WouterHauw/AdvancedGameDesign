@@ -2,11 +2,8 @@
 
 public class SpawnScript : MonoBehaviour
 {
-   // [SerializeField]
-    //private GameObject sheep;
     [SerializeField]
     private GameObject hunter;
-    //int numToSpawn = 10;
 
     public void Spawnsheep(int sheepToSpawn)
     {

@@ -4,9 +4,7 @@ using UnityEngine.UI;
 public class TimerSun : MonoBehaviour
 {
     public float currentAmount;
-
     [SerializeField] public float speed;
-
     public Transform timer;
 
     [SerializeField] private Image _sunBack;
