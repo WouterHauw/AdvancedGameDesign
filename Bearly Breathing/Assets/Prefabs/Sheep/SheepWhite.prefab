@@ -56,6 +56,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -71,6 +72,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -141,9 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2ef4a6993838b49b40483c6bc7e2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0
   player: {fileID: 1154682115355250, guid: 1c6e0600499c43d4f9723a7bbe0d1733, type: 2}
-  bullet: {fileID: 0}
-  gun: {fileID: 0}
+  agent: {fileID: 0}
+  sightRange: 0
 --- !u!114 &114463084060176266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,13 +158,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796399d6c39e9c24fab0609fa52319a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
   clips:
   - {fileID: 8300000, guid: 218366cdadf932c4ea142ed3e02c06fa, type: 3}
   - {fileID: 8300000, guid: 96c457f39ff7bf9419e5ca86a75472ad, type: 3}
-  output: {fileID: 243796821635843872, guid: a50b58f8bf7acf44ea260831d07beb56, type: 2}
-  minPitch: 0.95
+  health: 10
   maxPitch: 1.05
+  minPitch: 0.95
+  output: {fileID: 243796821635843872, guid: a50b58f8bf7acf44ea260831d07beb56, type: 2}
 --- !u!195 &195370112300802726
 NavMeshAgent:
   m_ObjectHideFlags: 1
