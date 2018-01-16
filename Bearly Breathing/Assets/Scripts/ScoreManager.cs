@@ -7,7 +7,6 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private PlayerController _player;
     [SerializeField] private DayNightCycle _cycle;
-    public Slider sliderVar;
     [SerializeField] private GameObject _text;
 
 
@@ -21,14 +20,13 @@ public class ScoreManager : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         _player = _player.GetComponent<PlayerController>();
-        _requiredScore = 10;
+        
     }
 
     // Update is called once per frame
     private void Update()
     {
-        SetScoreSlider();
-        _text.GetComponent<Text>().text = _player.currentScore + "/" + _requiredScore;
+        _text.GetComponent<Text>().text = GameManager.Instance.currentScore + "/" + GameManager.Instance.requiredScore;
         if (_cycle.daysSurvived > _survived)
         {
             UpdateScore();
@@ -39,11 +37,5 @@ public class ScoreManager : MonoBehaviour
     {
         _survived = _cycle.daysSurvived;
         PlayerPrefs.SetInt("DaysSurvived", _survived);
-    }
-
-    private void SetScoreSlider()
-    {
-        var value = _player.currentScore / _requiredScore;
-        sliderVar.value = value;
     }
 }

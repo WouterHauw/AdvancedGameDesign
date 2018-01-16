@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     public bool beingChased;
     public GameObject[] cartoonBubbles;
     public GameObject[] collisionEffects;
-    public int currentScore;
     private int health;
     public bool isHiding;
 

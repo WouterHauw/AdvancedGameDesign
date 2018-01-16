@@ -52,7 +52,7 @@ public class NewDay : MonoBehaviour
             _nextDayButton.SetActive(true);
             _extraSheepText.text = "You didn't collect any extra sheep. Maybe tomorrow!";
         }
-        _dayText.text = "Next day: " + (_dayNightCycle.daysSurvived + 2);
+        _dayText.text = "Next day: " + (_dayNightCycle.daysSurvived ++);
     }
 
     public void OnClickExtraLife()

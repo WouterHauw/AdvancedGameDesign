@@ -94,7 +94,7 @@ public class DayNightCycle : MonoBehaviour
 
     private void DestroyOnDay()
     {
-        var sheep = GameObject.FindGameObjectsWithTag("SheepTransform");
+        GameObject[] sheep = GameObject.FindGameObjectsWithTag("SheepTransform");
 
         foreach (var item in sheep)
         {
