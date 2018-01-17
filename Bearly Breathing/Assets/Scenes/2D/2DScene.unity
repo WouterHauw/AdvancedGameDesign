@@ -6998,7 +6998,7 @@ Prefab:
     - target: {fileID: 224259053128058862, guid: 5a980e1d3de8b354dab4f022a3baf88f,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -20.00003
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a980e1d3de8b354dab4f022a3baf88f, type: 2}
@@ -13539,6 +13539,11 @@ Prefab:
       propertyPath: _scoreScript
       value: 
       objectReference: {fileID: 2030404486}
+    - target: {fileID: 114784530685373704, guid: 7f65541cb82437a478823fdd46f73a37,
+        type: 2}
+      propertyPath: currentTimeOfDay
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f65541cb82437a478823fdd46f73a37, type: 2}
   m_IsPrefabParent: 0
