@@ -14,7 +14,6 @@ public class InputScript : MonoBehaviour
     private SwipeGestureRecognizer _swipeGestureRecognizer;
     private GestureRecognizer _tapGestureRecognizer;
     private Animator _anim;
-    public GameObject player;
     public int walkingSpeed;
 
     private GestureTouch FirstTouch(IEnumerable<GestureTouch> touches)
@@ -37,7 +36,7 @@ public class InputScript : MonoBehaviour
 
     private void Start()
     {
-        _anim = GetComponentInChildren<Animator>();
+        _anim = GetComponent<Animator>();
         CreateTapGesture();
         CreateSwipeGesture();
 
@@ -114,10 +113,10 @@ public class InputScript : MonoBehaviour
                 FlipXAxis();
             }
         }
-        var pos = transform.position;
-        pos.x += amount.x * 8 * Time.deltaTime;
-        pos.z += amount.y * 8 * Time.deltaTime;
-        transform.position = pos;
+        var pos = new Vector3(0,0,0);
+        pos.x += amount.x * walkingSpeed * Time.deltaTime;
+        pos.z += amount.y  * walkingSpeed *Time.deltaTime;
+        transform.Translate(pos,Space.World);
         _anim.SetBool("isWalking", true);
 
         if (amount == Vector2.zero)
