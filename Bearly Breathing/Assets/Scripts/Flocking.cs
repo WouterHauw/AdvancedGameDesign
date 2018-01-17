@@ -6,9 +6,8 @@ public class Flocking : MonoBehaviour
     private const int NumSheep = 10;
     public static GameObject[] allSheep = new GameObject[NumSheep];
     public static Vector3 goalPos = Vector3.zero;
-    public GameObject goalPrefab;
-
-    public GameObject sheepPrefab;
+    [SerializeField] private GameObject goalPrefab;
+    [SerializeField]    private GameObject sheepPrefab;
 
     // Use this for initialization
     private void Start()

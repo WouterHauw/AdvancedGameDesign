@@ -16,6 +16,7 @@ TagManager:
   - HunterTransform
   - Canvas
   - Heart
+  - Boundaries
   layers:
   - Default
   - TransparentFX

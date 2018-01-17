@@ -67,7 +67,6 @@ public class DayNightCycle : MonoBehaviour
 
         if (currentTimeOfDay >= 0.75f && currentTimeOfDay <= 0.76f)
         {
-            NightChanges();
             _dayHasBeenChanged = false;
         }
 
@@ -95,7 +94,7 @@ public class DayNightCycle : MonoBehaviour
 
     private void DestroyOnDay()
     {
-        var sheep = GameObject.FindGameObjectsWithTag("SheepTransform");
+        GameObject[] sheep = GameObject.FindGameObjectsWithTag("SheepTransform");
 
         foreach (var item in sheep)
         {
@@ -107,17 +106,6 @@ public class DayNightCycle : MonoBehaviour
         foreach (var item in hunter)
         {
             Destroy(item);
-        }
-    }
-
-
-
-    private void NightChanges()
-    {
-        _inputScript.walkingSpeed = 4;
-        if (GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
-        {
-            //  _playerScript.Die();
         }
     }
 }
