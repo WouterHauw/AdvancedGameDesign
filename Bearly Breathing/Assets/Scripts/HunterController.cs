@@ -8,10 +8,13 @@ public class HunterController : BaseNPC
     [SerializeField] private GameObject _bullet;
     [SerializeField] private GameObject _gun;
     private IHunterState _currentState;
+    [SerializeField] private AudioClip _hunterFire;
+    private AudioSource _audioSource;
 
     // Use this for initialization
     protected override void StartNpc()
     {
+        _audioSource = GetComponent<AudioSource>();
         base.StartNpc();
         sightRange = 10f;
         facingLeft = false;
@@ -39,9 +42,10 @@ public class HunterController : BaseNPC
 
     private void Fire()
     {
-        var b = Instantiate(_bullet, _gun.transform.position, Quaternion.identity);
-        b.GetComponent<Rigidbody>().AddForce(_gun.transform.forward * 1500);
-        Destroy(b, 1f);
+        _audioSource.PlayOneShot(_hunterFire, 0.5f);
+        GameObject _bulletObject = Instantiate(_bullet, _gun.transform.position, Quaternion.identity);
+        _bulletObject.GetComponent<Rigidbody>().AddForce(_gun.transform.forward * 1500);
+        Destroy(_bulletObject, 1f);
     }
 
     public void StopFiring()
