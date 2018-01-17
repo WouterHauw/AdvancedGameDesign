@@ -53,6 +53,8 @@ public class NewDay : MonoBehaviour
         }
         else
         {
+            _extraLifeButton.SetActive(false);
+            _bonusNextDayButton.SetActive(false);
             _nextDayButton.SetActive(true);
             _extraSheepText.text = "You didn't collect any extra sheep. Maybe tomorrow!";
         }
