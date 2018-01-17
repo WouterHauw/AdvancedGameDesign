@@ -35,7 +35,7 @@ public class DayNightCycle : MonoBehaviour
     {
         currentTimeOfDay = 0.25f;
         _sunInitialIntensity = sun.intensity;
-        _secondsInFullDay = 60f;
+        _secondsInFullDay = 120f;
         daysSurvived = 0;
         _inputScript = FindObjectOfType<InputScript>();
         _difficultyChanger = FindObjectOfType<DifficultyChanger>();
