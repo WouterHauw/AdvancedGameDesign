@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class NewDay : MonoBehaviour
 {
 
@@ -47,12 +47,16 @@ public class NewDay : MonoBehaviour
             _extraSheep = GameManager.Instance.currentScore - GameManager.Instance.requiredScore;
             _extraSheepText.text = "You killed " + (GameManager.Instance.currentScore - GameManager.Instance.requiredScore) + " extra sheep. Choose your option:";
         }
+        else if(GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
+        {
+            SceneManager.LoadScene("GameOverScreen");
+        }
         else
         {
             _nextDayButton.SetActive(true);
             _extraSheepText.text = "You didn't collect any extra sheep. Maybe tomorrow!";
         }
-        _dayText.text = "Next day: " + (_dayNightCycle.daysSurvived ++);
+        _dayText.text = "Next day: " + (_dayNightCycle.daysSurvived + 2);
     }
 
     public void OnClickExtraLife()
