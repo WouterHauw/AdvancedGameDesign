@@ -10,7 +10,8 @@ public class PlayerAttackScript : MonoBehaviour, IAbilityInterface
     [SerializeField] private float _range;
     [SerializeField] private GameObject _specialEffect;
     [SerializeField] private GameObject _textSpecialEffect;
-   
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip _playerAttack;
 
     private GameObject _instantiatedObj;
     private bool _isBeingDestroyed;
@@ -26,6 +27,7 @@ public class PlayerAttackScript : MonoBehaviour, IAbilityInterface
     //Must be public as its used in interface
     public void InitializeVariables()
     {
+        _audioSource = GetComponent<AudioSource>();
         _bearActiveTime = 0.5f;
         _range = 2f;
         PlayerController script = GetComponent<PlayerController>();
@@ -51,12 +53,14 @@ public class PlayerAttackScript : MonoBehaviour, IAbilityInterface
             hitColliders[0].gameObject.SetActive(false);
             StartCoroutine(BearClawCourotine());
             playerAnimation.SetTrigger("isAttacking");
+            _audioSource.PlayOneShot(_playerAttack, 0.5f);
             GameManager.Instance.currentScore++;
         }
         if (hitColliders[0].gameObject.CompareTag("Hunter"))
         {
             hitColliders[0].gameObject.SetActive(false);
             StartCoroutine(BearClawCourotine());
+            _audioSource.PlayOneShot(_playerAttack, 0.5f);
             playerAnimation.SetTrigger("isAttacking");
         }
     }

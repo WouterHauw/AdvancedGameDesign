@@ -124,11 +124,16 @@ public class InputScript : MonoBehaviour
         pos.z += amount.y  * walkingSpeed *Time.deltaTime;
         transform.Translate(pos,Space.World);
         _anim.SetBool("isWalking", true);
-        _audioSource.PlayOneShot(_playerWalk, 0.5f);
+        if (!_audioSource.isPlaying)
+        {
+            _audioSource.PlayOneShot(_playerWalk, 0.5f);
+        }
+
 
         if (amount == Vector2.zero)
         {
             _anim.SetBool("isWalking", false);
+            _audioSource.Stop();
         }
     }
 
