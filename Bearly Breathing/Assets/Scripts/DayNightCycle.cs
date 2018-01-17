@@ -3,6 +3,7 @@
 public class DayNightCycle : MonoBehaviour
 {
     [Range(0, 1)] public float currentTimeOfDay;
+    
 
     [SerializeField]
     private InputScript _inputScript;
@@ -10,6 +11,7 @@ public class DayNightCycle : MonoBehaviour
     private DifficultyChanger _difficultyChanger;
     [SerializeField] private NewDay _newDay;
     private bool _dayHasBeenChanged;
+   
 
     public int daysSurvived;
 
@@ -21,6 +23,7 @@ public class DayNightCycle : MonoBehaviour
 
     private PlayerController _playerScript;
     private float _secondsInFullDay;
+    [SerializeField] private AudioClip _dayMusic;
 
     private float _sunInitialIntensity;
 
@@ -32,9 +35,12 @@ public class DayNightCycle : MonoBehaviour
 
     private void InitializeVariables()
     {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(_dayMusic, 0.7f);
+        audioSource.volume = 0.1f;
         currentTimeOfDay = 0.25f;
         _sunInitialIntensity = sun.intensity;
-        _secondsInFullDay = 60f;
+        _secondsInFullDay = 120f;
         daysSurvived = 0;
         _inputScript = FindObjectOfType<InputScript>();
         _difficultyChanger = FindObjectOfType<DifficultyChanger>();
@@ -101,7 +107,7 @@ public class DayNightCycle : MonoBehaviour
             item.SetActive(false);
         }
 
-        var hunter = GameObject.FindGameObjectsWithTag("HunterTransform");
+        GameObject[] hunter = GameObject.FindGameObjectsWithTag("HunterTransform");
 
         foreach (var item in hunter)
         {

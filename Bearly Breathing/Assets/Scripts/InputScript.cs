@@ -12,11 +12,14 @@ public class InputScript : MonoBehaviour
     [SerializeField] private float _minimumSpeedSwipe;
     [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
     private SwipeGestureRecognizer _swipeGestureRecognizer;
-    private GestureRecognizer _tapGestureRecognizer;
     private Animator _anim;
     public int walkingSpeed;
 
-    private GestureTouch FirstTouch(IEnumerable<GestureTouch> touches)
+    [SerializeField]
+    private AudioClip _playerWalk;
+    private AudioSource _audioSource;
+
+    private static GestureTouch FirstTouch(IEnumerable<GestureTouch> touches)
     {
         foreach (var t in touches)
 
@@ -29,7 +32,7 @@ public class InputScript : MonoBehaviour
     private void Awake()
     {
         joystickScript.JoystickExecuted = JoystickExecuted;
-        joystickScript.MoveJoystickToGestureStartLocation = false;
+        joystickScript.MoveJoystickToGestureStartLocation = true;
         isAttacking = false;
     }
 
@@ -37,45 +40,38 @@ public class InputScript : MonoBehaviour
     private void Start()
     {
         _anim = GetComponent<Animator>();
-        CreateTapGesture();
         CreateSwipeGesture();
+
+        _audioSource = GetComponent<AudioSource>();
 
         _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
         _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
         _swipeGestureRecognizer.Direction = _swipeDirection;
     }
 
-    private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
-    {
-        if (gesture.State == GestureRecognizerState.Ended)
-        {
-            GestureTouch t = FirstTouch(touches);
-            RaycastHit hit;
-            var posRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-            Ray ray = mainCamera.ScreenPointToRay(new Vector2(t.ScreenX, t.ScreenY));
-            if (Physics.Raycast(ray, out hit,100))
-            {
-                if (hit.collider != null)
-                {
-                    Debug.Log(hit.point);
-                }
-            }
-            _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
-            _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
-            _swipeGestureRecognizer.Direction = _swipeDirection;
+    //private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
+    //{
+    //    if (gesture.State == GestureRecognizerState.Ended)
+    //    {
+    //        GestureTouch t = FirstTouch(touches);
+    //        RaycastHit hit;
+    //        var posRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+    //        Ray ray = mainCamera.ScreenPointToRay(new Vector2(t.ScreenX, t.ScreenY));
+    //        if (Physics.Raycast(ray, out hit,100))
+    //        {
+    //            if (hit.collider != null)
+    //            {
+    //                Debug.Log(hit.point);
+    //            }
+    //        }
+    //        _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
+    //        _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
+    //        _swipeGestureRecognizer.Direction = _swipeDirection;
 
-            walkingSpeed = 8;
+    //        walkingSpeed = 8;
 
-        }
-    }
-
-    private void CreateTapGesture()
-    {
-        _tapGestureRecognizer = new TapGestureRecognizer();
-        _tapGestureRecognizer.Updated += TapGestureCallback;
-        FingersScript.Instance.AddGesture(_tapGestureRecognizer);
-    }
-
+    //    }
+    //}
 
     private void CreateSwipeGesture()
     {
@@ -118,10 +114,16 @@ public class InputScript : MonoBehaviour
         pos.z += amount.y  * walkingSpeed *Time.deltaTime;
         transform.Translate(pos,Space.World);
         _anim.SetBool("isWalking", true);
+        if (!_audioSource.isPlaying)
+        {
+            _audioSource.PlayOneShot(_playerWalk, 0.5f);
+        }
+
 
         if (amount == Vector2.zero)
         {
             _anim.SetBool("isWalking", false);
+            _audioSource.Stop();
         }
     }
 

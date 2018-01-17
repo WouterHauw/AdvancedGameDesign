@@ -1,43 +1,45 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using Boo.Lang;
+using UnityEngine;
 
 public class UIManagerScript : MonoBehaviour
 {
-    public Image heart;
-    public int heartX;
-    public int heartY;
-    public int heartWidth;
-    public int currentHearts;
+    public List<GameObject> hearts;
+    public int activeHearts;
 
-    // Use this for initialization
-    void Start()
-    {
-        heartX = -90;
-        heartY = -20;
-        heartWidth = 30;
+    private void Start()
+    {     
+        hearts = new List<GameObject>();
+        var children = transform.childCount;
+        for (int i = 0; i < children; ++i)
+        {
+            foreach (Transform images in transform.GetChild(i))
+            {
+                hearts.Add(images.gameObject);
+            }
+        }
+           
     }
 
-
-    public void setHealthSlider()
+    public void SetHealthSlider()
     {
-        Vector3 position = new Vector3(heartX, heartY, 1);
-
-        while (currentHearts < GameManager.Instance.health)
+        if (GameManager.Instance.health <= 0)
         {
-            Image heartImage = Instantiate(heart, position, Quaternion.identity) as Image;
-            heartImage.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
-            position.x -= heartWidth;
-            heartX -= heartWidth;
-            currentHearts++;
+            foreach (var heart in hearts)
+            {
+                heart.SetActive(false);
+            }
+            return;
         }
-
-        while (currentHearts > GameManager.Instance.health)
+        while(activeHearts < GameManager.Instance.health)
         {
-            var Hearts = GameObject.FindGameObjectsWithTag("Heart");
-            GameObject heartToDestroy = Hearts[(currentHearts - 1)];
-            Destroy(heartToDestroy);
-            heartX += heartWidth;
-            currentHearts--;
+            hearts[activeHearts].SetActive(true);
+            activeHearts++;
         }
+        while (activeHearts < GameManager.Instance.health & activeHearts != 0)
+        {
+           hearts[activeHearts-1].SetActive(true);
+            activeHearts--;
+        }
+       
     }
 }
