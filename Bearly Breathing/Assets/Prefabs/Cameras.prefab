@@ -183,7 +183,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 5000
+  far clip plane: 20
   field of view: 40
   orthographic: 1
   orthographic size: 6
@@ -201,7 +201,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!65 &65552720190369362
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -329,7 +328,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 6
     NearClipPlane: 0.3
-    FarClipPlane: 5000
+    FarClipPlane: 20
     Dutch: 0
   m_ComponentOwner: {fileID: 4207454812413458}
 --- !u!114 &114662704841327878
