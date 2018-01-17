@@ -40,7 +40,7 @@ public class DayNightCycle : MonoBehaviour
         audioSource.volume = 0.1f;
         currentTimeOfDay = 0.25f;
         _sunInitialIntensity = sun.intensity;
-        _secondsInFullDay = 30f;
+        _secondsInFullDay = 100f;
         daysSurvived = 0;
         _inputScript = FindObjectOfType<InputScript>();
         _difficultyChanger = FindObjectOfType<DifficultyChanger>();
