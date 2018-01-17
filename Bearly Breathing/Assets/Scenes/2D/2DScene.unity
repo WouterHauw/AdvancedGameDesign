@@ -387,9 +387,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd73d61d8c9395a4f943da14cd806d2d, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &244256151
-  - component: {fileID: 244256154}
-  - component: {fileID: 244256152}
 --- !u!1001 &40358838
 Prefab:
   m_ObjectHideFlags: 0
