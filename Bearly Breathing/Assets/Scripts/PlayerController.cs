@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
         if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
         {
             previousHealth = GameManager.Instance.health;
-            _UIScript.setHealthSlider();
+            _UIScript.SetHealthSlider();
         }
     }
 
