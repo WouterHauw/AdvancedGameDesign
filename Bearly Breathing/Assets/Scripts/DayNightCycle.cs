@@ -3,6 +3,7 @@
 public class DayNightCycle : MonoBehaviour
 {
     [Range(0, 1)] public float currentTimeOfDay;
+    
 
     [SerializeField]
     private InputScript _inputScript;
