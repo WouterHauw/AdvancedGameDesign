@@ -106,11 +106,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Die()
-    {
-        SceneManager.LoadScene("GameOverScreen");
-    }
-
     //method for use for the attack button
     public void Attack()
     {

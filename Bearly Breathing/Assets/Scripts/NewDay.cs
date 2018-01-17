@@ -39,17 +39,16 @@ public class NewDay : MonoBehaviour
     {
         Time.timeScale = 0;
         _newDayMenu.SetActive(true);
-
+        if (GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
+        {
+            SceneManager.LoadScene("GameOverScreen");
+        }
         if (GameManager.Instance.currentScore > GameManager.Instance.requiredScore)
         {
             _extraLifeButton.SetActive(true);
             _bonusNextDayButton.SetActive(true);
             _extraSheep = GameManager.Instance.currentScore - GameManager.Instance.requiredScore;
             _extraSheepText.text = "You killed " + (GameManager.Instance.currentScore - GameManager.Instance.requiredScore) + " extra sheep. Choose your option:";
-        }
-        else if(GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
-        {
-            SceneManager.LoadScene("GameOverScreen");
         }
         else
         {

@@ -39,6 +39,7 @@ public class Pause : MonoBehaviour
 
     public void OnClickRestartButton()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("2DScene");
     }
 
@@ -49,6 +50,7 @@ public class Pause : MonoBehaviour
 
     public void OnClickExitButton()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
