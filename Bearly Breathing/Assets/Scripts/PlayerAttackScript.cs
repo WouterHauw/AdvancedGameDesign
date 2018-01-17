@@ -10,6 +10,7 @@ public class PlayerAttackScript : MonoBehaviour, IAbilityInterface
     [SerializeField] private float _range;
     [SerializeField] private GameObject _specialEffect;
     [SerializeField] private GameObject _textSpecialEffect;
+   
 
     private GameObject _instantiatedObj;
     private bool _isBeingDestroyed;

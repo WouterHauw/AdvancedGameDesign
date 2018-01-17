@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private Animator _anim;
     [SerializeField] private InputScript _inputScript;
 
+    
+
 
 
     // Use this for initialization
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         _UIScript = FindObjectOfType<UIManagerScript>();
         GameManager.Instance.health = 3;
         health = 3;
+        
 
         isHiding = false;
     }
