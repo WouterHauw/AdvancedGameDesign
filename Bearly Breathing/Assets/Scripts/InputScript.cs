@@ -12,11 +12,10 @@ public class InputScript : MonoBehaviour
     [SerializeField] private float _minimumSpeedSwipe;
     [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
     private SwipeGestureRecognizer _swipeGestureRecognizer;
-    private GestureRecognizer _tapGestureRecognizer;
     private Animator _anim;
     public int walkingSpeed;
 
-    private GestureTouch FirstTouch(IEnumerable<GestureTouch> touches)
+    private static GestureTouch FirstTouch(IEnumerable<GestureTouch> touches)
     {
         foreach (var t in touches)
 
@@ -29,7 +28,7 @@ public class InputScript : MonoBehaviour
     private void Awake()
     {
         joystickScript.JoystickExecuted = JoystickExecuted;
-        joystickScript.MoveJoystickToGestureStartLocation = false;
+        joystickScript.MoveJoystickToGestureStartLocation = true;
         isAttacking = false;
     }
 
@@ -37,7 +36,6 @@ public class InputScript : MonoBehaviour
     private void Start()
     {
         _anim = GetComponent<Animator>();
-        CreateTapGesture();
         CreateSwipeGesture();
 
         _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
@@ -45,37 +43,29 @@ public class InputScript : MonoBehaviour
         _swipeGestureRecognizer.Direction = _swipeDirection;
     }
 
-    private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
-    {
-        if (gesture.State == GestureRecognizerState.Ended)
-        {
-            GestureTouch t = FirstTouch(touches);
-            RaycastHit hit;
-            var posRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-            Ray ray = mainCamera.ScreenPointToRay(new Vector2(t.ScreenX, t.ScreenY));
-            if (Physics.Raycast(ray, out hit,100))
-            {
-                if (hit.collider != null)
-                {
-                    Debug.Log(hit.point);
-                }
-            }
-            _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
-            _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
-            _swipeGestureRecognizer.Direction = _swipeDirection;
+    //private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
+    //{
+    //    if (gesture.State == GestureRecognizerState.Ended)
+    //    {
+    //        GestureTouch t = FirstTouch(touches);
+    //        RaycastHit hit;
+    //        var posRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+    //        Ray ray = mainCamera.ScreenPointToRay(new Vector2(t.ScreenX, t.ScreenY));
+    //        if (Physics.Raycast(ray, out hit,100))
+    //        {
+    //            if (hit.collider != null)
+    //            {
+    //                Debug.Log(hit.point);
+    //            }
+    //        }
+    //        _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
+    //        _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
+    //        _swipeGestureRecognizer.Direction = _swipeDirection;
 
-            walkingSpeed = 8;
+    //        walkingSpeed = 8;
 
-        }
-    }
-
-    private void CreateTapGesture()
-    {
-        _tapGestureRecognizer = new TapGestureRecognizer();
-        _tapGestureRecognizer.Updated += TapGestureCallback;
-        FingersScript.Instance.AddGesture(_tapGestureRecognizer);
-    }
-
+    //    }
+    //}
 
     private void CreateSwipeGesture()
     {
