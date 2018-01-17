@@ -35,9 +35,7 @@ public class PlayerController : MonoBehaviour
         _anim = GetComponent<Animator>();
         _inputScript = FindObjectOfType<InputScript>();
         _UIScript = FindObjectOfType<UIManagerScript>();
-        GameManager.Instance.health = 3;
-        health = 3;
-        
+        GameManager.Instance.health = 3;        
 
         isHiding = false;
     }
@@ -101,7 +99,6 @@ public class PlayerController : MonoBehaviour
     private void ChangeInHealth()
     {
         
-        GameManager.Instance.health = health;
         if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
         {
             previousHealth = GameManager.Instance.health;
