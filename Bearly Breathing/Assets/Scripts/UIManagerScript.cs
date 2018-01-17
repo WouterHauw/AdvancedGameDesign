@@ -1,6 +1,5 @@
 ﻿using Boo.Lang;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManagerScript : MonoBehaviour
 {
@@ -21,7 +20,7 @@ public class UIManagerScript : MonoBehaviour
            
     }
 
-    public void setHealthSlider()
+    public void SetHealthSlider()
     {
         if (GameManager.Instance.health <= 0)
         {

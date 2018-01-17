@@ -15,6 +15,10 @@ public class InputScript : MonoBehaviour
     private Animator _anim;
     public int walkingSpeed;
 
+    [SerializeField]
+    private AudioClip _playerWalk;
+    private AudioSource _audioSource;
+
     private static GestureTouch FirstTouch(IEnumerable<GestureTouch> touches)
     {
         foreach (var t in touches)
@@ -37,6 +41,8 @@ public class InputScript : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         CreateSwipeGesture();
+
+        _audioSource = GetComponent<AudioSource>();
 
         _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
         _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
@@ -108,10 +114,16 @@ public class InputScript : MonoBehaviour
         pos.z += amount.y  * walkingSpeed *Time.deltaTime;
         transform.Translate(pos,Space.World);
         _anim.SetBool("isWalking", true);
+        if (!_audioSource.isPlaying)
+        {
+            _audioSource.PlayOneShot(_playerWalk, 0.5f);
+        }
+
 
         if (amount == Vector2.zero)
         {
             _anim.SetBool("isWalking", false);
+            _audioSource.Stop();
         }
     }
 
