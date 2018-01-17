@@ -48,7 +48,7 @@ public class NewDay : MonoBehaviour
             _extraLifeButton.SetActive(true);
             _bonusNextDayButton.SetActive(true);
             _extraSheep = GameManager.Instance.currentScore - GameManager.Instance.requiredScore;
-            _extraSheepText.text = "You killed " + (GameManager.Instance.currentScore - GameManager.Instance.requiredScore) + " extra sheep. Choose your option:";
+            _extraSheepText.text = (GameManager.Instance.currentScore - GameManager.Instance.requiredScore).ToString() ;
         }
         else
         {
@@ -57,7 +57,7 @@ public class NewDay : MonoBehaviour
             _nextDayButton.SetActive(true);
             _extraSheepText.text = "You didn't collect any extra sheep. Maybe tomorrow!";
         }
-        _dayText.text = "Next day: " + (_dayNightCycle.daysSurvived + 2);
+        _dayText.text = (_dayNightCycle.daysSurvived + 1).ToString();
     }
 
     public void OnClickExtraLife()
