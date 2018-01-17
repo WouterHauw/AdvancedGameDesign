@@ -4,6 +4,8 @@ public class SpawnScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject hunter;
+    [SerializeField]
+    private Transform[] _spawnPoints;
 
     public void Spawnsheep(int sheepToSpawn)
     {
