@@ -4,11 +4,9 @@ using UnityEngine.SceneManagement;
 public class Pause : MonoBehaviour
 {
     [SerializeField] private GameObject _attackButton;
-
-    [SerializeField] private bool _isPaused;
-    [SerializeField] private GameObject _moveButton;
     [SerializeField] private GameObject _pauseButton;
     [SerializeField] private GameObject _pauseMenu;
+    private bool _isPaused;
 
     // Use this for initialization
     private void Start()
@@ -17,17 +15,15 @@ public class Pause : MonoBehaviour
         _pauseMenu.SetActive(false);
     }
 
-    // Update is called once per frame
-    private void Update() { }
-
     public void OnClickPauseButton()
     {
         _isPaused = !_isPaused;
-        if (_isPaused)
+        if (!_isPaused)
         {
-            Time.timeScale = 0;
-            HideButtons();
+            return;
         }
+        Time.timeScale = 0;
+        HideButtons();
     }
 
     public void OnClickResumeButton()
@@ -41,15 +37,24 @@ public class Pause : MonoBehaviour
         ShowButtons();
     }
 
-    public void OnClickMenuButton()
+    public void OnClickRestartButton()
+    {
+        SceneManager.LoadScene("2DScene");
+    }
+
+    public void OnClickSettingsButton()
+    {
+        //here a transition to settings screen
+    }
+
+    public void OnClickExitButton()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
-    private void HideButtons()
+private void HideButtons()
     {
         _attackButton.SetActive(false);
-        _moveButton.SetActive(false);
         _pauseButton.SetActive(false);
         _pauseMenu.SetActive(true);
     }
@@ -57,7 +62,6 @@ public class Pause : MonoBehaviour
     private void ShowButtons()
     {
         _attackButton.SetActive(true);
-        _moveButton.SetActive(true);
         _pauseButton.SetActive(true);
         _pauseMenu.SetActive(false);
     }
