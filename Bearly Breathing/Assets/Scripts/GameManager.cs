@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     public int health;
     public int requiredScore;
     public int currentScore;
+    public bool cooldownExtraSheep;
+    public bool cooldownExtraLife;
+    public int cooldownDaySheep;
+    public int cooldownDayLife;
 
     public static GameManager Instance { get; private set; }
 
