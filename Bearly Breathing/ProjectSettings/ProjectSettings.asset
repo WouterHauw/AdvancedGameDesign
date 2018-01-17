@@ -6,7 +6,7 @@ PlayerSettings:
   serializedVersion: 12
   productGUID: 1a031d3a178c8ea45b8f0850fc2ebfb2
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 2
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -138,7 +138,7 @@ PlayerSettings:
       depthFormat: 1
   protectGraphicsMemory: 0
   useHDRDisplay: 0
-  targetPixelDensity: 0
+  targetPixelDensity: 200
   resolutionScalingMode: 0
   applicationIdentifier:
     Android: com.Bearly.Breathing
@@ -587,12 +587,14 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 1
+    UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: d7d76b3a-c467-41d3-b323-a602bc524f73
+  projectName: Bearly Breathing (1)
+  organizationId: wouter-van-der-hauw
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
