@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class NewDay : MonoBehaviour
 {
 
@@ -46,6 +46,10 @@ public class NewDay : MonoBehaviour
             _bonusNextDayButton.SetActive(true);
             _extraSheep = GameManager.Instance.currentScore - GameManager.Instance.requiredScore;
             _extraSheepText.text = "You killed " + (GameManager.Instance.currentScore - GameManager.Instance.requiredScore) + " extra sheep. Choose your option:";
+        }
+        else if(GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
+        {
+            SceneManager.LoadScene("GameOverScreen");
         }
         else
         {
