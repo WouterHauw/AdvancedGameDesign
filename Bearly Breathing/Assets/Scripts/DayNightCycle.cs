@@ -36,11 +36,11 @@ public class DayNightCycle : MonoBehaviour
     private void InitializeVariables()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(_dayMusic, 0.7f);
+        audioSource.Play();
         audioSource.volume = 0.1f;
         currentTimeOfDay = 0.25f;
         _sunInitialIntensity = sun.intensity;
-        _secondsInFullDay = 120f;
+        _secondsInFullDay = 10f;
         daysSurvived = 0;
         _inputScript = FindObjectOfType<InputScript>();
         _difficultyChanger = FindObjectOfType<DifficultyChanger>();
