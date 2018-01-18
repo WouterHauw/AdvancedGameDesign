@@ -9,11 +9,9 @@ public class PlayerController : MonoBehaviour
     public bool beingChased;
     public GameObject[] cartoonBubbles;
     public GameObject[] collisionEffects;
-    private int health;
     public bool isHiding;
 
     private UIManagerScript _UIScript;
-    public float maxHealth;
     public GameObject[] textBubbles;
     [SerializeField] private IAbilityInterface _ability;
     private Animator _anim;
@@ -36,7 +34,6 @@ public class PlayerController : MonoBehaviour
         _inputScript = FindObjectOfType<InputScript>();
         _UIScript = FindObjectOfType<UIManagerScript>();
         GameManager.Instance.health = 3;
-        health = 3;
         
 
         isHiding = false;
@@ -49,9 +46,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if (GameManager.Instance.health <= 0)
+            Die();
+
         HandleAttackInput();
 
-        ChangeInHealth();
     }
 
     //Activate BushAbility
@@ -70,7 +69,12 @@ public class PlayerController : MonoBehaviour
             _ability.InitializeVariables();
             _ability.ActivateAbility(other.gameObject, _anim);
         }
-         }
+
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            GameManager.Instance.health--;
+        }
+    }
 
 
     //Deactivate BushAbility
@@ -96,22 +100,6 @@ public class PlayerController : MonoBehaviour
 
             _inputScript.isAttacking = false;
         }
-    }
-
-    private void ChangeInHealth()
-    {
-        
-        GameManager.Instance.health = health;
-        if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
-        {
-            previousHealth = GameManager.Instance.health;
-            _UIScript.SetHealthSlider();
-        }
-    }
-
-    public void DamagePlayer(int damage)
-    {
-        health -= damage;
     }
 
     public void Die()

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletMover : MonoBehaviour {
+public class BulletMover : MonoBehaviour
+{
 
     [SerializeField]
     private float maxSpeed = 30;
+
+    public int damage = 1;
 
     void Update()
     {
@@ -30,4 +33,11 @@ public class BulletMover : MonoBehaviour {
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
