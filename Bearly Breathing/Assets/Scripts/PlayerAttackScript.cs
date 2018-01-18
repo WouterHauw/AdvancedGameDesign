@@ -29,11 +29,11 @@ public class PlayerAttackScript : MonoBehaviour, IAbilityInterface
     {
         _audioSource = GetComponent<AudioSource>();
         _bearActiveTime = 0.5f;
-        _range = 2f;
+        _range = 3f;
         PlayerController script = GetComponent<PlayerController>();
         _bearClaw = script.bearClaw;
-
         _specialEffect = script.GetParticleEffect();
+        _playerAttack = script.playerAttackAudioClip;
         _textSpecialEffect = script.GetTextParticleEffect();
 
     }
@@ -42,6 +42,8 @@ public class PlayerAttackScript : MonoBehaviour, IAbilityInterface
     //Launch an explosion and bearclaw on GUI
     public void ActivateAbility(GameObject aObject, Animator playerAnimation)
     {
+        playerAnimation.SetTrigger("isAttacking");
+        _audioSource.PlayOneShot(_playerAttack, 2f);
         var hitColliders = Physics.OverlapSphere(transform.position, _range, LayerMask.GetMask("Player"));
         if (hitColliders.Length == 0)
         {
@@ -52,16 +54,12 @@ public class PlayerAttackScript : MonoBehaviour, IAbilityInterface
             SetExplosions(hitColliders[0]);
             hitColliders[0].gameObject.SetActive(false);
             StartCoroutine(BearClawCourotine());
-            playerAnimation.SetTrigger("isAttacking");
-            _audioSource.PlayOneShot(_playerAttack, 0.5f);
             GameManager.Instance.currentScore++;
         }
         if (hitColliders[0].gameObject.CompareTag("Hunter"))
         {
             hitColliders[0].gameObject.SetActive(false);
             StartCoroutine(BearClawCourotine());
-            _audioSource.PlayOneShot(_playerAttack, 0.5f);
-            playerAnimation.SetTrigger("isAttacking");
         }
     }
 

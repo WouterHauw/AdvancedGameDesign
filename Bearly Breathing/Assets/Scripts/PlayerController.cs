@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     public IAbilityInterface abilityInterface;
     public GameObject bearClaw;
+    public AudioClip playerAttackAudioClip;
     public int previousHealth;
     public bool beingChased;
     public GameObject[] cartoonBubbles;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private IAbilityInterface _ability;
     private Animator _anim;
     [SerializeField] private InputScript _inputScript;
+    
 
     
 
