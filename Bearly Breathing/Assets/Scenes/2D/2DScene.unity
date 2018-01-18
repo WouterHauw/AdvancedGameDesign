@@ -4258,12 +4258,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 125a4b011252d39439ceb0ba26d80c18, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &581734456 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114419475174823948, guid: a37bccf330f0aa64e9402c637424e55c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1714468962}
-  m_Script: {fileID: 11500000, guid: 9bfe12fd107aa974baa1bac4537db16e, type: 3}
 --- !u!1001 &585506612
 Prefab:
   m_ObjectHideFlags: 0
@@ -11782,11 +11776,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114975220407711546, guid: a37bccf330f0aa64e9402c637424e55c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224589409434857376, guid: a37bccf330f0aa64e9402c637424e55c,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -11896,31 +11885,6 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.x
       value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114975220407711546, guid: a37bccf330f0aa64e9402c637424e55c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 581734456}
-    - target: {fileID: 114975220407711546, guid: a37bccf330f0aa64e9402c637424e55c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickExitButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 114975220407711546, guid: a37bccf330f0aa64e9402c637424e55c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114975220407711546, guid: a37bccf330f0aa64e9402c637424e55c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114975220407711546, guid: a37bccf330f0aa64e9402c637424e55c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a37bccf330f0aa64e9402c637424e55c, type: 2}

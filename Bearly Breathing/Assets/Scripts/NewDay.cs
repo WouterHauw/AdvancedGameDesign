@@ -4,8 +4,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class NewDay : MonoBehaviour
 {
-
+    [SerializeField] private Text _title;
     [SerializeField] private Text _extraSheepText;
+    [SerializeField] private Text _sheepText;
     [SerializeField] private Text _dayText;
     [SerializeField] private DayNightCycle _dayNightCycle;
 
@@ -13,6 +14,9 @@ public class NewDay : MonoBehaviour
     [SerializeField] private GameObject _extraLifeButton;
     [SerializeField] private GameObject _bonusNextDayButton;
     [SerializeField] private GameObject _nextDayButton;
+    [SerializeField] private GameObject _restartButton;
+    [SerializeField] private GameObject _exitGameButton;
+    
     
     private int _extraSheep;
     private GameManager gameManager;
@@ -33,6 +37,8 @@ public class NewDay : MonoBehaviour
         _extraLifeButton.SetActive(false);
         _bonusNextDayButton.SetActive(false);
         _nextDayButton.SetActive(false);
+        _restartButton.SetActive(false);
+        _exitGameButton.SetActive(false);
     }
 
 
@@ -63,16 +69,23 @@ public class NewDay : MonoBehaviour
             {
                 _bonusNextDayButton.SetActive(true);
             }
+            _title.text = "GOOD MORNING";
+            _sheepText.text = "Extra Sheep";
                 _extraSheep = GameManager.Instance.currentScore - GameManager.Instance.requiredScore;
                 _extraSheepText.text = (GameManager.Instance.currentScore - GameManager.Instance.requiredScore).ToString();
             
         }
         else if(GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
         {
-            SceneManager.LoadScene("GameOverScreen");
+            _title.text = "GAME OVER!";
+            _sheepText.text = "Needed Sheep";
+            _restartButton.SetActive(true);
+            _exitGameButton.SetActive(true);
+            _extraSheepText.text = (GameManager.Instance.currentScore - GameManager.Instance.requiredScore).ToString();
         }
         else
         {
+            _sheepText.text = "Needed Sheep";
             _extraLifeButton.SetActive(false);
             _bonusNextDayButton.SetActive(false);
             _nextDayButton.SetActive(true);
@@ -123,5 +136,21 @@ public class NewDay : MonoBehaviour
     {
         _nextDayButton.SetActive(false);
         Time.timeScale = 1;
+    }
+    public void OnClickRetry()
+    {
+        _newDayMenu.SetActive(false);
+        _restartButton.SetActive(false);
+        _exitGameButton.SetActive(false);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("2DScene");
+    }
+    public void OnClickQuit()
+    {
+        _newDayMenu.SetActive(false);
+        _restartButton.SetActive(false);
+        _exitGameButton.SetActive(false);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
     }
 }
