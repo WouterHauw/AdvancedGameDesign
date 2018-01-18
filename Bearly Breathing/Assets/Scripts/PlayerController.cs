@@ -109,12 +109,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void DamagePlayer(int damage)
     {
-        if (other.gameObject.tag == "Bullet")
-        {
-            health--;
-        }
+        health -= damage;
     }
 
     public void Die()
