@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
         _anim = GetComponent<Animator>();
         _inputScript = FindObjectOfType<InputScript>();
         _UIScript = FindObjectOfType<UIManagerScript>();
-        GameManager.Instance.health = 3;      
+        GameManager.Instance.health = 3;
+        
 
         isHiding = false;
     }
@@ -102,20 +103,10 @@ public class PlayerController : MonoBehaviour
             _inputScript.isAttacking = false;
         }
     }
+
     public void Die()
     {
         SceneManager.LoadScene("GameOverScreen");
-    }
-
-    private void ChangeInHealth()
-    {
-        
-        if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
-        {
-            previousHealth = GameManager.Instance.health;
-            _UIScript.SetHealthSlider();
-        }
-
     }
 
     //method for use for the attack button

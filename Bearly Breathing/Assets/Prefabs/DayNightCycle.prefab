@@ -140,4 +140,4 @@ MonoBehaviour:
   sun: {fileID: 0}
   timeMultiplier: 1
   _player: {fileID: 0}
-  _dayMusic: {fileID: 0}
+  _dayMusic: {fileID: 8300000, guid: 9ee1acb5b12bb844c8c88fde0f5b029c, type: 3}
