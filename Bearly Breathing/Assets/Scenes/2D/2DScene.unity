@@ -6494,14 +6494,11 @@ Prefab:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1065675127}
-<<<<<<< HEAD
-=======
     - target: {fileID: 114631044567430970, guid: be4aeff8d914a9d41934289efb5fd2bb,
         type: 2}
       propertyPath: joystickScript
       value: 
       objectReference: {fileID: 46093862}
->>>>>>> parent of 9b65d150... Merge branch 'Development' into hunter-movement-fix
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be4aeff8d914a9d41934289efb5fd2bb, type: 2}
   m_IsPrefabParent: 0
@@ -12379,7 +12376,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b341e168cdb99db45852fc830f4c57cd, type: 2}
   m_IsPrefabParent: 0
-<<<<<<< HEAD
 --- !u!1001 &1714468962
 Prefab:
   m_ObjectHideFlags: 0
@@ -12710,8 +12706,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a37bccf330f0aa64e9402c637424e55c, type: 2}
   m_IsPrefabParent: 0
-=======
->>>>>>> parent of 9b65d150... Merge branch 'Development' into hunter-movement-fix
 --- !u!1001 &1715156815
 Prefab:
   m_ObjectHideFlags: 0
