@@ -254,6 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bearClaw: {fileID: 0}
+  playerAttackAudioClip: {fileID: 8300000, guid: 05b25a5df28b3674c8c12ca9146fdc4e,
+    type: 3}
   previousHealth: 1
   beingChased: 0
   cartoonBubbles:
@@ -320,7 +322,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   isAttacking: 0
-  joystickScript: {fileID: 0}
   _minimumDistanceSwipe: 0
   _minimumSpeedSwipe: 0
   _swipeDirection: 0
@@ -347,7 +348,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -363,7 +363,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
