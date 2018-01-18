@@ -4,10 +4,9 @@ using UnityEngine.SceneManagement;
 public class Pause : MonoBehaviour
 {
     [SerializeField] private GameObject _attackButton;
-
-    [SerializeField] private bool _isPaused;
     [SerializeField] private GameObject _pauseButton;
     [SerializeField] private GameObject _pauseMenu;
+    private bool _isPaused;
 
     // Use this for initialization
     private void Start()
@@ -19,11 +18,12 @@ public class Pause : MonoBehaviour
     public void OnClickPauseButton()
     {
         _isPaused = !_isPaused;
-        if (_isPaused)
+        if (!_isPaused)
         {
-            Time.timeScale = 0;
-            HideButtons();
+            return;
         }
+        Time.timeScale = 0;
+        HideButtons();
     }
 
     public void OnClickResumeButton()
@@ -37,7 +37,18 @@ public class Pause : MonoBehaviour
         ShowButtons();
     }
 
-    public void OnClickMenuButton()
+    public void OnClickRestartButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("2DScene");
+    }
+
+    public void OnClickSettingsButton()
+    {
+        //here a transition to settings screen
+    }
+
+    public void OnClickExitButton()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");

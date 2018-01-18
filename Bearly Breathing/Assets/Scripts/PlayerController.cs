@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public GameObject[] cartoonBubbles;
     public GameObject[] collisionEffects;
     public bool isHiding;
-    private int _health;
     private UIManagerScript _UIScript;
     public GameObject[] textBubbles;
     [SerializeField] private IAbilityInterface _ability;
@@ -36,7 +35,6 @@ public class PlayerController : MonoBehaviour
         _inputScript = FindObjectOfType<InputScript>();
         _UIScript = FindObjectOfType<UIManagerScript>();
         GameManager.Instance.health = 3;
-        _health = 3;
         
 
         isHiding = false;
@@ -47,11 +45,6 @@ public class PlayerController : MonoBehaviour
         if (_inputScript == null)
         {
             return;
-        }
-
-        if (GameManager.Instance.health <= 0)
-        {
-            Die();
         }
 
         HandleAttackInput();
@@ -79,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Bullet"))
         {
-            _health--;
+            GameManager.Instance.health--;
         }
     }
 
@@ -96,8 +89,6 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeInHealth()
     {
-
-        GameManager.Instance.health = _health;
         if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
         {
             previousHealth = GameManager.Instance.health;
@@ -118,11 +109,6 @@ public class PlayerController : MonoBehaviour
 
             _inputScript.isAttacking = false;
         }
-    }
-
-    public void Die()
-    {
-        SceneManager.LoadScene("GameOverScreen");
     }
 
     //method for use for the attack button
