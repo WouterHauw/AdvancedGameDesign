@@ -8,8 +8,6 @@ public class BulletMover : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 30;
 
-    public int damage = 1;
-
     void Update()
     {
 

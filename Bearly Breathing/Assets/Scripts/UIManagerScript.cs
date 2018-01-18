@@ -37,7 +37,7 @@ public class UIManagerScript : MonoBehaviour
         }
         while (activeHearts < GameManager.Instance.health & activeHearts != 0)
         {
-           hearts[activeHearts-1].SetActive(true);
+           hearts[activeHearts-1].SetActive(false);
             activeHearts--;
         }
        

@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] cartoonBubbles;
     public GameObject[] collisionEffects;
     public bool isHiding;
-
+    private int _health;
     private UIManagerScript _UIScript;
     public GameObject[] textBubbles;
     [SerializeField] private IAbilityInterface _ability;
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
         _inputScript = FindObjectOfType<InputScript>();
         _UIScript = FindObjectOfType<UIManagerScript>();
         GameManager.Instance.health = 3;
+        _health = 3;
         
 
         isHiding = false;
@@ -47,9 +48,13 @@ public class PlayerController : MonoBehaviour
         }
 
         if (GameManager.Instance.health <= 0)
+        {
             Die();
+        }
 
         HandleAttackInput();
+
+        ChangeInHealth();
 
     }
 
@@ -72,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Bullet"))
         {
-            GameManager.Instance.health--;
+            _health--;
         }
     }
 
@@ -84,6 +89,17 @@ public class PlayerController : MonoBehaviour
         {
             _ability.DeactivateAbility(other.gameObject, _anim);
             Destroy(GetComponent<Bush>());
+        }
+    }
+
+    private void ChangeInHealth()
+    {
+
+        GameManager.Instance.health = _health;
+        if (previousHealth > GameManager.Instance.health || previousHealth < GameManager.Instance.health) // greater than
+        {
+            previousHealth = GameManager.Instance.health;
+            _UIScript.SetHealthSlider();
         }
     }
 

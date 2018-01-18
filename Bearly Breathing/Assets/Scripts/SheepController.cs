@@ -8,7 +8,7 @@ public class SheepController : BaseNPC
     protected override void StartNpc()
     {
         base.StartNpc();
-        sightRange = 10;
+        sightRange = 5;
         facingLeft = true;
         ChangeState(new SheepIdleState());
     }
