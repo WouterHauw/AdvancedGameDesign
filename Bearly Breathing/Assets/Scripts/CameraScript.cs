@@ -6,7 +6,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField] private Vector3 _cameraPosition;
     [SerializeField] private Quaternion _cameraRotation;
     [SerializeField] private float _nearClipping, _farClipping, _depth, _rotation;
-    [SerializeField] private GameObject _player;
+    
 
     // Use this for initialization
     private void Start()
@@ -57,9 +57,9 @@ public class CameraScript : MonoBehaviour
     private void MoveCamera()
     {
         //TODO:SMOOTHDAMP 
-        _cameraPosition.x = _player.transform.position.x;
-        _cameraPosition.y = _player.transform.position.y + 10;
-        _cameraPosition.z = _player.transform.position.z - 8;
+        //_cameraPosition.x = _player.transform.position.x;
+        //_cameraPosition.y = _player.transform.position.y + 10;
+        //_cameraPosition.z = _player.transform.position.z - 8;
         transform.position = _cameraPosition;
     }
 }
