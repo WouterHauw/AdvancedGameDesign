@@ -24,7 +24,7 @@ public class DifficultyChanger : MonoBehaviour
     {
         _spawnScript = FindObjectOfType<SpawnScript>();
         _scoreManager = FindObjectOfType<ScoreManager>();
-        sheepToSpawn = 10;
+        sheepToSpawn = 20;
         GameManager.Instance.requiredScore = 5;
     }
 

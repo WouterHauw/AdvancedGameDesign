@@ -10,7 +10,7 @@ public class InputScript : MonoBehaviour
     private bool _facingRight;
     [SerializeField] private float _minimumDistanceSwipe;
     [SerializeField] private float _minimumSpeedSwipe;
-    [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
+   // [SerializeField] private SwipeGestureRecognizerDirection _swipeDirection;
     private SwipeGestureRecognizer _swipeGestureRecognizer;
     private Animator _anim;
     public int walkingSpeed;
@@ -46,7 +46,7 @@ public class InputScript : MonoBehaviour
 
         _swipeGestureRecognizer.MinimumDistanceUnits = _minimumDistanceSwipe;
         _swipeGestureRecognizer.MinimumSpeedUnits = _minimumSpeedSwipe;
-        _swipeGestureRecognizer.Direction = _swipeDirection;
+       // _swipeGestureRecognizer.Direction = _swipeDirection;
     }
 
     //private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
