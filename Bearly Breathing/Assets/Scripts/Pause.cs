@@ -54,7 +54,7 @@ public class Pause : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-private void HideButtons()
+    private void HideButtons()
     {
         _attackButton.SetActive(false);
         _pauseButton.SetActive(false);

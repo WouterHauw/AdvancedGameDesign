@@ -25,7 +25,6 @@ public class BaseNPC : MonoBehaviour
 
     protected virtual void UpdateNpc()
     {
-        distance = Vector3.Distance(transform.position, player.transform.position);
         if (agent.velocity.x > 0 && facingLeft)
         {
             FlipXAxis();

@@ -16,15 +16,28 @@ public class NewDay : MonoBehaviour
     [SerializeField] private GameObject _nextDayButton;
     [SerializeField] private GameObject _restartButton;
     [SerializeField] private GameObject _exitGameButton;
-    
-    
+
+    private bool _once;
+
+
     private int _extraSheep;
     private GameManager gameManager;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         InitializeVariables();
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.health <= 0 && _once )
+        {
+            Time.timeScale = 0;
+            _newDayMenu.SetActive(true);
+            GameOver();
+            _once = false;
+        }
     }
 
     private void InitializeVariables()
@@ -39,6 +52,7 @@ public class NewDay : MonoBehaviour
         _nextDayButton.SetActive(false);
         _restartButton.SetActive(false);
         _exitGameButton.SetActive(false);
+        _once = true;
     }
 
 
@@ -49,7 +63,7 @@ public class NewDay : MonoBehaviour
 
         _dayText.text = (_dayNightCycle.daysSurvived + 1).ToString();
 
-        if (_dayNightCycle.daysSurvived - gameManager.cooldownDaySheep  >= 10)
+        if (_dayNightCycle.daysSurvived - gameManager.cooldownDaySheep >= 10)
         {
             gameManager.cooldownExtraSheep = false;
         }
@@ -71,17 +85,13 @@ public class NewDay : MonoBehaviour
             }
             _title.text = "GOOD MORNING";
             _sheepText.text = "Extra Sheep";
-                _extraSheep = GameManager.Instance.currentScore - GameManager.Instance.requiredScore;
-                _extraSheepText.text = (GameManager.Instance.currentScore - GameManager.Instance.requiredScore).ToString();
-            
-        }
-        else if(GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
-        {
-            _title.text = "GAME OVER!";
-            _sheepText.text = "Needed Sheep";
-            _restartButton.SetActive(true);
-            _exitGameButton.SetActive(true);
+            _extraSheep = GameManager.Instance.currentScore - GameManager.Instance.requiredScore;
             _extraSheepText.text = (GameManager.Instance.currentScore - GameManager.Instance.requiredScore).ToString();
+
+        }
+        else if (GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
+        {
+            GameOver();
         }
         else
         {
@@ -92,7 +102,7 @@ public class NewDay : MonoBehaviour
             _extraSheepText.text = "You didn't collect any extra sheep. Maybe tomorrow!";
         }
 
-        
+
 
     }
     //Made sure this happen sonly once every 5 days, See if you want to merge it.
@@ -114,8 +124,8 @@ public class NewDay : MonoBehaviour
         int requiredScore = gameManager.requiredScore;
         gameManager.cooldownExtraSheep = true;
         gameManager.cooldownDaySheep = _dayNightCycle.daysSurvived;
-       
-        if(newscore < requiredScore / 2)
+
+        if (newscore < requiredScore / 2)
         {
 
             gameManager.requiredScore = requiredScore / 2;
@@ -124,11 +134,11 @@ public class NewDay : MonoBehaviour
         {
             requiredScore -= _extraSheep;
         }
-        
+
         _newDayMenu.SetActive(false);
         _extraLifeButton.SetActive(false);
         _bonusNextDayButton.SetActive(false);
-        
+
         Time.timeScale = 1;
     }
 
@@ -152,5 +162,14 @@ public class NewDay : MonoBehaviour
         _exitGameButton.SetActive(false);
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void GameOver()
+    {
+        _title.text = "GAME OVER!";
+        _sheepText.text = "Needed Sheep";
+        _restartButton.SetActive(true);
+        _exitGameButton.SetActive(true);
+        _extraSheepText.text = (GameManager.Instance.currentScore - GameManager.Instance.requiredScore).ToString();
     }
 }

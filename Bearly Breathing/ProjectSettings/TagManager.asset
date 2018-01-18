@@ -17,6 +17,7 @@ TagManager:
   - Canvas
   - Heart
   - Boundaries
+  - Bullet
   layers:
   - Default
   - TransparentFX

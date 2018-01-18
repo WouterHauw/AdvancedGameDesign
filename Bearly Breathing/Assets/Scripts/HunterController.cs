@@ -25,6 +25,7 @@ public class HunterController : BaseNPC
     protected override void UpdateNpc()
     {
         base.UpdateNpc();
+        distance = Vector3.Distance(transform.position, player.transform.position);
         _currentState.Execute();
     }
 
@@ -44,7 +45,7 @@ public class HunterController : BaseNPC
     {
         _audioSource.PlayOneShot(_hunterFire, 0.5f);
         GameObject _bulletObject = Instantiate(_bullet, _gun.transform.position, Quaternion.identity);
-        _bulletObject.GetComponent<Rigidbody>().AddForce(_gun.transform.forward * 1500);
+   
         Destroy(_bulletObject, 1f);
     }
 
