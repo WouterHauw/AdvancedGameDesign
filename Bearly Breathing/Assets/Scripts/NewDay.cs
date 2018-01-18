@@ -40,7 +40,8 @@ public class NewDay : MonoBehaviour
     {
         Time.timeScale = 0;
         _newDayMenu.SetActive(true);
-        _dayText.text = "Next day: " + (_dayNightCycle.daysSurvived + 2);
+
+        _dayText.text = (_dayNightCycle.daysSurvived + 1).ToString();
 
         if (_dayNightCycle.daysSurvived - gameManager.cooldownDaySheep  >= 10)
         {
@@ -63,7 +64,7 @@ public class NewDay : MonoBehaviour
                 _bonusNextDayButton.SetActive(true);
             }
                 _extraSheep = GameManager.Instance.currentScore - GameManager.Instance.requiredScore;
-                _extraSheepText.text = "You killed " + (GameManager.Instance.currentScore - GameManager.Instance.requiredScore) + " extra sheep. Choose your option:";
+                _extraSheepText.text = (GameManager.Instance.currentScore - GameManager.Instance.requiredScore).ToString();
             
         }
         else if(GameManager.Instance.currentScore < GameManager.Instance.requiredScore)
@@ -77,7 +78,9 @@ public class NewDay : MonoBehaviour
             _nextDayButton.SetActive(true);
             _extraSheepText.text = "You didn't collect any extra sheep. Maybe tomorrow!";
         }
+
         
+
     }
     //Made sure this happen sonly once every 5 days, See if you want to merge it.
     public void OnClickExtraLife()

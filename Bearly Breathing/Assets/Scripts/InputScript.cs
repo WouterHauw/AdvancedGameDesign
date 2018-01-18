@@ -6,7 +6,7 @@ public class InputScript : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
     public bool isAttacking;
-    public FingersJoystickScript joystickScript;
+    private FingersJoystickScript _joystickScript;
     private bool _facingRight;
     [SerializeField] private float _minimumDistanceSwipe;
     [SerializeField] private float _minimumSpeedSwipe;
@@ -31,8 +31,9 @@ public class InputScript : MonoBehaviour
 
     private void Awake()
     {
-        joystickScript.JoystickExecuted = JoystickExecuted;
-        joystickScript.MoveJoystickToGestureStartLocation = true;
+        _joystickScript = FindObjectOfType<FingersJoystickScript>();
+        _joystickScript.JoystickExecuted = JoystickExecuted;
+        _joystickScript.MoveJoystickToGestureStartLocation = true;
         isAttacking = false;
     }
 
