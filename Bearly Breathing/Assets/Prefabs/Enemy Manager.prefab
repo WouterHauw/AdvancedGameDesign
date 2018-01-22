@@ -51,14 +51,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad034eb43e3d0d4b8a6da9b5abf034b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sheep: {fileID: 1665634631539950, guid: 8db36aa5dc09c5f45b7828bcc3e3a6cb, type: 2}
+  _animatorcontroller:
+  - {fileID: 22100000, guid: 9a05fa43ae290954b87c1df0eedba7d8, type: 2}
+  - {fileID: 22100000, guid: 334cb3a7081346248a613745e706940b, type: 2}
+  - {fileID: 22100000, guid: 68a48c171364fc5479170f3bbb0a813d, type: 2}
+  - {fileID: 22100000, guid: 54b2e72cfd053124b83db9e9c72d9f20, type: 2}
+  - {fileID: 22100000, guid: e7b4cf0609abc934681b88ac92073afb, type: 2}
+  - {fileID: 22100000, guid: 9f6f070d40aeae641a95146e12fa5867, type: 2}
   _player: {fileID: 1189329092199052, guid: ae87897f05c70d24a82b52105ad27de2, type: 2}
-  spawnTime: 3
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _sheep: {fileID: 1665634631539950, guid: 8db36aa5dc09c5f45b7828bcc3e3a6cb, type: 2}
   _sheepCount: 0
+  _spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spawnTime: 3

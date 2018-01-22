@@ -14,6 +14,10 @@ TagManager:
   - SheepTransform
   - PlayerTransform
   - HunterTransform
+  - Canvas
+  - Heart
+  - Boundaries
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -23,8 +27,8 @@ TagManager:
   - UI
   - 
   - 
+  - Ground
   - Player
-  - 
   - 
   - 
   - 

@@ -1,36 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HunterController : BaseNPC
 {
-    Animator anim;
-    public GameObject bullet;
-    public GameObject gun;
-    private Transform playerTransform;
-    private Transform hunterTransform;
+    public GameObject[] waypoints;
+    public float accuracy = 3.0f;
+    public float shootRange = 5f;
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private GameObject _gun;
+    private IHunterState _currentState;
+    [SerializeField] private AudioClip _hunterFire;
+    private AudioSource _audioSource;
 
     // Use this for initialization
-    void Start()
+    protected override void StartNpc()
     {
-        anim = GetComponent<Animator>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        hunterTransform = GameObject.FindGameObjectWithTag("HunterTransform").transform;
+        _audioSource = GetComponent<AudioSource>();
+        base.StartNpc();
+        sightRange = 10f;
+        facingLeft = false;
+        waypoints = GameObject.FindGameObjectsWithTag("waypoint");
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void UpdateNpc()
     {
-        //TODO fix animator.
-        anim.SetFloat("distance", Vector3.Distance(hunterTransform.position, playerTransform.position));
-        anim.SetBool("isHiding", player.GetComponent<PlayerController>().isHiding);
+        base.UpdateNpc();
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        _currentState.Execute();
     }
 
-    void Fire()
+    public void ChangeState(IHunterState newState)
     {
-        GameObject b = Instantiate(bullet, gun.transform.position, Quaternion.identity);
-        b.GetComponent<Rigidbody>().AddForce(gun.transform.forward * 1500);
-        Destroy(b, 1f);
+        if (_currentState != null)
+        {
+            _currentState.Exit();
+        }
+
+        _currentState = newState;
+
+        _currentState.Enter(this);
+    }
+
+    private void Fire()
+    {
+        _audioSource.PlayOneShot(_hunterFire, 0.5f);
+        GameObject _bulletObject = Instantiate(_bullet, _gun.transform.position, Quaternion.identity);
+   
+        Destroy(_bulletObject, 1f);
     }
 
     public void StopFiring()
@@ -41,5 +57,18 @@ public class HunterController : BaseNPC
     public void StartFiring()
     {
         InvokeRepeating("Fire", 0.5f, 2.0f);
+    }
+
+    private void Awake()
+    {
+        ChangeState(new HunterPatrolState());
+    }
+    private void Start()
+    {
+        StartNpc();
+    }
+    private void Update()
+    {
+        UpdateNpc();
     }
 }

@@ -1,27 +1,45 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using Boo.Lang;
+using UnityEngine;
 
-public class UIManagerScript : MonoBehaviour {
-    [SerializeField] private PlayerController player;
-    [SerializeField] private GameObject text;
-    [SerializeField] private Slider SliderVar;
+public class UIManagerScript : MonoBehaviour
+{
+    public List<GameObject> hearts;
+    public int activeHearts;
 
-	// Use this for initialization
-	void Start () {
-	    player = player.GetComponent<PlayerController>();
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        setHealthSlider();
-        text.GetComponent<Text>().text = player.health + "/" + player.maxHealth;
+    private void Start()
+    {     
+        hearts = new List<GameObject>();
+        var children = transform.childCount;
+        for (int i = 0; i < children; ++i)
+        {
+            foreach (Transform images in transform.GetChild(i))
+            {
+                hearts.Add(images.gameObject);
+            }
+        }
+           
     }
 
-   
-
-    private void setHealthSlider()
+    public void SetHealthSlider()
     {
-        SliderVar.value = player.health / player.maxHealth;
+        if (GameManager.Instance.health <= 0)
+        {
+            foreach (var heart in hearts)
+            {
+                heart.SetActive(false);
+            }
+            return;
+        }
+        while(activeHearts < GameManager.Instance.health)
+        {
+            hearts[activeHearts].SetActive(true);
+            activeHearts++;
+        }
+        while (activeHearts > GameManager.Instance.health & activeHearts != 0)
+        {
+           hearts[activeHearts-1].SetActive(false);
+            activeHearts--;
+        }
+       
     }
 }

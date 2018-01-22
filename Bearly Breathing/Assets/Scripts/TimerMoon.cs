@@ -1,40 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine;
 
 public class TimerMoon : MonoBehaviour
 {
     public Transform timer;
-    [SerializeField]
-    private float currentAmount;
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private Image sunBack;
-    private TimerSun timerSun;
+    [SerializeField] private float _currentAmount;
+    [SerializeField] private float _speed;
+    [SerializeField] private Image _sunBack;
 
-    void Start()
+    private TimerSun _timerSun;
+
+    private void Start()
     {
-        timerSun = FindObjectOfType<TimerSun>();
+        _timerSun = FindObjectOfType<TimerSun>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (timerSun.currentAmount <= 0)
+        if (_timerSun.currentAmount <= 0)
         {
-            currentAmount -= speed * Time.deltaTime;
+            _currentAmount -= _speed * Time.deltaTime;
 
-            timer.GetComponent<Image>().fillAmount = currentAmount / 100;
+            timer.GetComponent<Image>().fillAmount = _currentAmount / 100;
         }
 
-        if (currentAmount <= 0)
+        if (_currentAmount <= 0)
         {
-            sunBack.enabled = false;
-            timerSun.currentAmount = 100;
-            currentAmount = 100;
-            timer.GetComponent<Image>().fillAmount = currentAmount / 100;
+            _sunBack.enabled = false;
+            _timerSun.currentAmount = 100;
+            _currentAmount = 100;
+            timer.GetComponent<Image>().fillAmount = _currentAmount / 100;
         }
-
     }
 }

@@ -2,94 +2,116 @@
 
 public class DayNightCycle : MonoBehaviour
 {
+    [Range(0, 1)] public float currentTimeOfDay;
+    
+
+    [SerializeField]
+    private InputScript _inputScript;
+    [SerializeField]
+    private DifficultyChanger _difficultyChanger;
+    [SerializeField] private NewDay _newDay;
+    private bool _dayHasBeenChanged;
+   
+
+    public int daysSurvived;
 
     public Light sun;
-    private float secondsInFullDay;
-    [Range(0, 1)]
-    public float currentTimeOfDay;
-    [HideInInspector]
-    public float timeMultiplier = 1f;
-    public int daysSurvived;
-   // public bool isDay;
+
+    [HideInInspector] public float timeMultiplier = 1f;
+
     [SerializeField] private GameObject _player;
+
     private PlayerController _playerScript;
-    [SerializeField] private ScoreManager _scoreScript;
-    private bool isEndOfDay;
+    private float _secondsInFullDay;
+    [SerializeField] private AudioClip _dayMusic;
 
-    float sunInitialIntensity;
+    private float _sunInitialIntensity;
 
-    void Start()
+    private void Start()
     {
         InitializeVariables();
-        
+        _difficultyChanger.ChangeDifficultyOnNewDay(daysSurvived);
     }
 
     private void InitializeVariables()
     {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(_dayMusic, 0.7f);
+        audioSource.volume = 0.1f;
+        currentTimeOfDay = 0.25f;
+        _sunInitialIntensity = sun.intensity;
+        _secondsInFullDay = 90f;
+        daysSurvived = 0;
+        _inputScript = FindObjectOfType<InputScript>();
+        _difficultyChanger = FindObjectOfType<DifficultyChanger>();
+        _newDay = FindObjectOfType<NewDay>();
+        _dayHasBeenChanged = false;
         _playerScript = _player.GetComponent<PlayerController>();
-        currentTimeOfDay = 0.20f;
-        sunInitialIntensity = sun.intensity;
-        secondsInFullDay = 60f;
     }
 
-    void Update()
+    private void Update()
     {
         UpdateSun();
 
-        currentTimeOfDay += (Time.deltaTime / secondsInFullDay) * timeMultiplier;        
+        currentTimeOfDay += Time.deltaTime / _secondsInFullDay * timeMultiplier;
 
         if (currentTimeOfDay >= 1)
         {
-            DayChanges();
-            NightChanges();
             currentTimeOfDay = 0;
         }
-        
-       
     }
 
-    void UpdateSun()
+    private void UpdateSun()
     {
-        sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
+        sun.transform.localRotation = Quaternion.Euler(currentTimeOfDay * 360f - 90, 170, 0);
 
         float intensityMultiplier = 1;
         if (currentTimeOfDay <= 0.23f || currentTimeOfDay >= 0.75f)
         {
             intensityMultiplier = 0;
         }
-        else if (currentTimeOfDay <= 0.25f) //beginning of day
+
+        if (currentTimeOfDay >= 0.75f && currentTimeOfDay <= 0.76f)
         {
-            intensityMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
-            
-            
-            
-        }
-        else if (currentTimeOfDay >= 0.73f) // end of day
-        {
-            intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
-           
-            
+            _dayHasBeenChanged = false;
         }
 
-        sun.intensity = sunInitialIntensity * intensityMultiplier;
+        if (currentTimeOfDay >= 0.23f && currentTimeOfDay <= 0.24f)
+        {
+            if (!_dayHasBeenChanged)
+            {
+                DayChanges();
+                _dayHasBeenChanged = true;
+            }
+        }
+
+        sun.intensity = _sunInitialIntensity * intensityMultiplier;
     }
 
     private void DayChanges()
     {
-        
+        _inputScript.walkingSpeed = 8;
+        _newDay.OnNewDay();
         daysSurvived++;
-        Debug.Log("DayChanges");
+        GameManager.Instance.currentScore = 0;
+        DestroyOnDay();
+        _difficultyChanger.ChangeDifficultyOnNewDay(daysSurvived);
     }
 
-    private void NightChanges()
+    private void DestroyOnDay()
     {
-      if(_playerScript._currentScore < 10)
+        GameObject[] sheep = GameObject.FindGameObjectsWithTag("SheepTransform");
+
+        foreach (var item in sheep)
         {
-            Debug.Log("NightChanges");
-            _playerScript.die();
+            item.SetActive(false);
         }
-        else {
-            _playerScript._currentScore = 0;
+
+        GameObject[] hunter = GameObject.FindGameObjectsWithTag("HunterTransform");
+
+        foreach (var item in hunter)
+        {
+            Destroy(item);
         }
     }
 }

@@ -1,29 +1,26 @@
-﻿using UnityEngine.UI;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class TimerSun : MonoBehaviour
 {
-    public Transform timer;
     public float currentAmount;
-    [SerializeField]
-    public float speed;
-    [SerializeField]
-    private Image sunBack;
+    [SerializeField] public float speed;
+    public Transform timer;
 
-    void Update()
+    [SerializeField] private Image _sunBack;
+
+    private void Update()
     {
         if (currentAmount <= 100)
         {
-            sunBack.enabled = true;
+            _sunBack.enabled = true;
             currentAmount -= speed * Time.deltaTime;
             timer.GetComponent<Image>().fillAmount = currentAmount / 100;
         }
-
 
         if (currentAmount <= 0)
         {
             currentAmount = 0;
         }
-
     }
 }
