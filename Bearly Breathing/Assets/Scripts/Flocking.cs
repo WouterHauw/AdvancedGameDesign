@@ -2,10 +2,10 @@
 
 public class Flocking : MonoBehaviour
 {
-    public static int mapSize = 5;
+    public static readonly int mapSize = 5;
     private const int NumSheep = 10;
-    public static GameObject[] allSheep = new GameObject[NumSheep];
-    public static Vector3 goalPos = Vector3.zero;
+    public static readonly GameObject[] allSheep = new GameObject[NumSheep];
+    public Vector3 goalPos = Vector3.zero;
     [SerializeField] private GameObject goalPrefab;
     [SerializeField]    private GameObject sheepPrefab;
 
