@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class HunterFSM : StateMachineBehaviour
 {
-    public static float distance;
+    public float distance;
 
     [SerializeField] public float accuracy = 3.0f;
 

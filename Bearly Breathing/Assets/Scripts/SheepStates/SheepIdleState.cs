@@ -40,7 +40,9 @@ public class SheepIdleState : ISheepState
         _sheep.GetAnimator().SetBool("isEating", true);
 
         if (_eatTimer >= _eatDuration)
+        {
             _sheep.GetAnimator().SetBool("isEating", false);
+        }
 
         if (_idleTimer >= _idleDuration)
         {

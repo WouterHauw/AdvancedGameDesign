@@ -24,7 +24,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AdjustScore() { }
+    public void AdjustScore() { 
+        //Used in a subclass where it is overwritten
+    }
 
 }
 

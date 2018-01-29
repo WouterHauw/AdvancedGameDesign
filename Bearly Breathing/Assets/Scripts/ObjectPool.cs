@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
 
-    public static ObjectPool Instance;
+    public ObjectPool Instance;
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     private int amountToPool;

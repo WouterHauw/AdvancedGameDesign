@@ -7,8 +7,8 @@ public class SheepWalkState : ISheepState
     private float _walkTimer;
     private float _walkDuration = 5;
 
-    public static int radius = 2;
-    public static Vector3 goalPos = Vector3.zero;
+    public int radius = 2;
+    public Vector3 goalPos = Vector3.zero;
 
     public void Enter(SheepController sheep)
     {
@@ -56,8 +56,10 @@ public class SheepWalkState : ISheepState
             _sheep.agent.destination = goalPos;
 
 
-            if(_sheep.GetAnimator().velocity.magnitude > 0)
+            if (_sheep.GetAnimator().velocity.magnitude > 0)
+            {
                 _sheep.GetAnimator().SetBool("isWalking", true);
+            }
 
         }
     }
