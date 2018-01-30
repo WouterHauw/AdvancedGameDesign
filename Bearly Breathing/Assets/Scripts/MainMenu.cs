@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
 
-    public void StartGame()
+    public void Mute()
     {
-        SceneManager.LoadScene("2DScene");
+        AudioListener.pause = !AudioListener.pause;
     }
 }
