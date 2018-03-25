@@ -7,19 +7,17 @@ public class FlockMovement : MonoBehaviour
     private const float RotationSpeed = 4.0f;
     private bool _turning;
 
-    // Use this for initialization
     private void Start()
     {
         speed = Random.Range(0.5f, 1);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         _turning = Vector3.Distance(transform.position, Vector3.zero) >= Flocking.mapSize;
         if (_turning)
         {
-            var direction = Vector3.zero - transform.position;
+            Vector3 direction = Vector3.zero - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(direction),
                 RotationSpeed * Time.deltaTime);
@@ -36,17 +34,17 @@ public class FlockMovement : MonoBehaviour
 
     private void ApplyRules()
     {
-        var gos = Flocking.allSheep;
+        GameObject[] gos = Flocking.allSheep;
 
-        var vcentre = Vector3.zero;
-        var vavoid = Vector3.zero;
-        var gSpeed = 0.1f;
+        Vector3 vcentre = Vector3.zero;
+        Vector3 vavoid = Vector3.zero;
+        float gSpeed = 0.1f;
 
-        var goalPos = Flocking.goalPos;
+        Vector3 goalPos = Flocking.goalPos;
 
-        var groupSize = 0;
+        int groupSize = 0;
 
-        foreach (var go in gos)
+        foreach (GameObject go in gos)
         {
             if (go == gameObject)
             {
@@ -65,7 +63,7 @@ public class FlockMovement : MonoBehaviour
                 vavoid = vavoid + (transform.position - go.transform.position);
             }
 
-            var anotherFlock = go.GetComponent<FlockMovement>();
+            FlockMovement anotherFlock = go.GetComponent<FlockMovement>();
             gSpeed = gSpeed + anotherFlock.speed;
         }
 
@@ -76,7 +74,7 @@ public class FlockMovement : MonoBehaviour
         vcentre = vcentre / groupSize + (goalPos - transform.position);
         speed = gSpeed / groupSize;
 
-        var direction = vcentre + vavoid - transform.position;
+        Vector3 direction = vcentre + vavoid - transform.position;
         if (direction != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation,

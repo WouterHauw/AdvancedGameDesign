@@ -12794,7 +12794,7 @@ Prefab:
     - target: {fileID: 224580531083269278, guid: a37bccf330f0aa64e9402c637424e55c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -20.00003
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 224552468615151354, guid: a37bccf330f0aa64e9402c637424e55c,
         type: 2}
@@ -13313,7 +13313,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4454324126076942, guid: 938d7769a5eba964b8f4b23c2bf14010, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.57
+      value: 9.11
       objectReference: {fileID: 0}
     - target: {fileID: 4454324126076942, guid: 938d7769a5eba964b8f4b23c2bf14010, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13343,6 +13343,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114545288264716532, guid: 938d7769a5eba964b8f4b23c2bf14010,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 461216993}
+    - target: {fileID: 114545288264716532, guid: 938d7769a5eba964b8f4b23c2bf14010,
+        type: 2}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 1752306157}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 938d7769a5eba964b8f4b23c2bf14010, type: 2}
   m_IsPrefabParent: 0
@@ -13364,6 +13374,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRadius: 57.9
   viewAngle: 19.79
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTargets: []
 --- !u!1 &1752306149 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1896994204327722, guid: 938d7769a5eba964b8f4b23c2bf14010,
@@ -13380,8 +13397,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68da32733ad51df439f749e3dc705dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 3.27
-  viewAngle: 0
+  viewRadius: 10.03
+  viewAngle: 243
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  visibleTargets: []
+--- !u!195 &1752306157 stripped
+NavMeshAgent:
+  m_PrefabParentObject: {fileID: 195440135240537566, guid: 938d7769a5eba964b8f4b23c2bf14010,
+    type: 2}
+  m_PrefabInternal: {fileID: 1752306146}
 --- !u!4 &1754288751 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4927583756051774, guid: 62226b800a6c05d4bb6de08ca344672f,
