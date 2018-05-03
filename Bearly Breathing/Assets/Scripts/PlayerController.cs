@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public IAbilityInterface abilityInterface;
     public GameObject bearClaw;
     public AudioClip playerAttackAudioClip;
+    public int numSticks;
     public int previousHealth;
     public bool beingChased;
     public GameObject[] cartoonBubbles;
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
         _inputScript = FindObjectOfType<InputScript>();
         _UIScript = FindObjectOfType<UIManagerScript>();
         GameManager.Instance.health = 3;
+        numSticks = GameManager.Instance.sticks;
+        numSticks = 0;
         
 
         isHiding = false;
@@ -93,6 +96,16 @@ public class PlayerController : MonoBehaviour
         {
             previousHealth = GameManager.Instance.health;
             _UIScript.SetHealthSlider();
+        }
+    }
+
+    public void UpdateStick(int x)
+    {
+        numSticks += x;
+
+        if(numSticks < 0)
+        {
+            numSticks = 0;
         }
     }
 

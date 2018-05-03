@@ -2,14 +2,14 @@
 
 public class FlockMovement : MonoBehaviour
 {
-    public float speed = 0.001f;
-    private const float NeighbourDistance = 4.0f;
-    private const float RotationSpeed = 4.0f;
+    private float _speed = 0.001f;
+    private const float _neighbourDistance = 7.0f;
+    private const float _rotationSpeed = 4.0f;
     private bool _turning;
 
     private void Start()
     {
-        speed = Random.Range(0.5f, 1);
+        _speed = Random.Range(0.5f, 1);
     }
 
     private void Update()
@@ -18,10 +18,12 @@ public class FlockMovement : MonoBehaviour
         if (_turning)
         {
             Vector3 direction = Vector3.zero - transform.position;
+            
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(direction),
-                RotationSpeed * Time.deltaTime);
-            speed = Random.Range(0.5f, 1);
+                _rotationSpeed * Time.deltaTime);
+                
+            _speed = Random.Range(0.5f, 1);
         }
 
         if (Random.Range(0, 5) < 1)
@@ -29,7 +31,7 @@ public class FlockMovement : MonoBehaviour
             ApplyRules();
         }
 
-        transform.Translate(0, 0, Time.deltaTime * speed);
+        transform.Translate(0, 0, Time.deltaTime * _speed);
     }
 
     private void ApplyRules()
@@ -51,7 +53,7 @@ public class FlockMovement : MonoBehaviour
                 continue;
             }
             var dist = Vector3.Distance(go.transform.position, transform.position);
-            if (!(dist <= NeighbourDistance))
+            if (!(dist <= _neighbourDistance))
             {
                 continue;
             }
@@ -64,7 +66,7 @@ public class FlockMovement : MonoBehaviour
             }
 
             FlockMovement anotherFlock = go.GetComponent<FlockMovement>();
-            gSpeed = gSpeed + anotherFlock.speed;
+            gSpeed = gSpeed + anotherFlock._speed;
         }
 
         if (groupSize <= 0)
@@ -72,14 +74,17 @@ public class FlockMovement : MonoBehaviour
             return;
         }
         vcentre = vcentre / groupSize + (goalPos - transform.position);
-        speed = gSpeed / groupSize;
+        _speed = gSpeed / groupSize;
 
-        Vector3 direction = vcentre + vavoid - transform.position;
+        Vector3 direction = (vcentre + vavoid) - transform.position;
         if (direction != Vector3.zero)
         {
+            direction = Vector3.zero - transform.position;
+            
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(direction),
-                RotationSpeed * Time.deltaTime);
+                _rotationSpeed * Time.deltaTime);
+               
         }
     }
 }

@@ -77,15 +77,18 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -107,6 +110,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 69dbf6c7b4f7c5445a177557c52a2581, type: 2}
 --- !u!1001 &69549699
 Prefab:
@@ -375,9 +380,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 352108473}
-  currentAmount: 100
-  speed: 10
-  sunBack: {fileID: 1730907812}
+  _currentAmount: 0
+  _speed: 0
+  _sunBack: {fileID: 0}
 --- !u!114 &352108475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,10 +496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4821b3c8e5cdfd74ba72519d4a4096b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: {fileID: 356651079}
   currentAmount: 100
   speed: 10
-  sunBack: {fileID: 1730907812}
+  timer: {fileID: 356651079}
+  _sunBack: {fileID: 0}
 --- !u!1 &378637794 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1154682115355250, guid: 1c6e0600499c43d4f9723a7bbe0d1733,
@@ -822,11 +827,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &1118302453
 Transform:
   m_ObjectHideFlags: 0
@@ -1026,6 +1031,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1041,6 +1047,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1146,9 +1153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2ef4a6993838b49b40483c6bc7e2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0
   player: {fileID: 378637794}
-  bullet: {fileID: 1740845147830196, guid: b033f3a819cabec418f565285489ff71, type: 2}
-  gun: {fileID: 1425886455}
+  agent: {fileID: 0}
+  sightRange: 0
 --- !u!1 &1416218915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,6 +1225,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1232,6 +1241,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -1440,22 +1450,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad034eb43e3d0d4b8a6da9b5abf034b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sheep: {fileID: 1649528773794032, guid: 4b08233d247166a429787fc49c81e241, type: 2}
+  _animatorcontroller: []
   _player: {fileID: 378637794}
-  spawnTime: 5
-  spawnPoints:
+  _sheep: {fileID: 1610375274406446, guid: 8d3e7eb251141a54996f717b9080d137, type: 2}
+  _sheepCount: 3
+  _spawnPoints:
   - {fileID: 1416218916}
-  - {fileID: 200101208}
   - {fileID: 1175479744}
-  - {fileID: 802503616}
-  - {fileID: 1651011889}
-  - {fileID: 1202802731}
-  - {fileID: 1775247246}
-  - {fileID: 1430460021}
-  - {fileID: 219487546}
-  - {fileID: 841190801}
-  - {fileID: 2122859774}
-  _sheepCount: 0
+  _spawnTime: 3
 --- !u!4 &1657528244
 Transform:
   m_ObjectHideFlags: 0

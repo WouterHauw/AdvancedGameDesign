@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int health;
+    public int sticks;
     public int requiredScore;
     public int currentScore;
     public bool cooldownExtraSheep;

@@ -3,19 +3,19 @@
 public class Flocking : MonoBehaviour
 {
     public static int mapSize = 5;
-    private const int numSheep = 10;
-    public static GameObject[] allSheep = new GameObject[numSheep];
+    public static GameObject[] allSheep = new GameObject[_numSheep];
     public static Vector3 goalPos = Vector3.zero;
-    [SerializeField] private GameObject goalPrefab;
-    [SerializeField]    private GameObject sheepPrefab;
+    private const int _numSheep = 5;
+    [SerializeField] private GameObject _goalPrefab;
+    [SerializeField] private GameObject _sheepPrefab;
 
     // Use this for initialization
-    private void Start()
+    private void Start()    
     {
-        for (var i = 0; i < numSheep; i++)
+        for (var i = 0; i < _numSheep; i++)
         {
             var pos = new Vector3(Random.Range(-mapSize, mapSize), 0, Random.Range(-mapSize, mapSize));
-            allSheep[i] = Instantiate(sheepPrefab, pos, Quaternion.identity);
+            allSheep[i] = Instantiate(_sheepPrefab, pos, Quaternion.identity);
         }
     }
 
@@ -27,6 +27,6 @@ public class Flocking : MonoBehaviour
             return;
         }
         goalPos = new Vector3(Random.Range(-mapSize, mapSize), 0, Random.Range(-mapSize, mapSize));
-        goalPrefab.transform.position = goalPos;
+        _goalPrefab.transform.position = goalPos;
     }
 }

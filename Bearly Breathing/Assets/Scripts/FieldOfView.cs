@@ -7,8 +7,10 @@ public class FieldOfView : MonoBehaviour
     public float viewRadius;
 	[Range(0,360)]
 	public float viewAngle;
+    public Light spotlight;
+    public bool playerSeen;
 
-	public LayerMask targetMask;
+    public LayerMask targetMask;
 	public LayerMask obstacleMask;
 
 	[HideInInspector]
@@ -16,7 +18,8 @@ public class FieldOfView : MonoBehaviour
 
 	void Start() {
 		StartCoroutine ("FindTargetsWithDelay", .2f);
-	}
+        viewAngle = spotlight.spotAngle;
+    }
 
 
 	IEnumerator FindTargetsWithDelay(float delay) {
@@ -37,7 +40,8 @@ public class FieldOfView : MonoBehaviour
 				float dstToTarget = Vector3.Distance (transform.position, target.position);
 
 				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
-					visibleTargets.Add (target);
+                    playerSeen = true;
+                    visibleTargets.Add (target);
 				}
 			}
 		}
@@ -46,6 +50,6 @@ public class FieldOfView : MonoBehaviour
 
 	public Vector3 DirFromAngle(float angleInDegrees) {
 		
-		return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad),0,Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+		return new Vector3(Mathf.Cos(angleInDegrees * Mathf.Deg2Rad),0,Mathf.Sin (angleInDegrees * Mathf.Deg2Rad));
 	}
 }

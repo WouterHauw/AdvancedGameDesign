@@ -6,11 +6,13 @@ public class HunterScoutState : IHunterState
     private int _currentWp;
     private float _scoutTimer;
     private float _scoutDuration = 5;
+    private FovHunter _hunterFov;
 
     public void Enter(HunterController hunter)
     {
         _hunter = hunter;
         _hunter.player.GetComponent<PlayerController>().beingChased = false;
+        _hunterFov = GameObject.FindObjectOfType<FovHunter>();
         _currentWp = 0;
     }
 
@@ -19,7 +21,7 @@ public class HunterScoutState : IHunterState
         _scoutTimer += Time.deltaTime;
         _hunter.agent.speed = 7;
 
-        if (_hunter.distance <= _hunter.sightRange && _hunter.player.GetComponent<PlayerController>().isHiding == false)
+        if (_hunterFov.CanSeePlayer() && _hunter.player.GetComponent<PlayerController>().isHiding == false)
         {
             _hunter.ChangeState(new HunterChaseState());
             _hunter.GetAnimator().SetBool("isChasing", true);
